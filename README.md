@@ -1,6 +1,6 @@
-# Template
+# Helm charts
 
-Template repository.
+Miscellaneous helm charts.
 
 ## License
 

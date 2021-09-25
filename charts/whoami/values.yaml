@@ -1,0 +1,24 @@
+replicaCount: 1
+
+image:
+  repository: containous/whoami
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: traefik
+  hosts:
+    - host: whoami.192-168-0-10.sslip.io
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
