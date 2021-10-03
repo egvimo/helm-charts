@@ -10,6 +10,10 @@ spec:
       {{- include "whoami.selectorLabels" . | nindent 6 }}
   template:
     metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       labels:
         {{- include "whoami.selectorLabels" . | nindent 8 }}
     spec:
@@ -21,5 +25,13 @@ spec:
             - name: http
               containerPort: 80
               protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
