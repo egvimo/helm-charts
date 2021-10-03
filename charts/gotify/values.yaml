@@ -1,0 +1,28 @@
+replicaCount: 1
+
+image:
+  repository: gotify/server
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: traefik
+  hosts:
+    - host: gotify.192-168-0-10.sslip.io
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+
+resources: {}
