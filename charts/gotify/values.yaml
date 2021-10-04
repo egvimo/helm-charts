@@ -26,3 +26,8 @@ ingress:
           pathType: ImplementationSpecific
 
 resources: {}
+
+defaultUser: {}
+  # name: admin
+  # pass: admin
+timezone: ""

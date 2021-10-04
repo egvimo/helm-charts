@@ -27,6 +27,24 @@ spec:
             - name: http
               containerPort: 80
               protocol: TCP
+          {{- if or .Values.defaultUser .Values.timezone }}
+          env:
+            {{- if .Values.defaultUser.name }}
+            - name: GOTIFY_DEFAULTUSER_NAME
+              value: {{ .Values.defaultUser.name | quote }}
+            {{- end }}
+            {{- if .Values.defaultUser.pass }}
+            - name: GOTIFY_DEFAULTUSER_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "gotify.fullname" . }}
+                  key: defaultuser-pass
+            {{- end }}
+            {{- if .Values.timezone }}
+            - name: TZ
+              value: {{ .Values.timezone | quote }}
+            {{- end }}
+          {{- end }}
           livenessProbe:
             httpGet:
               path: /
