@@ -20,7 +20,7 @@ ingress:
   annotations:
     kubernetes.io/ingress.class: traefik
   hosts:
-    - host: gotify.192-168-0-10.sslip.io
+    - host: gotify.192-168-178-31.sslip.io
       paths:
         - path: /
           pathType: ImplementationSpecific
