@@ -1,0 +1,17 @@
+{{- if .Values.persistence.enabled -}}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ include "readymedia.fullname" . }}
+  labels:
+    {{- include "readymedia.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - ReadOnlyMany
+  capacity:
+    storage: {{ .Values.persistence.storage }}
+  hostPath:
+    path: {{ .Values.persistence.path }}
+  storageClassName: local-path
+  persistentVolumeReclaimPolicy: Retain
+{{- end }}

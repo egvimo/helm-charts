@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "readymedia.fullname" . }}
+  labels:
+    {{- include "readymedia.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "readymedia.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "readymedia.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: MINIDLNA_MEDIA_DIR
+              value: /media
+            {{- if .Values.friendlyName }}
+            - name: MINIDLNA_FRIENDLY_NAME
+              value: {{ .Values.friendlyName | quote }}
+            {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          {{- if .Values.persistence.enabled }}
+          volumeMounts:
+            - mountPath: /media
+              name: {{ include "readymedia.fullname" . }}
+          {{- end }}
+      hostNetwork: true
+      {{- if .Values.persistence.enabled }}
+      volumes:
+        - name: {{ include "readymedia.fullname" . }}
+          persistentVolumeClaim:
+            claimName: {{ include "readymedia.fullname" . }}
+      {{- end }}
