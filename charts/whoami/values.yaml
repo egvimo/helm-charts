@@ -3,8 +3,7 @@ replicaCount: 1
 image:
   repository: containous/whoami
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: ""  # Defaults to chart appVersion
 
 nameOverride: ""
 fullnameOverride: ""
