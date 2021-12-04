@@ -31,15 +31,16 @@ spec:
             {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          {{- if .Values.persistence.enabled }}
+          {{- if .Values.persistence.mediaPath }}
           volumeMounts:
             - mountPath: /media
-              name: {{ include "readymedia.fullname" . }}
+              name: media
           {{- end }}
       hostNetwork: true
-      {{- if .Values.persistence.enabled }}
+      {{- if .Values.persistence.mediaPath }}
       volumes:
-        - name: {{ include "readymedia.fullname" . }}
-          persistentVolumeClaim:
-            claimName: {{ include "readymedia.fullname" . }}
+        - name: media
+          hostPath:
+            path: {{ .Values.persistence.mediaPath }}
+            type: Directory
       {{- end }}

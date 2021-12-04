@@ -3,7 +3,6 @@ replicaCount: 1
 image:
   repository: vladgh/minidlna
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
   tag: "1.2.0"
 
 nameOverride: ""
@@ -14,8 +13,6 @@ podAnnotations: {}
 resources: {}
 
 persistence:
-  enabled: false
-  storage: 32Gi
-  path: /media
+  mediaPath: ""
 
 friendlyName: ""
