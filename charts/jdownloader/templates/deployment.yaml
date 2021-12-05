@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "jdownloader.fullname" . }}
+  labels:
+    {{- include "jdownloader.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "jdownloader.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "jdownloader.selectorLabels" . | nindent 8 }}
+    spec:
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: MYJD_DEVICE_NAME
+              value: {{ .Values.deviceName | default "Kubernetes" | quote }}
+            - name: UMASK
+              value: {{ .Values.umask | default "0002" | quote }}
+            {{- if and .Values.myJdAccount.email .Values.myJdAccount.password }}
+            - name: MYJD_USER
+              value: {{ .Values.myJdAccount.email | quote }}
+            - name: MYJD_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "jdownloader.fullname" . }}
+                  key: myJdAccount-password
+            {{- end }}
+          ports:
+            - name: direct-conn
+              containerPort: 3129
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - mountPath: /opt/JDownloader/app
+              name: app
+            {{- if .Values.volumes.cfgPath }}
+            - mountPath: /opt/JDownloader/app/cfg
+              name: cfg
+            {{- end }}
+            {{- if .Values.volumes.downloadsPath }}
+            - mountPath: /opt/JDownloader/Downloads
+              name: downloads
+            {{- end }}
+      volumes:
+        - name: app
+          emptyDir: {}
+        {{- if .Values.volumes.cfgPath }}
+        - name: cfg
+          hostPath:
+            path: {{ .Values.volumes.cfgPath }}
+            type: Directory
+        {{- end }}
+        {{- if .Values.volumes.downloadsPath }}
+        - name: downloads
+          hostPath:
+            path: {{ .Values.volumes.downloadsPath }}
+            type: Directory
+        {{- end }}
