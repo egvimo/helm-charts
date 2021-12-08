@@ -11,5 +11,8 @@ spec:
       targetPort: direct-conn
       protocol: TCP
       name: direct-conn
+      {{- if eq .Values.service.type "NodePort" }}
+      nodePort: {{ .Values.service.nodePort }}
+      {{- end }}
   selector:
     {{- include "jdownloader.selectorLabels" . | nindent 4 }}
