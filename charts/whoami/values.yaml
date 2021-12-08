@@ -10,6 +10,10 @@ fullnameOverride: ""
 
 podAnnotations: {}
 
+podSecurityContext: {}
+
+securityContext: {}
+
 service:
   type: ClusterIP
   port: 80

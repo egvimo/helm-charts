@@ -10,6 +10,10 @@ fullnameOverride: ""
 
 podAnnotations: {}
 
+podSecurityContext: {}
+
+securityContext: {}
+
 resources: {}
 
 persistence:
