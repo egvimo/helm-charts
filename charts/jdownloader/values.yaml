@@ -15,9 +15,8 @@ podSecurityContext: {}
 securityContext: {}
 
 service:
-  type: NodePort
+  type: LoadBalancer
   port: 3129
-  nodePort: 31290
 
 resources: {}
 
