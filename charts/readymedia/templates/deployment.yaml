@@ -35,16 +35,16 @@ spec:
             {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          {{- if .Values.persistence.mediaPath }}
+          {{- if .Values.volumes.mediaPath }}
           volumeMounts:
             - mountPath: /media
               name: media
           {{- end }}
       hostNetwork: true
-      {{- if .Values.persistence.mediaPath }}
+      {{- if .Values.volumes.mediaPath }}
       volumes:
         - name: media
           hostPath:
-            path: {{ .Values.persistence.mediaPath }}
+            path: {{ .Values.volumes.mediaPath }}
             type: Directory
       {{- end }}

@@ -16,7 +16,7 @@ securityContext: {}
 
 resources: {}
 
-persistence:
+volumes:
   mediaPath: ""
 
 friendlyName: ""
