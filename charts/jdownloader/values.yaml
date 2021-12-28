@@ -24,8 +24,8 @@ volumes:
   cfgPath: ""
   downloadsPath: ""
 
-deviceName: ""
-umask: ""
+deviceName: ""  # Defaults to 'Kubernetes'
+umask: ""  # Defaults to '0002'
 
 myJdAccount:
   email: ""

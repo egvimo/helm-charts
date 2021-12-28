@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: gotify/server
+  repository: gotify/server-arm64
   pullPolicy: IfNotPresent
   tag: ""  # Defaults to chart appVersion
 
@@ -30,7 +30,7 @@ ingress:
 
 resources: {}
 
-defaultUser: {}
-  # name: admin
-  # pass: admin
-timezone: ""
+defaultUser:
+  name: ""
+  pass: ""
+timezone: ""  # Defaults to 'Europe/Berlin'
