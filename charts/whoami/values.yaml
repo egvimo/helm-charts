@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: containous/whoami
+  repository: traefik/whoami
   pullPolicy: IfNotPresent
   tag: ""  # Defaults to chart appVersion
 
