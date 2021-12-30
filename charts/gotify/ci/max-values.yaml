@@ -1,0 +1,7 @@
+image:
+  repository: gotify/server
+
+defaultUser:
+  name: "test"
+  pass: "test"
+timezone: "America/New_York"
