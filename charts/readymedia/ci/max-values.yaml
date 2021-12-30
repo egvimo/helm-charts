@@ -1,0 +1,4 @@
+volumes:
+  mediaPath: "/tmp"
+
+friendlyName: "Test"
