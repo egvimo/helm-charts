@@ -30,6 +30,9 @@ ingress:
 
 resources: {}
 
+volumes:
+  dataPath: ""
+
 defaultUser:
   name: ""
   pass: ""

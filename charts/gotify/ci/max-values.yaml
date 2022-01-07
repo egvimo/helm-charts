@@ -1,7 +1,10 @@
 image:
   repository: gotify/server
 
+volumes:
+  mediaPath: /tmp
+
 defaultUser:
-  name: "test"
-  pass: "test"
-timezone: "America/New_York"
+  name: test
+  pass: test
+timezone: America/New_York

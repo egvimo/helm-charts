@@ -55,3 +55,15 @@ spec:
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          {{- if .Values.volumes.dataPath }}
+          volumeMounts:
+            - mountPath: /app/data
+              name: data
+          {{- end }}
+      {{- if .Values.volumes.dataPath }}
+      volumes:
+        - name: data
+          hostPath:
+            path: {{ .Values.volumes.dataPath }}
+            type: Directory
+      {{- end }}
