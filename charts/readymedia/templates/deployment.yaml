@@ -39,6 +39,7 @@ spec:
           volumeMounts:
             - mountPath: /media
               name: media
+              readOnly: true
           {{- end }}
       hostNetwork: true
       {{- if .Values.volumes.mediaPath }}
