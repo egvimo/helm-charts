@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "jdownloader.fullname" . }}
+  name: {{ include "common.fullname" . }}
   labels:
-    {{- include "jdownloader.labels" . | nindent 4 }}
+    {{- include "common.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "jdownloader.selectorLabels" . | nindent 6 }}
+      {{- include "common.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -16,7 +16,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "jdownloader.selectorLabels" . | nindent 8 }}
+        {{- include "common.selectorLabels" . | nindent 8 }}
     spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
@@ -37,7 +37,7 @@ spec:
             - name: MYJD_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "jdownloader.fullname" . }}
+                  name: {{ include "common.fullname" . }}
                   key: myJdAccount-password
             {{- end }}
           ports:

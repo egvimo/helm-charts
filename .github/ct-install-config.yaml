@@ -1,4 +1,5 @@
 debug: true
 all: true
 excluded-charts:
+  - common
   - jdownloader

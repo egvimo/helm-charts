@@ -4,3 +4,7 @@ description: Tiny Go webserver that prints os information and HTTP request to ou
 type: application
 version: 0.1.0
 appVersion: "v1.7.1"
+dependencies:
+  - name: common
+    version: 0.1.0
+    repository: file://../common

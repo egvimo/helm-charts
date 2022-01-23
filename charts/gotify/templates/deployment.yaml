@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "gotify.fullname" . }}
+  name: {{ include "common.fullname" . }}
   labels:
-    {{- include "gotify.labels" . | nindent 4 }}
+    {{- include "common.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "gotify.selectorLabels" . | nindent 6 }}
+      {{- include "common.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -16,7 +16,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "gotify.selectorLabels" . | nindent 8 }}
+        {{- include "common.selectorLabels" . | nindent 8 }}
     spec:
       enableServiceLinks: false
       securityContext:
@@ -44,7 +44,7 @@ spec:
             - name: GOTIFY_DEFAULTUSER_PASS
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "gotify.fullname" . }}
+                  name: {{ include "common.fullname" . }}
                   key: defaultuser-pass
             {{- end }}
           livenessProbe:

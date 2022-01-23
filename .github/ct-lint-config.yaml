@@ -1,3 +1,5 @@
 debug: true
 all: true
 validate-maintainers: false
+excluded-charts:
+  - common

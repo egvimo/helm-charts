@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "jdownloader.fullname" . }}
+  name: {{ include "common.fullname" . }}
   labels:
-    {{- include "jdownloader.labels" . | nindent 4 }}
+    {{- include "common.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -12,4 +12,4 @@ spec:
       protocol: TCP
       name: direct-conn
   selector:
-    {{- include "jdownloader.selectorLabels" . | nindent 4 }}
+    {{- include "common.selectorLabels" . | nindent 4 }}
