@@ -17,6 +17,7 @@ securityContext: {}
 service:
   type: LoadBalancer
   port: 3129
+  name: direct-conn
 
 resources: {}
 
