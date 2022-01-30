@@ -1,32 +1,10 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: {{ include "common.fullname" . }}
-  labels:
-    {{- include "common.labels" . | nindent 4 }}
+{{- include "common.deployment" (list . "jdownloader.deployment") -}}
+{{- define "jdownloader.deployment" -}}
 spec:
-  replicas: {{ .Values.replicaCount }}
-  selector:
-    matchLabels:
-      {{- include "common.selectorLabels" . | nindent 6 }}
   template:
-    metadata:
-      {{- with .Values.podAnnotations }}
-      annotations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      labels:
-        {{- include "common.selectorLabels" . | nindent 8 }}
     spec:
-      securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: {{ .Chart.Name }}
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          env:
+        - env:
             - name: MYJD_DEVICE_NAME
               value: {{ .Values.deviceName | default "Kubernetes" | quote }}
             - name: UMASK
@@ -44,8 +22,6 @@ spec:
             - name: direct-conn
               containerPort: 3129
               protocol: TCP
-          resources:
-            {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
             - mountPath: /opt/JDownloader/app
               name: app
@@ -57,6 +33,7 @@ spec:
             - mountPath: /opt/JDownloader/Downloads
               name: downloads
             {{- end }}
+          {{- include "common.container" . | nindent 10 }}
       volumes:
         - name: app
           emptyDir: {}
@@ -72,3 +49,4 @@ spec:
             path: {{ .Values.volumes.downloadsPath }}
             type: Directory
         {{- end }}
+{{- end -}}
