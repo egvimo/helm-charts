@@ -1,0 +1,22 @@
+{{- include "common.deployment" (list . "kibitzr.deployment") -}}
+{{- define "kibitzr.deployment" -}}
+spec:
+  template:
+    spec:
+      containers:
+        - workingDir: /kibitzr
+          {{- if .Values.volumes.configPath }}
+          volumeMounts:
+            - mountPath: /kibitzr
+              name: config
+              readOnly: true
+          {{- end }}
+          {{- include "common.container" . | nindent 10 }}
+      {{- if .Values.volumes.configPath }}
+      volumes:
+        - name: config
+          hostPath:
+            path: {{ .Values.volumes.configPath }}
+            type: Directory
+      {{- end }}
+{{- end -}}

@@ -1,0 +1,10 @@
+apiVersion: v2
+name: kibitzr
+description: Personal Web Assistant
+type: application
+version: 0.1.0
+appVersion: "v6.1.1"
+dependencies:
+  - name: common
+    version: 0.1.0
+    repository: file://../common

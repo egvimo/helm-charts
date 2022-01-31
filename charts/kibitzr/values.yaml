@@ -1,0 +1,24 @@
+replicaCount: 1
+
+image:
+  repository: peterdemin/kibitzr
+  pullPolicy: IfNotPresent
+  tag: ""  # Defaults to chart appVersion
+
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+service:
+  type: ClusterIP
+  port: 80
+
+resources: {}
+
+volumes:
+  configPath: ""
