@@ -1,0 +1,9 @@
+kibitzrConfig: |
+  checks:
+    - name: Kibitzr GitHub release
+      url: https://api.github.com/repos/kibitzr/kibitzr/releases/latest
+      transform:
+        - jq: .tag_name + " " + .name
+        - changes: verbose
+      notify:
+        - python: print(content)

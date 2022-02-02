@@ -20,5 +20,8 @@ service:
 
 resources: {}
 
-volumes:
-  configPath: ""
+kibitzrConfig: ""
+
+kibitzrCredsConfig: ""
+
+secrets: {}
