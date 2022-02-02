@@ -4,19 +4,25 @@ spec:
   template:
     spec:
       containers:
-        - workingDir: /kibitzr
-          {{- if .Values.volumes.configPath }}
+        - command: ["kibitzr"]
+          args: ["run"]
+          workingDir: /data
           volumeMounts:
-            - mountPath: /kibitzr
+            - mountPath: /data
+              name: data
+            {{- if .Values.volumes.configPath }}
+            - mountPath: /.config/kibitzr
               name: config
               readOnly: true
-          {{- end }}
+            {{- end }}
           {{- include "common.container" . | nindent 10 }}
-      {{- if .Values.volumes.configPath }}
       volumes:
+        - name: data
+          emptyDir: {}
+        {{- if .Values.volumes.configPath }}
         - name: config
           hostPath:
             path: {{ .Values.volumes.configPath }}
             type: Directory
-      {{- end }}
+        {{- end }}
 {{- end -}}
