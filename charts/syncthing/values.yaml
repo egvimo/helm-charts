@@ -1,0 +1,20 @@
+replicaCount: 1
+
+image:
+  repository: syncthing/syncthing
+  pullPolicy: IfNotPresent
+  tag: ""  # Defaults to chart appVersion
+
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+resources: {}
+
+volumes:
+  syncPath: ""

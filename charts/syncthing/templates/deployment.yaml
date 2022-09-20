@@ -1,0 +1,26 @@
+{{- include "common.deployment" (list . "syncthing.deployment") -}}
+{{- define "syncthing.deployment" -}}
+spec:
+  template:
+    spec:
+      containers:
+        - env:
+            - name: STNODEFAULTFOLDER
+              value: "true"
+            - name: STGUIADDRESS
+              value: ""
+          {{- if .Values.volumes.syncPath }}
+          volumeMounts:
+            - mountPath: /var/syncthing
+              name: sync
+          {{- end }}
+          {{- include "common.container" . | nindent 10 }}
+      hostNetwork: true
+      {{- if .Values.volumes.syncPath }}
+      volumes:
+        - name: sync
+          hostPath:
+            path: {{ .Values.volumes.syncPath }}
+            type: Directory
+      {{- end }}
+{{- end -}}
