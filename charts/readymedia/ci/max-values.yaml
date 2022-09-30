@@ -1,4 +1,5 @@
 volumes:
-  mediaPath: /tmp
+  videoPath: /tmp
+  photoPath: /tmp
 
 friendlyName: Test

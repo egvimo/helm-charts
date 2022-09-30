@@ -17,6 +17,7 @@ securityContext: {}
 resources: {}
 
 volumes:
-  mediaPath: ""
+  videoPath: ""
+  photoPath: ""
 
 friendlyName: ""

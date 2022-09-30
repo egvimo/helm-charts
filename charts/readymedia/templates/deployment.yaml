@@ -5,25 +5,42 @@ spec:
     spec:
       containers:
         - env:
-            - name: MINIDLNA_MEDIA_DIR
-              value: /media
+            - name: MINIDLNA_MEDIA_DIR_1
+              value: V,/media/video
+            - name: MINIDLNA_MEDIA_DIR_2
+              value: /media/photo
             {{- if .Values.friendlyName }}
             - name: MINIDLNA_FRIENDLY_NAME
               value: {{ .Values.friendlyName | quote }}
             {{- end }}
-          {{- if .Values.volumes.mediaPath }}
+          {{- if or .Values.volumes.videoPath .Values.volumes.photoPath }}
           volumeMounts:
-            - mountPath: /media
-              name: media
+            {{- if or .Values.volumes.videoPath }}
+            - mountPath: /media/video
+              name: video
               readOnly: true
+            {{- end }}
+            {{- if or .Values.volumes.photoPath }}
+            - mountPath: /media/photo
+              name: photo
+              readOnly: true
+            {{- end }}
           {{- end }}
           {{- include "common.container" . | nindent 10 }}
       hostNetwork: true
-      {{- if .Values.volumes.mediaPath }}
+      {{- if or .Values.volumes.videoPath .Values.volumes.photoPath }}
       volumes:
-        - name: media
+        {{- if or .Values.volumes.videoPath }}
+        - name: video
           hostPath:
-            path: {{ .Values.volumes.mediaPath }}
+            path: {{ .Values.volumes.videoPath }}
             type: Directory
+        {{- end }}
+        {{- if or .Values.volumes.photoPath }}
+        - name: photo
+          hostPath:
+            path: {{ .Values.volumes.photoPath }}
+            type: Directory
+        {{- end }}
       {{- end }}
 {{- end -}}
