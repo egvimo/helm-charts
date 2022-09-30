@@ -3,7 +3,7 @@ name: whoami
 description: Tiny Go webserver that prints os information and HTTP request to output
 type: application
 version: 0.1.0
-appVersion: "v1.7.1"
+appVersion: "v1.8.6"
 dependencies:
   - name: common
     version: 0.1.0
