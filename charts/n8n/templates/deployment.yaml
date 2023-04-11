@@ -1,0 +1,51 @@
+{{- include "common.deployment" (list . "n8n.deployment") -}}
+{{- define "n8n.deployment" -}}
+spec:
+  template:
+    spec:
+      enableServiceLinks: false
+      containers:
+        - env:
+            - name: TZ
+              value: {{ .Values.timezone | default "Europe/Berlin" | quote }}
+            {{- if or .Values.basicAuthUser.name .Values.basicAuthUser.password }}
+            - name: N8N_BASIC_AUTH_ACTIVE
+              value: "true"
+            {{- end }}
+            {{- if .Values.basicAuthUser.name }}
+            - name: N8N_BASIC_AUTH_USER
+              value: {{ .Values.basicAuthUser.name | quote }}
+            {{- end }}
+            {{- if .Values.basicAuthUser.password }}
+            - name: N8N_BASIC_AUTH_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "common.fullname" . }}
+                  key: basicAuthUser-password
+            {{- end }}
+          ports:
+            - name: http
+              containerPort: 5678
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+          {{- if .Values.volumes.dataPath }}
+          volumeMounts:
+            - mountPath: /root/.n8n
+              name: data
+          {{- end }}
+          {{- include "common.container" . | nindent 10 }}
+      {{- if .Values.volumes.dataPath }}
+      volumes:
+        - name: data
+          hostPath:
+            path: {{ .Values.volumes.dataPath }}
+            type: Directory
+      {{- end }}
+{{- end -}}

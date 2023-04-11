@@ -1,0 +1,7 @@
+volumes:
+  mediaPath: /tmp
+
+basicAuthUser:
+  name: test
+  password: test
+timezone: America/New_York
