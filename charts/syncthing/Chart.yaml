@@ -3,6 +3,7 @@ name: syncthing
 description: A continuous file synchronization program
 type: application
 version: 0.1.0
+# renovate: image=syncthing/syncthing
 appVersion: "1.21.0"
 dependencies:
   - name: common

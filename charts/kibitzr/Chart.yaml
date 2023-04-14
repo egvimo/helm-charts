@@ -3,6 +3,7 @@ name: kibitzr
 description: Personal Web Assistant
 type: application
 version: 0.1.0
+# renovate: image=peterdemin/kibitzr
 appVersion: "v7.0.1"
 dependencies:
   - name: common

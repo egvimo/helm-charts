@@ -3,6 +3,7 @@ name: gotify
 description: A simple server for sending and receiving messages
 type: application
 version: 0.1.0
+# renovate: image=gotify/server-arm64
 appVersion: "2.2.4"
 dependencies:
   - name: common
