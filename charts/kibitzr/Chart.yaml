@@ -4,7 +4,7 @@ description: Personal Web Assistant
 type: application
 version: 0.1.0
 # renovate: image=peterdemin/kibitzr
-appVersion: "v7.0.1"
+appVersion: "v7.0.5"
 dependencies:
   - name: common
     version: 0.1.0
