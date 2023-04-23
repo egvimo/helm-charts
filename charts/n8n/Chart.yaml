@@ -3,8 +3,7 @@ name: n8n
 description: An extendable workflow automation tool
 type: application
 version: 0.1.0
-# renovate: image=n8nio/n8n
-appVersion: "0.224.1"
+appVersion: "0.2xx.x"
 dependencies:
   - name: common
     version: 0.1.0
