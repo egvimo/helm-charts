@@ -19,5 +19,6 @@ resources: {}
 volumes:
   videoPath: ""
   photoPath: ""
+  audioPath: ""
 
 friendlyName: ""
