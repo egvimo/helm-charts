@@ -14,12 +14,12 @@ spec:
             - name: GOTIFY_DEFAULTUSER_NAME
               value: {{ .Values.defaultUser.name | quote }}
             {{- end }}
-            {{- if .Values.defaultUser.pass }}
+            {{- if or .Values.defaultUser.pass .Values.defaultUser.passSecret }}
             - name: GOTIFY_DEFAULTUSER_PASS
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "common.fullname" . }}
-                  key: defaultuser-pass
+                  name: {{ .Values.defaultUser.passSecret.name | default (include "common.fullname" .) }}
+                  key: {{ .Values.defaultUser.passSecret.key | default "defaultuser-pass" }}
             {{- end }}
           ports:
             - name: http

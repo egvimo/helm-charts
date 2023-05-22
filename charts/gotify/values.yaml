@@ -36,4 +36,5 @@ volumes:
 defaultUser:
   name: ""
   pass: ""
+  passSecret: {}
 timezone: ""  # Defaults to 'Europe/Berlin'
