@@ -9,14 +9,14 @@ spec:
               value: {{ .Values.deviceName | default "Kubernetes" | quote }}
             - name: UMASK
               value: {{ .Values.umask | default "0002" | quote }}
-            {{- if and .Values.myJdAccount.email .Values.myJdAccount.password }}
+            {{- if and .Values.myJdAccount.email (or .Values.myJdAccount.password .Values.myJdAccount.passwordSecret) }}
             - name: MYJD_USER
               value: {{ .Values.myJdAccount.email | quote }}
             - name: MYJD_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "common.fullname" . }}
-                  key: myJdAccount-password
+                  name: {{ .Values.myJdAccount.passwordSecret.name | default (include "common.fullname" .) }}
+                  key: {{ .Values.myJdAccount.passwordSecret.key | default "myJdAccount-password" }}
             {{- end }}
           ports:
             - name: direct-conn

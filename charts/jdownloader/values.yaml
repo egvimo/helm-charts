@@ -31,3 +31,4 @@ umask: ""  # Defaults to '0002'
 myJdAccount:
   email: ""
   password: ""
+  passwordSecret: {}
