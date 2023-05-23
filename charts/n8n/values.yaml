@@ -36,4 +36,5 @@ volumes:
 basicAuthUser:
   name: ""
   password: ""
+  passwordSecret: {}
 timezone: ""  # Defaults to 'Europe/Berlin'

@@ -18,12 +18,12 @@ spec:
             - name: N8N_BASIC_AUTH_USER
               value: {{ .Values.basicAuthUser.name | quote }}
             {{- end }}
-            {{- if .Values.basicAuthUser.password }}
+            {{- if or .Values.basicAuthUser.password .Values.basicAuthUser.passwordSecret }}
             - name: N8N_BASIC_AUTH_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "common.fullname" . }}
-                  key: basicAuthUser-password
+                  name: {{ .Values.basicAuthUser.passwordSecret.name | default (include "common.fullname" .) }}
+                  key: {{ .Values.basicAuthUser.passwordSecret.key | default "basicAuthUser-password" }}
             {{- end }}
           ports:
             - name: http
