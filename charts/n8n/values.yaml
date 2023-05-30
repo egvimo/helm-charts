@@ -33,6 +33,8 @@ resources: {}
 volumes:
   dataPath: ""
 
+extraVolumes: []
+
 basicAuthUser:
   name: ""
   password: ""

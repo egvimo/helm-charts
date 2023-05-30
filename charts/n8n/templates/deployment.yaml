@@ -41,6 +41,11 @@ spec:
           volumeMounts:
             - mountPath: /root/.n8n
               name: data
+            {{- range .Values.extraVolumes }}
+            - mountPath: {{ .mountPath }}
+              name: {{ .name }}
+              readOnly: {{ .readOnly | default false }}
+            {{- end }}
           {{- end }}
           {{- include "common.container" . | nindent 10 }}
       {{- if .Values.volumes.dataPath }}
@@ -49,5 +54,11 @@ spec:
           hostPath:
             path: {{ .Values.volumes.dataPath }}
             type: Directory
+        {{- range .Values.extraVolumes }}
+        - name: {{ .name }}
+          hostPath:
+            path: {{ .hostPath }}
+            type: Directory
+        {{- end }}
       {{- end }}
 {{- end -}}

@@ -1,6 +1,12 @@
 volumes:
   mediaPath: /tmp
 
+extraVolumes:
+  - name: test
+    mountPath: /test
+    hostPath: /tmp
+    readOnly: true
+
 basicAuthUser:
   name: test
   password: test
