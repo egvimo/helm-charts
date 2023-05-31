@@ -1,0 +1,29 @@
+kube-prometheus-stack:
+  alertmanager:
+    enabled: false
+  grafana:
+    defaultDashboardsTimezone: Europe/Berlin
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
+      hosts:
+        - grafana.192-168-178-31.sslip.io
+  kubeApiServer:
+    enabled: false
+  kubelet:
+    enabled: true
+  kubeControllerManager:
+    enabled: false
+  coreDns:
+    enabled: false
+  kubeDns:
+    enabled: false
+  kubeEtcd:
+    enabled: false
+  kubeScheduler:
+    enabled: false
+  kubeProxy:
+    enabled: false
+  kubeStateMetrics:
+    enabled: false
