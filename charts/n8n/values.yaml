@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: n8nio/n8n
   pullPolicy: IfNotPresent
-  tag: "latest@sha256:6eaa815beb29b0398860250b587a62f09b62f1b30eeb1612830b500f84a737d6"
+  tag: "latest@sha256:0da1a39675e95efec4b433a91ed269838daec8a1e73ee85c3c5ec55b60563e7f"
 
 nameOverride: ""
 fullnameOverride: ""
