@@ -1,9 +1,9 @@
 replicaCount: 1
 
 image:
-  repository: n8nio/n8n
+  repository: ghcr.io/egvimo/n8n-python
   pullPolicy: IfNotPresent
-  tag: "latest@sha256:6eaa815beb29b0398860250b587a62f09b62f1b30eeb1612830b500f84a737d6"
+  tag: ""  # Defaults to chart appVersion
 
 nameOverride: ""
 fullnameOverride: ""

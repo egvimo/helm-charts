@@ -3,7 +3,8 @@ name: n8n
 description: An extendable workflow automation tool
 type: application
 version: 0.1.0
-appVersion: "0.2xx.x"
+# renovate: image=ghcr.io/egvimo/n8n-python
+appVersion: "0.230.3"
 dependencies:
   - name: common
     version: 0.1.0
