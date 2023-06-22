@@ -9,6 +9,7 @@ kube-prometheus-stack:
         kubernetes.io/ingress.class: traefik
       hosts:
         - grafana.192-168-178-31.sslip.io
+        - grafana.192-168-178-31.nip.io
   kubeApiServer:
     enabled: false
   kubelet:
