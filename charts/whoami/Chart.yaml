@@ -4,7 +4,7 @@ description: Tiny Go webserver that prints os information and HTTP request to ou
 type: application
 version: 0.1.0
 # renovate: image=traefik/whoami
-appVersion: "v1.9.0"
+appVersion: "v1.10.0"
 dependencies:
   - name: common
     version: 0.1.0
