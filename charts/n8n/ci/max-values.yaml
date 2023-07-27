@@ -7,7 +7,4 @@ extraVolumes:
     hostPath: /tmp
     readOnly: true
 
-basicAuthUser:
-  name: test
-  password: test
 timezone: America/New_York

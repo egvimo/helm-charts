@@ -10,21 +10,6 @@ spec:
               value: {{ .Values.timezone | default "Europe/Berlin" | quote }}
             - name: TZ
               value: {{ .Values.timezone | default "Europe/Berlin" | quote }}
-            {{- if or .Values.basicAuthUser.name .Values.basicAuthUser.password }}
-            - name: N8N_BASIC_AUTH_ACTIVE
-              value: "true"
-            {{- end }}
-            {{- if .Values.basicAuthUser.name }}
-            - name: N8N_BASIC_AUTH_USER
-              value: {{ .Values.basicAuthUser.name | quote }}
-            {{- end }}
-            {{- if or .Values.basicAuthUser.password .Values.basicAuthUser.passwordSecret }}
-            - name: N8N_BASIC_AUTH_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.basicAuthUser.passwordSecret.name | default (include "common.fullname" .) }}
-                  key: {{ .Values.basicAuthUser.passwordSecret.key | default "basicAuthUser-password" }}
-            {{- end }}
           ports:
             - name: http
               containerPort: 5678
