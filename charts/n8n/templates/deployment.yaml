@@ -39,7 +39,7 @@ spec:
               port: http
           {{- if .Values.volumes.dataPath }}
           volumeMounts:
-            - mountPath: /root/.n8n
+            - mountPath: /home/node/.n8n
               name: data
             {{- range .Values.extraVolumes }}
             - mountPath: {{ .mountPath }}
