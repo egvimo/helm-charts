@@ -21,6 +21,12 @@ service:
 
 resources: {}
 
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
 volumes:
   cfgPath: ""
   downloadsPath: ""

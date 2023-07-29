@@ -33,3 +33,9 @@ ingress:
           pathType: ImplementationSpecific
 
 resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

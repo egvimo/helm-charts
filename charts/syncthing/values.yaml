@@ -16,5 +16,11 @@ securityContext: {}
 
 resources: {}
 
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
 volumes:
   syncPath: ""
