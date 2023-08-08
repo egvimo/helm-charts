@@ -1,10 +1,13 @@
 {
   "__inputs": [
+
   ],
   "__requires": [
+
   ],
   "annotations": {
       "list": [
+
       ]
   },
   "editable": false,
@@ -13,6 +16,7 @@
   "hideControls": false,
   "id": null,
   "links": [
+
   ],
   "refresh": "30s",
   "rows": [
@@ -22,6 +26,7 @@
           "panels": [
               {
                   "aliasColors": {
+
                   },
                   "bars": false,
                   "dashLength": 10,
@@ -30,6 +35,7 @@
                   "fill": 1,
                   "fillGradient": 0,
                   "gridPos": {
+
                   },
                   "id": 2,
                   "legend": {
@@ -47,6 +53,7 @@
                   "lines": true,
                   "linewidth": 1,
                   "links": [
+
                   ],
                   "nullPointMode": "null",
                   "percentage": false,
@@ -55,6 +62,7 @@
                   "renderer": "flot",
                   "repeat": null,
                   "seriesOverrides": [
+
                   ],
                   "spaceLength": 10,
                   "span": 6,
@@ -65,11 +73,12 @@
                           "expr": "(\n  (1 - sum without (mode) (rate(node_cpu_seconds_total{job=\"node-exporter\", mode=~\"idle|iowait|steal\", instance=\"$instance\"}[$__rate_interval])))\n/ ignoring(cpu) group_left\n  count without (cpu, mode) (node_cpu_seconds_total{job=\"node-exporter\", mode=\"idle\", instance=\"$instance\"})\n)\n",
                           "format": "time_series",
                           "intervalFactor": 5,
-                          "legendFormat": "{{`{{`}}cpu{{`}}`}}",
+                          "legendFormat": "{{cpu}}",
                           "refId": "A"
                       }
                   ],
                   "thresholds": [
+
                   ],
                   "timeFrom": null,
                   "timeShift": null,
@@ -86,6 +95,7 @@
                       "name": null,
                       "show": true,
                       "values": [
+
                       ]
                   },
                   "yaxes": [
@@ -109,6 +119,7 @@
               },
               {
                   "aliasColors": {
+
                   },
                   "bars": false,
                   "dashLength": 10,
@@ -117,6 +128,7 @@
                   "fill": 0,
                   "fillGradient": 0,
                   "gridPos": {
+
                   },
                   "id": 3,
                   "legend": {
@@ -134,6 +146,7 @@
                   "lines": true,
                   "linewidth": 1,
                   "links": [
+
                   ],
                   "nullPointMode": "null",
                   "percentage": false,
@@ -142,6 +155,7 @@
                   "renderer": "flot",
                   "repeat": null,
                   "seriesOverrides": [
+
                   ],
                   "spaceLength": 10,
                   "span": 6,
@@ -178,6 +192,7 @@
                       }
                   ],
                   "thresholds": [
+
                   ],
                   "timeFrom": null,
                   "timeShift": null,
@@ -194,6 +209,7 @@
                       "name": null,
                       "show": true,
                       "values": [
+
                       ]
                   },
                   "yaxes": [
@@ -232,8 +248,8 @@
                       "axisColorMode": "text",
                       "axisLabel": "",
                       "axisPlacement": "auto",
-                      "axisSoftMax": 80,
-                      "axisSoftMin": 50,
+                      "axisSoftMax": 75,
+                      "axisSoftMin": 40,
                       "barAlignment": 0,
                       "drawStyle": "line",
                       "fillOpacity": 10,
@@ -310,8 +326,8 @@
                       "uid": "${datasource}"
                     },
                     "editorMode": "builder",
-                    "expr": "node_thermal_zone_temp",
-                    "legendFormat": "__auto",
+                    "expr": "node_thermal_zone_temp{instance=\"$instance\"}",
+                    "legendFormat": "{{instance}}",
                     "range": true,
                     "refId": "A"
                   }
@@ -331,20 +347,20 @@
                     },
                     "mappings": [],
                     "max": 80,
-                    "min": 50,
+                    "min": 40,
                     "thresholds": {
                       "mode": "absolute",
                       "steps": [
                         {
-                          "color": "green",
+                          "color": "rgba(50, 172, 45, 0.97)",
                           "value": null
                         },
                         {
-                          "color": "yellow",
+                          "color": "rgba(237, 129, 40, 0.89)",
                           "value": 60
                         },
                         {
-                          "color": "red",
+                          "color": "rgba(245, 54, 54, 0.9)",
                           "value": 70
                         }
                       ]
@@ -372,7 +388,7 @@
                   "showThresholdLabels": false,
                   "showThresholdMarkers": true
                 },
-                "pluginVersion": "9.5.1",
+                "pluginVersion": "10.0.3",
                 "targets": [
                   {
                     "datasource": {
@@ -380,7 +396,7 @@
                       "uid": "${datasource}"
                     },
                     "editorMode": "builder",
-                    "expr": "node_thermal_zone_temp",
+                    "expr": "node_thermal_zone_temp{instance=\"$instance\"}",
                     "legendFormat": "__auto",
                     "range": true,
                     "refId": "A"
@@ -404,6 +420,7 @@
           "panels": [
               {
                   "aliasColors": {
+
                   },
                   "bars": false,
                   "dashLength": 10,
@@ -412,6 +429,7 @@
                   "fill": 1,
                   "fillGradient": 0,
                   "gridPos": {
+
                   },
                   "id": 4,
                   "legend": {
@@ -429,6 +447,7 @@
                   "lines": true,
                   "linewidth": 1,
                   "links": [
+
                   ],
                   "nullPointMode": "null",
                   "percentage": false,
@@ -437,6 +456,7 @@
                   "renderer": "flot",
                   "repeat": null,
                   "seriesOverrides": [
+
                   ],
                   "spaceLength": 10,
                   "span": 9,
@@ -473,6 +493,7 @@
                       }
                   ],
                   "thresholds": [
+
                   ],
                   "timeFrom": null,
                   "timeShift": null,
@@ -489,6 +510,7 @@
                       "name": null,
                       "show": true,
                       "values": [
+
                       ]
                   },
                   "yaxes": [
@@ -536,6 +558,7 @@
                       }
                   },
                   "gridPos": {
+
                   },
                   "id": 5,
                   "span": 3,
@@ -566,6 +589,7 @@
           "panels": [
               {
                   "aliasColors": {
+
                   },
                   "bars": false,
                   "dashLength": 10,
@@ -574,6 +598,7 @@
                   "fill": 0,
                   "fillGradient": 0,
                   "gridPos": {
+
                   },
                   "id": 6,
                   "legend": {
@@ -591,6 +616,7 @@
                   "lines": true,
                   "linewidth": 1,
                   "links": [
+
                   ],
                   "nullPointMode": "null",
                   "percentage": false,
@@ -617,25 +643,26 @@
                           "expr": "rate(node_disk_read_bytes_total{job=\"node-exporter\", instance=\"$instance\", device=~\"(/dev/)?(mmcblk.p.+|nvme.+|rbd.+|sd.+|vd.+|xvd.+|dm-.+|md.+|dasd.+)\"}[$__rate_interval])",
                           "format": "time_series",
                           "intervalFactor": 1,
-                          "legendFormat": "{{`{{`}}device{{`}}`}} read",
+                          "legendFormat": "{{device}} read",
                           "refId": "A"
                       },
                       {
                           "expr": "rate(node_disk_written_bytes_total{job=\"node-exporter\", instance=\"$instance\", device=~\"(/dev/)?(mmcblk.p.+|nvme.+|rbd.+|sd.+|vd.+|xvd.+|dm-.+|md.+|dasd.+)\"}[$__rate_interval])",
                           "format": "time_series",
                           "intervalFactor": 1,
-                          "legendFormat": "{{`{{`}}device{{`}}`}} written",
+                          "legendFormat": "{{device}} written",
                           "refId": "B"
                       },
                       {
                           "expr": "rate(node_disk_io_time_seconds_total{job=\"node-exporter\", instance=\"$instance\", device=~\"(/dev/)?(mmcblk.p.+|nvme.+|rbd.+|sd.+|vd.+|xvd.+|dm-.+|md.+|dasd.+)\"}[$__rate_interval])",
                           "format": "time_series",
                           "intervalFactor": 1,
-                          "legendFormat": "{{`{{`}}device{{`}}`}} io time",
+                          "legendFormat": "{{device}} io time",
                           "refId": "C"
                       }
                   ],
                   "thresholds": [
+
                   ],
                   "timeFrom": null,
                   "timeShift": null,
@@ -652,6 +679,7 @@
                       "name": null,
                       "show": true,
                       "values": [
+
                       ]
                   },
                   "yaxes": [
@@ -678,6 +706,7 @@
                   "fieldConfig": {
                       "defaults": {
                           "custom": {
+
                           },
                           "thresholds": {
                               "mode": "absolute",
@@ -773,6 +802,7 @@
                       ]
                   },
                   "gridPos": {
+
                   },
                   "id": 7,
                   "span": 6,
@@ -812,6 +842,7 @@
                                   },
                                   "mountpoint": {
                                       "aggregations": [
+
                                       ],
                                       "operation": "groupby"
                                   }
@@ -821,6 +852,7 @@
                       {
                           "id": "merge",
                           "options": {
+
                           }
                       },
                       {
@@ -859,8 +891,10 @@
                           "id": "organize",
                           "options": {
                               "excludeByName": {
+
                               },
                               "indexByName": {
+
                               },
                               "renameByName": {
                                   "Value #A (lastNotNull)": "Size",
@@ -873,6 +907,7 @@
                           "id": "sortBy",
                           "options": {
                               "fields": {
+
                               },
                               "sort": [
                                   {
@@ -900,6 +935,7 @@
           "panels": [
               {
                   "aliasColors": {
+
                   },
                   "bars": false,
                   "dashLength": 10,
@@ -909,6 +945,7 @@
                   "fill": 0,
                   "fillGradient": 0,
                   "gridPos": {
+
                   },
                   "id": 8,
                   "legend": {
@@ -926,6 +963,7 @@
                   "lines": true,
                   "linewidth": 1,
                   "links": [
+
                   ],
                   "nullPointMode": "null",
                   "percentage": false,
@@ -934,6 +972,7 @@
                   "renderer": "flot",
                   "repeat": null,
                   "seriesOverrides": [
+
                   ],
                   "spaceLength": 10,
                   "span": 6,
@@ -944,11 +983,12 @@
                           "expr": "rate(node_network_receive_bytes_total{job=\"node-exporter\", instance=\"$instance\", device!=\"lo\"}[$__rate_interval]) * 8",
                           "format": "time_series",
                           "intervalFactor": 1,
-                          "legendFormat": "{{`{{`}}device{{`}}`}}",
+                          "legendFormat": "{{device}}",
                           "refId": "A"
                       }
                   ],
                   "thresholds": [
+
                   ],
                   "timeFrom": null,
                   "timeShift": null,
@@ -965,6 +1005,7 @@
                       "name": null,
                       "show": true,
                       "values": [
+
                       ]
                   },
                   "yaxes": [
@@ -988,6 +1029,7 @@
               },
               {
                   "aliasColors": {
+
                   },
                   "bars": false,
                   "dashLength": 10,
@@ -997,6 +1039,7 @@
                   "fill": 0,
                   "fillGradient": 0,
                   "gridPos": {
+
                   },
                   "id": 9,
                   "legend": {
@@ -1014,6 +1057,7 @@
                   "lines": true,
                   "linewidth": 1,
                   "links": [
+
                   ],
                   "nullPointMode": "null",
                   "percentage": false,
@@ -1022,6 +1066,7 @@
                   "renderer": "flot",
                   "repeat": null,
                   "seriesOverrides": [
+
                   ],
                   "spaceLength": 10,
                   "span": 6,
@@ -1032,11 +1077,12 @@
                           "expr": "rate(node_network_transmit_bytes_total{job=\"node-exporter\", instance=\"$instance\", device!=\"lo\"}[$__rate_interval]) * 8",
                           "format": "time_series",
                           "intervalFactor": 1,
-                          "legendFormat": "{{`{{`}}device{{`}}`}}",
+                          "legendFormat": "{{device}}",
                           "refId": "A"
                       }
                   ],
                   "thresholds": [
+
                   ],
                   "timeFrom": null,
                   "timeShift": null,
@@ -1053,6 +1099,7 @@
                       "name": null,
                       "show": true,
                       "values": [
+
                       ]
                   },
                   "yaxes": [
@@ -1101,6 +1148,7 @@
               "label": "Data Source",
               "name": "datasource",
               "options": [
+
               ],
               "query": "prometheus",
               "refresh": 1,
@@ -1110,6 +1158,7 @@
           {
               "allValue": null,
               "current": {
+
               },
               "datasource": "$datasource",
               "hide": 0,
@@ -1118,6 +1167,7 @@
               "multi": false,
               "name": "instance",
               "options": [
+
               ],
               "query": "label_values(node_uname_info{job=\"node-exporter\", sysname!=\"Darwin\"}, instance)",
               "refresh": 2,
@@ -1125,6 +1175,7 @@
               "sort": 0,
               "tagValuesQuery": "",
               "tags": [
+
               ],
               "tagsQuery": "",
               "type": "query",
