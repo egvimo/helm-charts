@@ -10,6 +10,23 @@ kube-prometheus-stack:
       hosts:
         - grafana.192-168-178-31.sslip.io
         - grafana.192-168-178-31.nip.io
+    alerting:
+      contactpoints.yaml:
+        apiVersion: 1
+        contactPoints:
+          - orgId: 1
+            name: gotify
+            receivers:
+              - uid: gotify
+                type: webhook
+                settings:
+                  url: https://gotify.192-168-178-31.sslip.io/message?token=<app_token>
+                  httpMethod: POST
+        policies:
+          - orgId: 1
+            receiver: gotify
+            matchers:
+              - receiver = "gotify"
   kubeApiServer:
     enabled: false
   kubelet:
