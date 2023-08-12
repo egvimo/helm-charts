@@ -27,6 +27,23 @@ kube-prometheus-stack:
             receiver: gotify
             matchers:
               - receiver = "gotify"
+    dashboardProviders:
+      dashboardproviders.yaml:
+        apiVersion: 1
+        providers:
+          - name: 'default'
+            orgId: 1
+            folder: ''
+            type: file
+            disableDeletion: true
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/default
+    dashboards:
+      default:
+        argo-cd:
+          gnetId: 14584
+          datasource: default
   kubeApiServer:
     enabled: false
   kubelet:
@@ -45,3 +62,9 @@ kube-prometheus-stack:
     enabled: false
   kubeStateMetrics:
     enabled: true
+  prometheus:
+    prometheusSpec:
+      serviceMonitorSelectorNilUsesHelmValues: false
+      serviceMonitorNamespaceSelector:
+        matchLabels:
+          export-prometheus-metrics: "true"
