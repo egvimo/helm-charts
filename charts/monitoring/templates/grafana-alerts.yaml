@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-alerts
+  labels:
+    grafana_alert: "1"
+data:
+  rules.yaml: |-
+    {{- .Files.Get "alerts/rules.yaml" | nindent 4 }}
