@@ -20,7 +20,7 @@ resources:
     cpu: "1m"
   limits:
     memory: "256Mi"
-    cpu: "25m"
+    cpu: "100m"
 
 nodeSelector: {}
 

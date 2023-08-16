@@ -15,8 +15,9 @@ spec:
             - name: MINIDLNA_FRIENDLY_NAME
               value: {{ .Values.friendlyName | quote }}
             {{- end }}
-          {{- if or .Values.volumes.videoPath .Values.volumes.photoPath .Values.volumes.audioPath }}
           volumeMounts:
+            - mountPath: /minidlna/cache
+              name: cache
             {{- if .Values.volumes.videoPath }}
             - mountPath: /media/video
               name: video
@@ -32,11 +33,11 @@ spec:
               name: audio
               readOnly: true
             {{- end }}
-          {{- end }}
           {{- include "common.container" . | nindent 10 }}
       hostNetwork: true
-      {{- if or .Values.volumes.videoPath .Values.volumes.photoPath .Values.volumes.audioPath }}
       volumes:
+        - name: cache
+          emptyDir: {}
         {{- if .Values.volumes.videoPath }}
         - name: video
           hostPath:
@@ -55,5 +56,4 @@ spec:
             path: {{ .Values.volumes.audioPath }}
             type: Directory
         {{- end }}
-      {{- end }}
 {{- end -}}
