@@ -14,14 +14,18 @@ spec:
             - name: http
               containerPort: 5678
               protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /healthz
-              port: http
           readinessProbe:
             httpGet:
               path: /healthz
               port: http
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            failureThreshold: 4
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 60
           {{- if .Values.volumes.dataPath }}
           volumeMounts:
             - mountPath: /home/node/.n8n
