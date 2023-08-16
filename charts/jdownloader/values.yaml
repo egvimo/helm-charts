@@ -19,7 +19,13 @@ service:
   port: 3129
   name: direct-conn
 
-resources: {}
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "5m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
 
 nodeSelector: {}
 

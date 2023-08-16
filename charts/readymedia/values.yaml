@@ -14,7 +14,13 @@ podSecurityContext: {}
 
 securityContext: {}
 
-resources: {}
+resources:
+  requests:
+    memory: "64Mi"
+    cpu: "1m"
+  limits:
+    memory: "256Mi"
+    cpu: "25m"
 
 nodeSelector: {}
 

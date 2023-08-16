@@ -32,7 +32,13 @@ ingress:
         - path: /
           pathType: ImplementationSpecific
 
-resources: {}
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "5m"
+  limits:
+    memory: "512Mi"
+    cpu: "100m"
 
 nodeSelector: {}
 
