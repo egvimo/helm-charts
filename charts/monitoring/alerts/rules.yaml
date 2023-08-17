@@ -5,9 +5,9 @@ groups:
     folder: alerts
     interval: 1m
     rules:
-      - uid: argo-cd-app-health
-        title: Argo CD app health
-        condition: B
+      - uid: node-temperature
+        title: Node Temperature
+        condition: A
         data:
           - refId: A
             relativeTimeRange:
@@ -16,7 +16,8 @@ groups:
             datasourceUid: prometheus
             model:
               editorMode: builder
-              expr: argocd_app_info{health_status!="Healthy"}
+              exemplar: false
+              expr: node_thermal_zone_temp > 60
               format: table
               hide: false
               instant: true
@@ -25,39 +26,127 @@ groups:
               maxDataPoints: 43200
               range: false
               refId: A
-          - refId: B
+        noDataState: OK
+        execErrState: Error
+        for: 5m
+        annotations:
+          summary: Node temperature is getting to hot
+        labels:
+          receiver: gotify
+        isPaused: false
+      - uid: argo-cd-app-sync
+        title: Argo CD app sync
+        condition: A
+        data:
+          - refId: A
             relativeTimeRange:
               from: 600
               to: 0
-            datasourceUid: __expr__
+            datasourceUid: prometheus
             model:
-              conditions:
-                - evaluator:
-                    params:
-                      - 0
-                    type: gt
-                  operator:
-                    type: and
-                  query:
-                    params: []
-                  reducer:
-                    params: []
-                    type: avg
-                  type: query
-              datasource:
-                type: __expr__
-                uid: __expr__
-              expression: A
+              editorMode: builder
+              exemplar: false
+              expr: argocd_app_info{sync_status!="Synced"} != 0
+              format: table
               hide: false
+              instant: true
               intervalMs: 1000
+              legendFormat: __auto
               maxDataPoints: 43200
-              refId: B
-              type: threshold
+              range: false
+              refId: A
+        noDataState: OK
+        execErrState: Error
+        for: 5m
+        annotations:
+          summary: Sync status of Argo CD applications
+        labels:
+          receiver: gotify
+        isPaused: false
+      - uid: argo-cd-app-health
+        title: Argo CD app health
+        condition: A
+        data:
+          - refId: A
+            relativeTimeRange:
+              from: 600
+              to: 0
+            datasourceUid: prometheus
+            model:
+              editorMode: builder
+              exemplar: false
+              expr: argocd_app_info{health_status!="Healthy"} != 0
+              format: table
+              hide: false
+              instant: true
+              intervalMs: 1000
+              legendFormat: __auto
+              maxDataPoints: 43200
+              range: false
+              refId: A
         noDataState: OK
         execErrState: Error
         for: 5m
         annotations:
           summary: Health status of Argo CD applications
+        labels:
+          receiver: gotify
+        isPaused: false
+      - uid: pod-unhealthy
+        title: Pod unhealthy
+        condition: A
+        data:
+          - refId: A
+            relativeTimeRange:
+              from: 600
+              to: 0
+            datasourceUid: prometheus
+            model:
+              editorMode: builder
+              exemplar: false
+              expr: sum by(namespace, pod) (kube_pod_status_phase{phase=~"Failed|Pending|Unknown"}) != 0
+              format: table
+              hide: false
+              instant: true
+              intervalMs: 1000
+              legendFormat: __auto
+              maxDataPoints: 43200
+              range: false
+              refId: A
+        noDataState: OK
+        execErrState: Error
+        for: 5m
+        annotations:
+          summary: Kubernetes Pod not healthy
+        labels:
+          receiver: gotify
+        isPaused: false
+      - uid: pod-crash-looping
+        title: Pod is crash looping
+        condition: A
+        data:
+          - refId: A
+            relativeTimeRange:
+              from: 600
+              to: 0
+            datasourceUid: prometheus
+            model:
+              editorMode: builder
+              exemplar: false
+              expr: max_over_time(kube_pod_container_status_waiting_reason{reason="CrashLoopBackOff"}[1m]) != 0
+              format: table
+              hide: false
+              instant: true
+              intervalMs: 1000
+              legendFormat: __auto
+              maxDataPoints: 43200
+              range: false
+              refId: A
+        noDataState: OK
+        execErrState: Error
+        for: 5m
+        annotations:
+          summary: Kubernetes Pod is crash looping
         labels:
           receiver: gotify
         isPaused: false
