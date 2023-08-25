@@ -31,6 +31,7 @@ groups:
         for: 5m
         annotations:
           summary: Node temperature is getting to hot
+          description: 'Node temperature is getting to hot for {{ $labels.instance }}'
         labels:
           receiver: gotify
         isPaused: false
@@ -60,6 +61,7 @@ groups:
         for: 5m
         annotations:
           summary: Sync status of Argo CD applications
+          description: 'Argo CD application {{ $labels.name }} is out of sync'
         labels:
           receiver: gotify
         isPaused: false
@@ -89,6 +91,7 @@ groups:
         for: 5m
         annotations:
           summary: Health status of Argo CD applications
+          description: 'Argo CD application {{ $labels.name }} is not healthy'
         labels:
           receiver: gotify
         isPaused: false
@@ -118,6 +121,7 @@ groups:
         for: 5m
         annotations:
           summary: Kubernetes Pod not healthy
+          description: 'Pod {{ $labels.namespace }}/{{ $labels.pod }} is not healthy'
         labels:
           receiver: gotify
         isPaused: false
@@ -147,6 +151,7 @@ groups:
         for: 5m
         annotations:
           summary: Kubernetes Pod is crash looping
+          description: 'Pod {{ $labels.namespace }}/{{ $labels.pod }} is crash looping'
         labels:
           receiver: gotify
         isPaused: false
