@@ -27,10 +27,6 @@ ingress:
       paths:
         - path: /
           pathType: ImplementationSpecific
-    - host: whoami.192-168-178-31.nip.io
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
 
 resources:
   requests:
