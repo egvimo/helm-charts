@@ -1,0 +1,23 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: letsencrypt-ionos-prod
+spec:
+  acme:
+    email: change-me@example.net
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt-ionos-prod
+    solvers:
+      - dns01:
+          webhook:
+            groupName: acme.egvimo
+            solverName: ionos
+            config:
+              apiUrl: https://api.hosting.ionos.com/dns/v1
+              publicKeySecretRef:
+                name: ionos-api-key
+                key: public-prefix
+              secretKeySecretRef:
+                name: ionos-api-key
+                key: secret
