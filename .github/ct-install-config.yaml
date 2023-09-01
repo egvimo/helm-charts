@@ -2,4 +2,5 @@ debug: true
 all: true
 excluded-charts:
   - common
+  - cert-manager
   - jdownloader

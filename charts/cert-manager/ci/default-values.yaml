@@ -1,0 +1,10 @@
+cert-manager:
+  namespace: ""
+
+issuer:
+  type: staging
+  groupName: acme.example.net
+  email: changeme@example.net
+
+certificate:
+  dnsName: '*.example.net'

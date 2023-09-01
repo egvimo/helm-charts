@@ -1,0 +1,10 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: certificate
+spec:
+  dnsNames:
+    - {{ .Values.certificate.dnsName | quote }}
+  issuerRef:
+    name: letsencrypt-ionos
+  secretName: certificate-tls

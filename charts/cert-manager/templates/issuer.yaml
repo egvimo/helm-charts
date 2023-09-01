@@ -1,0 +1,27 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: letsencrypt-ionos
+spec:
+  acme:
+    email: {{ .Values.issuer.email }}
+    {{- if eq .Values.issuer.type "staging" }}
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    {{- else if eq .Values.issuer.type "prod" }}
+    server: https://acme-v02.api.letsencrypt.org/directory
+    {{- end }}
+    privateKeySecretRef:
+      name: letsencrypt-ionos-key
+    solvers:
+      - dns01:
+          webhook:
+            groupName: {{ .Values.issuer.groupName }}
+            solverName: ionos
+            config:
+              apiUrl: https://api.hosting.ionos.com/dns/v1
+              publicKeySecretRef:
+                name: ionos-api-key
+                key: public-prefix
+              secretKeySecretRef:
+                name: ionos-api-key
+                key: secret
