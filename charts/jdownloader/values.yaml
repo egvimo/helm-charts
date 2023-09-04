@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: jaymoulin/jdownloader
   pullPolicy: IfNotPresent
-  tag: "2.1.1"
+  tag: "2.1.2@sha256:6ba095b48d76af99ce139b5b62cfdd38ca55091d65a9df754f0ab021dc4457b3"
 
 nameOverride: ""
 fullnameOverride: ""
