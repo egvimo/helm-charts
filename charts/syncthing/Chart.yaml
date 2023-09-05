@@ -4,7 +4,7 @@ description: A continuous file synchronization program
 type: application
 version: 0.1.0
 # renovate: image=syncthing/syncthing
-appVersion: "1.23.7"
+appVersion: "1.24.0"
 dependencies:
   - name: common
     version: 0.1.0
