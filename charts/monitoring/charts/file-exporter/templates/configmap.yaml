@@ -1,0 +1,10 @@
+{{- include "common.configmap" (list . "exporter.configmap") -}}
+{{- define "exporter.configmap" -}}
+data:
+  config: |
+    {
+      "files": [
+        "{{ join "\",\"" .Values.files }}"
+      ]
+    }
+{{- end -}}

@@ -1,0 +1,7 @@
+apiVersion: v2
+name: file-exporter
+description: A Helm chart for file exporter
+type: application
+version: 0.1.0
+# renovate: image=ghcr.io/egvimo/file-exporter
+appVersion: "0.1.0"

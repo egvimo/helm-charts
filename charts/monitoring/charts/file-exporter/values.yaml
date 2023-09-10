@@ -1,0 +1,36 @@
+replicaCount: 1
+
+image:
+  repository: ghcr.io/egvimo/file-exporter
+  pullPolicy: IfNotPresent
+  tag: ""  # Defaults to chart appVersion
+
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+service:
+  type: ClusterIP
+  port: 80
+
+resources: {}  # TODO
+
+nodeSelector: {}
+
+tolerations:
+  - key: node-role.kubernetes.io/control-plane
+    operator: Exists
+    effect: NoSchedule
+  - key: node-role.kubernetes.io/master
+    operator: Exists
+    effect: NoSchedule
+
+affinity: {}
+
+files:
+  - "/tmp"
