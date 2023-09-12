@@ -9,4 +9,4 @@ dependencies:
     version: "50.3.0"
     repository: "https://prometheus-community.github.io/helm-charts"
   - name: file-exporter
-    version: "0.1.0"
+    version: "0.2.0"

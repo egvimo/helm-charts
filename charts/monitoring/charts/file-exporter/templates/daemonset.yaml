@@ -17,27 +17,23 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - ports:
+        - command: ["/exporter"]
+          args:
+            {{- range .Values.files }}
+            - --file
+            - {{ . | quote }}
+            {{- end }}
+          ports:
             - name: http
               containerPort: 8080
               protocol: TCP
           volumeMounts:
-            - name: config
-              mountPath: /etc/exporter/config.json
-              subPath: config.json
-              readOnly: true
             - name: root
               mountPath: /host/root
               mountPropagation: HostToContainer
               readOnly: true
           {{- include "common.container" . | nindent 10 }}
       volumes:
-        - name: config
-          configMap:
-            name: {{ include "common.fullname" . }}
-            items:
-              - key: config
-                path: config.json
         - name: root
           hostPath:
             path: /

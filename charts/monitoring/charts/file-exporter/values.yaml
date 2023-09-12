@@ -33,4 +33,4 @@ tolerations:
 affinity: {}
 
 files:
-  - "/tmp"
+  - /tmp
