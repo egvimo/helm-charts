@@ -155,3 +155,34 @@ groups:
         labels:
           receiver: gotify
         isPaused: false
+      - uid: update-available
+        title: Update available
+        condition: A
+        data:
+          - refId: A
+            relativeTimeRange:
+              from: 600
+              to: 0
+            datasourceUid: prometheus
+            model:
+              disableTextWrap: false
+              editorMode: builder
+              expr: file_exists{file=~"/.*/dietpi/.*"} != 0
+              format: table
+              fullMetaSearch: false
+              includeNullMetadata: true
+              instant: true
+              intervalMs: 1000
+              legendFormat: __auto
+              maxDataPoints: 43200
+              range: false
+              refId: A
+        noDataState: OK
+        execErrState: Error
+        for: 5m
+        annotations:
+          summary: Update available
+          description: 'Update for {{ $labels.instance }} available'
+        labels:
+          receiver: gotify
+        isPaused: false
