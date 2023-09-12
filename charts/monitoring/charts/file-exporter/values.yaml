@@ -33,4 +33,6 @@ tolerations:
 affinity: {}
 
 files:
-  - /tmp
+  - /host/run/dietpi/.update_available
+  - /host/run/dietpi/.live_patches
+  - /host/run/dietpi/.apt_updates
