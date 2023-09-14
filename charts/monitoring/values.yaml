@@ -24,8 +24,13 @@ kube-prometheus-stack:
         policies:
           - orgId: 1
             receiver: gotify
-            matchers:
-              - receiver = "gotify"
+            routes:
+              - receiver: gotify
+                matchers:
+                  - receiver = "gotify"
+              - receiver: gotify
+                matchers:
+                  - severity =~ "warning|critical"
     sidecar:
       alerts:
         enabled: true
