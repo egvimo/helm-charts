@@ -28,13 +28,13 @@ spec:
               containerPort: 8080
               protocol: TCP
           volumeMounts:
-            - name: root
-              mountPath: /host/root
+            - name: host
+              mountPath: /host
               mountPropagation: HostToContainer
               readOnly: true
           {{- include "common.container" . | nindent 10 }}
       volumes:
-        - name: root
+        - name: host
           hostPath:
             path: /
       {{- with .Values.nodeSelector }}
