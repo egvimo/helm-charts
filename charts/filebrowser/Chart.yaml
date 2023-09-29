@@ -1,0 +1,11 @@
+apiVersion: v2
+name: filebrowser
+description: A file managing web interface
+type: application
+version: 0.1.0
+# renovate: image=filebrowser/filebrowser
+appVersion: "v2.25.0"
+dependencies:
+  - name: common
+    version: 0.1.0
+    repository: file://../common

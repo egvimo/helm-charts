@@ -1,0 +1,28 @@
+{{- include "common.deployment" (list . "filebrowser.deployment") -}}
+{{- define "filebrowser.deployment" -}}
+spec:
+  template:
+    spec:
+      containers:
+        - ports:
+            - name: http
+              containerPort: {{ .Values.config.port }}
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+          volumeMounts:
+            - mountPath: /.filebrowser.json
+              name: config
+              subPath: .filebrowser.json
+          {{- include "common.container" . | nindent 10 }}
+      volumes:
+        - name: config
+          configMap:
+            name: {{ include "common.fullname" . }}
+{{- end -}}

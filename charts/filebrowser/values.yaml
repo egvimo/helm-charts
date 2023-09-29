@@ -1,0 +1,51 @@
+replicaCount: 1
+
+image:
+  repository: filebrowser/filebrowser
+  pullPolicy: IfNotPresent
+  tag: ""  # Defaults to chart appVersion
+
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: traefik
+  hosts:
+    - host: filebrowser.192-168-178-31.sslip.io
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+
+resources:
+  requests:
+    memory: "32Mi"
+    cpu: "20m"
+  limits:
+    memory: "128Mi"
+    cpu: "200m"
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+config:
+  port: 8080
+  baseURL: ""
+  address: ""
+  log: stdout
+  database: /database/database.db
+  root: /srv
