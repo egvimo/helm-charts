@@ -42,6 +42,10 @@ tolerations: []
 
 affinity: {}
 
+volumes:
+  dataPath: ""
+  rootDir: ""
+
 config:
   port: 8080
   baseURL: ""

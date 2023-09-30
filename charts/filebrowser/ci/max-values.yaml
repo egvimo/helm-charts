@@ -1,2 +1,6 @@
+volumes:
+  databasePath: /tmp
+  rootDir: /tmp
+
 config:
   port: 8080
