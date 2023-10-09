@@ -1,0 +1,7 @@
+apiVersion: v2
+name: apt-exporter
+description: A Helm chart for APT exporter
+type: application
+version: 0.1.1
+# renovate: image=ghcr.io/egvimo/apt-exporter
+appVersion: "0.1.1"
