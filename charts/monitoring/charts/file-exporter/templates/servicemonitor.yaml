@@ -9,4 +9,4 @@ spec:
       {{- include "common.selectorLabels" . | nindent 6 }}
   endpoints:
     - port: {{ .Values.service.name | default "http" }}
-      interval: 120s
+      interval: 30m
