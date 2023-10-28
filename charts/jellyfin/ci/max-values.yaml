@@ -1,0 +1,6 @@
+enableDLNA: true
+
+volumes:
+  configPath: /tmp
+  mediaPaths:
+    - /tmp

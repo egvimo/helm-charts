@@ -1,0 +1,60 @@
+{{- include "common.deployment" (list . "jellyfin.deployment") -}}
+{{- define "jellyfin.deployment" -}}
+spec:
+  template:
+    spec:
+      containers:
+        - ports:
+            - name: http
+              containerPort: 8096
+              protocol: TCP
+            {{ if .Values.enableDLNA }}
+            - name: dlna
+              containerPort: 1900
+              hostPort: 1900
+              protocol: UDP
+            {{- end }}
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            failureThreshold: 4
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 60
+          volumeMounts:
+            - mountPath: /cache
+              name: cache
+            {{- if .Values.volumes.configPath }}
+            - mountPath: /config
+              name: config
+            {{- end }}
+            {{- range $i, $m := .Values.volumes.mediaPaths }}
+            - mountPath: /media{{ $i }}
+              name: media{{ $i }}
+              readOnly: true
+            {{- end }}
+          {{- include "common.container" . | nindent 10 }}
+      {{- if .Values.enableDLNA }}
+      hostNetwork: true
+      {{- end }}
+      volumes:
+        - name: cache
+          emptyDir: {}
+        {{- if .Values.volumes.configPath }}
+        - name: config
+          hostPath:
+            path: {{ .Values.volumes.configPath }}
+            type: Directory
+        {{- end }}
+        {{- range $i, $m := .Values.volumes.mediaPaths }}
+        - name: media{{ $i }}
+          hostPath:
+            path: {{ $m }}
+            type: Directory
+        {{- end }}
+{{- end -}}
