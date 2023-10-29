@@ -167,7 +167,7 @@ groups:
             model:
               disableTextWrap: false
               editorMode: builder
-              expr: file_exists{file=~"/.*/dietpi/.*"} != 0
+              expr: last_over_time(file_exists{file=~"/.*/dietpi/.*"}[1h]) != 0
               format: table
               fullMetaSearch: false
               includeNullMetadata: true
