@@ -9,6 +9,6 @@ dependencies:
     version: "52.0.1"
     repository: "https://prometheus-community.github.io/helm-charts"
   - name: file-exporter
-    version: "0.2.0"
+    version: "0.1.0"
   - name: apt-exporter
-    version: "0.3.0"
+    version: "0.1.0"
