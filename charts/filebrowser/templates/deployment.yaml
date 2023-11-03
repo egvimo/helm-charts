@@ -1,6 +1,8 @@
 {{- include "common.deployment" (list . "filebrowser.deployment") -}}
 {{- define "filebrowser.deployment" -}}
 spec:
+  strategy:
+    type: Recreate
   template:
     spec:
       containers:
