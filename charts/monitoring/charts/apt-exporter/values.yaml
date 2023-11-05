@@ -1,5 +1,3 @@
-replicaCount: 1
-
 image:
   repository: ghcr.io/egvimo/apt-exporter
   pullPolicy: IfNotPresent
