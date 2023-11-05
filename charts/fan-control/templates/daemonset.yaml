@@ -1,0 +1,15 @@
+{{- include "common.daemonset" (list . "fan-control.daemonset") -}}
+{{- define "fan-control.daemonset" -}}
+spec:
+  template:
+    spec:
+      containers:
+        - volumeMounts:
+            - name: gpio
+              mountPath: /dev/gpiomem
+          {{- include "common.container" . | nindent 10 }}
+      volumes:
+        - name: gpio
+          hostPath:
+            path: /dev/gpiomem
+{{- end -}}
