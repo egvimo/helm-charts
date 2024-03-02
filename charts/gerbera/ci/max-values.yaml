@@ -1,0 +1,7 @@
+enableDLNA: true
+
+volumes:
+  - name: videos
+    path: /tmp
+  - name: music
+    path: /tmp

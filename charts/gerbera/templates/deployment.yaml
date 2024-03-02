@@ -1,0 +1,40 @@
+{{- include "common.deployment" (list . "gerbera.deployment") -}}
+{{- define "gerbera.deployment" -}}
+spec:
+  strategy:
+    type: Recreate
+  template:
+    spec:
+      containers:
+        - ports:
+            - name: http
+              containerPort: 49494
+              protocol: TCP
+            {{ if .Values.enableDLNA }}
+            - name: dlna
+              containerPort: 1900
+              hostPort: 1900
+              protocol: UDP
+            {{- end }}
+          volumeMounts:
+            - name: app
+              mountPath: /var/run/gerbera
+            {{- range .Values.volumes }}
+            - name: {{ .name }}
+              mountPath: "/content/{{ .name }}"
+              readOnly: {{ .readOnly | default true }}
+            {{- end }}
+          {{- include "common.container" . | nindent 10 }}
+      {{ if .Values.enableDLNA }}
+      hostNetwork: true
+      {{- end }}
+      volumes:
+        - name: app
+          emptyDir: {}
+        {{- range .Values.volumes }}
+        - name: {{ .name }}
+          hostPath:
+            path: {{ .path }}
+            type: Directory
+        {{- end }}
+{{- end -}}

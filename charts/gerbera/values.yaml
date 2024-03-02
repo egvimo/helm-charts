@@ -1,0 +1,47 @@
+replicaCount: 1
+
+image:
+  repository: gerbera/gerbera
+  pullPolicy: IfNotPresent
+  tag: ""  # Defaults to chart appVersion
+
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: traefik
+  hosts:
+    - host: gerbera.192-168-178-31.sslip.io
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+
+resources:
+  requests:
+    memory: "64Mi"
+    cpu: "100m"
+  limits:
+    memory: "256Mi"
+    cpu: "1000m"
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+enableDLNA: false
+
+volumes: []
