@@ -17,24 +17,30 @@ spec:
               protocol: UDP
             {{- end }}
           volumeMounts:
-            - name: app
+            {{- if .Values.volumes.configPath }}
+            - name: config
               mountPath: /var/run/gerbera
-            {{- range .Values.volumes }}
-            - name: {{ .name }}
-              mountPath: "/content/{{ .name }}"
-              readOnly: {{ .readOnly | default true }}
+            {{- end }}
+            {{- range $i, $m := .Values.volumes.mediaPaths }}
+            - mountPath: "/content/media{{ $i }}"
+              name: "media{{ $i }}"
+              readOnly: true
             {{- end }}
           {{- include "common.container" . | nindent 10 }}
       {{ if .Values.enableDLNA }}
       hostNetwork: true
       {{- end }}
       volumes:
-        - name: app
-          emptyDir: {}
-        {{- range .Values.volumes }}
-        - name: {{ .name }}
+        {{- if .Values.volumes.configPath }}
+        - name: config
           hostPath:
-            path: {{ .path }}
+            path: {{ .Values.volumes.configPath }}
+            type: Directory
+        {{- end }}
+        {{- range $i, $m := .Values.volumes.mediaPaths }}
+        - name: "media{{ $i }}"
+          hostPath:
+            path: {{ $m }}
             type: Directory
         {{- end }}
 {{- end -}}

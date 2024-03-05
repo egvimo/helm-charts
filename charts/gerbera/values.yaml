@@ -44,4 +44,6 @@ affinity: {}
 
 enableDLNA: false
 
-volumes: []
+volumes:
+  configPath: ""
+  mediaPaths: []
