@@ -1,6 +1,0 @@
-volumes:
-  videoPath: /tmp
-  photoPath: /tmp
-  audioPath: /tmp
-
-friendlyName: Test
