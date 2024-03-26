@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: vladgh/minidlna
   pullPolicy: IfNotPresent
-  tag: "1.3.4"
+  tag: "1.3.5"
 
 nameOverride: ""
 fullnameOverride: ""
