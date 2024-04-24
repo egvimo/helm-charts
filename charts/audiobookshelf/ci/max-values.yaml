@@ -1,0 +1,7 @@
+volumes:
+  configPath: /tmp
+  metadataPath: /tmp
+  mediaPaths:
+    - /tmp
+
+timezone: America/New_York

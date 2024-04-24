@@ -1,0 +1,58 @@
+{{- include "common.deployment" (list . "audiobookshelf.deployment") -}}
+{{- define "audiobookshelf.deployment" -}}
+spec:
+  strategy:
+    type: Recreate
+  template:
+    spec:
+      containers:
+        - env:
+            - name: TZ
+              value: {{ .Values.timezone | default "Europe/Berlin" | quote }}
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /ping
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /ping
+              port: http
+          volumeMounts:
+            {{- if .Values.volumes.configPath }}
+            - name: config
+              mountPath: /config
+            {{- end }}
+            {{- if .Values.volumes.metadataPath }}
+            - name: metadata
+              mountPath: /metadata
+            {{- end }}
+            {{- range $i, $m := .Values.volumes.mediaPaths }}
+            - mountPath: "/content/media{{ $i }}"
+              name: "media{{ $i }}"
+              readOnly: true
+            {{- end }}
+          {{- include "common.container" . | nindent 10 }}
+      volumes:
+        {{- if .Values.volumes.configPath }}
+        - name: config
+          hostPath:
+            path: {{ .Values.volumes.configPath }}
+            type: Directory
+        {{- end }}
+        {{- if .Values.volumes.metadataPath }}
+        - name: metadata
+          hostPath:
+            path: {{ .Values.volumes.metadataPath }}
+            type: Directory
+        {{- end }}
+        {{- range $i, $m := .Values.volumes.mediaPaths }}
+        - name: "media{{ $i }}"
+          hostPath:
+            path: {{ $m }}
+            type: Directory
+        {{- end }}
+{{- end -}}
