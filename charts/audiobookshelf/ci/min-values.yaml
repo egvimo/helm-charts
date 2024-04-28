@@ -1,2 +1,2 @@
-volumes:
-  configPath: /tmp
+persistence:
+  enabled: false

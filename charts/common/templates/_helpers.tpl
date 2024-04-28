@@ -49,3 +49,17 @@ Selector labels
 app.kubernetes.io/name: {{ include "common.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
+
+{{/*
+Storage class name
+*/}}
+{{- define "common.storageClass" -}}
+{{- $storageClass := .Values.persistence.storageClass -}}
+{{- if $storageClass -}}
+  {{- if (eq "-" $storageClass) -}}
+      {{- printf "storageClassName: \"\"" -}}
+  {{- else }}
+      {{- printf "storageClassName: %s" $storageClass -}}
+  {{- end -}}
+{{- end -}}
+{{- end -}}

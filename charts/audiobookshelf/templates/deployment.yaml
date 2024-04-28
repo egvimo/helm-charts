@@ -22,37 +22,30 @@ spec:
               path: /ping
               port: http
           volumeMounts:
-            {{- if .Values.volumes.configPath }}
-            - name: config
+            - name: data
               mountPath: /config
-            {{- end }}
-            {{- if .Values.volumes.metadataPath }}
-            - name: metadata
+              subPath: config
+            - name: data
               mountPath: /metadata
-            {{- end }}
-            {{- range $i, $m := .Values.volumes.mediaPaths }}
-            - mountPath: "/content/media{{ $i }}"
-              name: "media{{ $i }}"
-              readOnly: true
+              subPath: metadata
+            {{- range .Values.extraVolumes }}
+            - name: {{ .name }}
+              mountPath: {{ .mountPath }}
+              readOnly: {{ .readOnly | default false }}
             {{- end }}
           {{- include "common.container" . | nindent 10 }}
       volumes:
-        {{- if .Values.volumes.configPath }}
-        - name: config
+        - name: data
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ include "common.fullname" . }}
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+        {{- range .Values.extraVolumes }}
+        - name: {{ .name }}
           hostPath:
-            path: {{ .Values.volumes.configPath }}
-            type: Directory
-        {{- end }}
-        {{- if .Values.volumes.metadataPath }}
-        - name: metadata
-          hostPath:
-            path: {{ .Values.volumes.metadataPath }}
-            type: Directory
-        {{- end }}
-        {{- range $i, $m := .Values.volumes.mediaPaths }}
-        - name: "media{{ $i }}"
-          hostPath:
-            path: {{ $m }}
+            path: {{ .hostPath }}
             type: Directory
         {{- end }}
 {{- end -}}

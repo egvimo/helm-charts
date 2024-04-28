@@ -1,7 +1,14 @@
-volumes:
-  configPath: /tmp
-  metadataPath: /tmp
-  mediaPaths:
-    - /tmp
+persistence:
+  enabled: true
+  storageClass: ""
+  accessModes:
+    - ReadWriteOnce
+  size: 1Gi
+
+extraVolumes:
+  - name: test
+    mountPath: /test
+    hostPath: /tmp
+    readOnly: true
 
 timezone: America/New_York

@@ -42,9 +42,14 @@ tolerations: []
 
 affinity: {}
 
-volumes:
-  configPath: ""
-  metadataPath: ""
-  mediaPaths: []
+persistence:
+  enabled: false
+  annotations: {}
+  storageClass: ""
+  accessModes:
+    - ReadWriteOnce
+  size: 1Gi
+
+extraVolumes: []
 
 timezone: ""  # Defaults to 'Europe/Berlin'
