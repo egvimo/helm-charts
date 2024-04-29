@@ -15,11 +15,11 @@ spec:
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /ping
+              path: /healthcheck
               port: http
           readinessProbe:
             httpGet:
-              path: /ping
+              path: /healthcheck
               port: http
           volumeMounts:
             - name: data
