@@ -1,6 +1,14 @@
-enableDLNA: true
+persistence:
+  enabled: true
+  storageClass: ""
+  accessModes:
+    - ReadWriteOnce
+  size: 1Gi
 
-volumes:
-  configPath: /tmp
-  mediaPaths:
-    - /tmp
+extraVolumes:
+  - name: test
+    mountPath: /content/test
+    hostPath: /tmp
+    readOnly: true
+
+enableDLNA: true

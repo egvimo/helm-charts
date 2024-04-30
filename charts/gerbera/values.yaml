@@ -42,8 +42,14 @@ tolerations: []
 
 affinity: {}
 
-enableDLNA: false
+persistence:
+  enabled: false
+  annotations: {}
+  storageClass: ""
+  accessModes:
+    - ReadWriteOnce
+  size: 1Gi
 
-volumes:
-  configPath: ""
-  mediaPaths: []
+extraVolumes: []
+
+enableDLNA: false
