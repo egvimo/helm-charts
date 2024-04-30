@@ -1,2 +1,2 @@
-config:
-  port: 8090
+persistence:
+  enabled: false

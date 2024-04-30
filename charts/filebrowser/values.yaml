@@ -42,14 +42,20 @@ tolerations: []
 
 affinity: {}
 
-volumes:
-  dataPath: ""
-  rootDir: ""
+persistence:
+  enabled: false
+  annotations: {}
+  storageClass: ""
+  accessModes:
+    - ReadWriteOnce
+  size: 1Gi
+
+extraVolumes: []
 
 config:
   port: 8080
   baseURL: ""
   address: ""
   log: stdout
-  database: /database/database.db
-  root: /srv
+  database: /database/filebrowser.db
+  root: /share

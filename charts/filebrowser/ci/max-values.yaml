@@ -1,6 +1,12 @@
-volumes:
-  databasePath: /tmp
-  rootDir: /tmp
+persistence:
+  enabled: true
+  size: 500Mi
+
+extraVolumes:
+  - name: temp
+    mountPath: /tmp
+    hostPath: /tmp
 
 config:
-  port: 8080
+  port: 8090
+  root: /tmp

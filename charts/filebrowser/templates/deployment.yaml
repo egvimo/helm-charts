@@ -22,29 +22,29 @@ spec:
             - name: config
               mountPath: /.filebrowser.json
               subPath: .filebrowser.json
-            {{- if .Values.volumes.databasePath }}
             - name: database
               mountPath: /database
-            {{- end }}
-            {{- if .Values.volumes.rootDir }}
-            - name: root-dir
-              mountPath: {{ .Values.config.root }}
+            {{- range .Values.extraVolumes }}
+            - name: {{ .name }}
+              mountPath: {{ .mountPath }}
+              readOnly: {{ .readOnly | default false }}
             {{- end }}
           {{- include "common.container" . | nindent 10 }}
       volumes:
         - name: config
           configMap:
             name: {{ include "common.fullname" . }}
-        {{- if .Values.volumes.databasePath }}
         - name: database
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ include "common.fullname" . }}
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+        {{- range .Values.extraVolumes }}
+        - name: {{ .name }}
           hostPath:
-            path: {{ .Values.volumes.databasePath }}
-            type: Directory
-        {{- end }}
-        {{- if .Values.volumes.rootDir }}
-        - name: root-dir
-          hostPath:
-            path: {{ .Values.volumes.rootDir }}
+            path: {{ .hostPath }}
             type: Directory
         {{- end }}
 {{- end -}}
