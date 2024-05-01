@@ -33,17 +33,16 @@ spec:
             httpGet:
               path: /
               port: http
-          {{- if .Values.volumes.dataPath }}
           volumeMounts:
-            - mountPath: /app/data
-              name: data
-          {{- end }}
+            - name: data
+              mountPath: /app/data
           {{- include "common.container" . | nindent 10 }}
-      {{- if .Values.volumes.dataPath }}
       volumes:
         - name: data
-          hostPath:
-            path: {{ .Values.volumes.dataPath }}
-            type: Directory
-      {{- end }}
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ include "common.fullname" . }}
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
 {{- end -}}

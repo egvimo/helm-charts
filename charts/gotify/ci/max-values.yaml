@@ -1,8 +1,9 @@
 image:
   repository: gotify/server
 
-volumes:
-  mediaPath: /tmp
+persistence:
+  enabled: true
+  size: 100Mi
 
 defaultUser:
   name: test

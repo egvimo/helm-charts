@@ -1,6 +1,6 @@
 persistence:
   enabled: true
-  size: 500Mi
+  size: 100Mi
 
 extraVolumes:
   - name: test
