@@ -33,9 +33,15 @@ tolerations: []
 
 affinity: {}
 
-volumes:
-  cfgPath: ""
-  downloadsPath: ""
+persistence:
+  enabled: false
+  annotations: {}
+  storageClass: ""
+  accessModes:
+    - ReadWriteOnce
+  size: 250Mi
+
+extraVolumes: []
 
 deviceName: ""  # Defaults to 'Kubernetes'
 umask: ""  # Defaults to '0002'

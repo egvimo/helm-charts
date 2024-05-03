@@ -23,30 +23,30 @@ spec:
               containerPort: 3129
               protocol: TCP
           volumeMounts:
-            - mountPath: /opt/JDownloader/app
-              name: app
-            {{- if .Values.volumes.cfgPath }}
-            - mountPath: /opt/JDownloader/app/cfg
-              name: cfg
-            {{- end }}
-            {{- if .Values.volumes.downloadsPath }}
-            - mountPath: /opt/JDownloader/Downloads
-              name: downloads
+            - name: app
+              mountPath: /opt/JDownloader/app
+            - name: cfg
+              mountPath: /opt/JDownloader/app/cfg
+            {{- range .Values.extraVolumes }}
+            - name: {{ .name }}
+              mountPath: {{ .mountPath }}
+              readOnly: {{ .readOnly | default false }}
             {{- end }}
           {{- include "common.container" . | nindent 10 }}
       volumes:
         - name: app
           emptyDir: {}
-        {{- if .Values.volumes.cfgPath }}
         - name: cfg
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ include "common.fullname" . }}
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+        {{- range .Values.extraVolumes }}
+        - name: {{ .name }}
           hostPath:
-            path: {{ .Values.volumes.cfgPath }}
-            type: Directory
-        {{- end }}
-        {{- if .Values.volumes.downloadsPath }}
-        - name: downloads
-          hostPath:
-            path: {{ .Values.volumes.downloadsPath }}
+            path: {{ .hostPath }}
             type: Directory
         {{- end }}
 {{- end -}}
