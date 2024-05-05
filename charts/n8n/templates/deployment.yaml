@@ -10,6 +10,8 @@ spec:
               value: {{ .Values.timezone | default "Europe/Berlin" | quote }}
             - name: TZ
               value: {{ .Values.timezone | default "Europe/Berlin" | quote }}
+            - name: DB_SQLITE_VACUUM_ON_STARTUP
+              value: "true"
           ports:
             - name: http
               containerPort: 5678
