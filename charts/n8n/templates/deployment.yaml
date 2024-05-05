@@ -28,28 +28,31 @@ spec:
               path: /healthz
               port: http
             initialDelaySeconds: 60
-          {{- if .Values.volumes.dataPath }}
           volumeMounts:
-            - mountPath: /home/node/.n8n
-              name: data
+            - name: data
+              mountPath: /.n8n
+            - name: cache
+              mountPath: /.cache
             {{- range .Values.extraVolumes }}
             - mountPath: {{ .mountPath }}
               name: {{ .name }}
               readOnly: {{ .readOnly | default false }}
             {{- end }}
-          {{- end }}
           {{- include "common.container" . | nindent 10 }}
-      {{- if .Values.volumes.dataPath }}
       volumes:
         - name: data
-          hostPath:
-            path: {{ .Values.volumes.dataPath }}
-            type: Directory
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ include "common.fullname" . }}
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+        - name: cache
+          emptyDir: {}
         {{- range .Values.extraVolumes }}
         - name: {{ .name }}
           hostPath:
             path: {{ .hostPath }}
             type: Directory
         {{- end }}
-      {{- end }}
 {{- end -}}

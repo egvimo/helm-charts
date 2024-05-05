@@ -42,8 +42,13 @@ tolerations: []
 
 affinity: {}
 
-volumes:
-  dataPath: ""
+persistence:
+  enabled: false
+  annotations: {}
+  storageClass: ""
+  accessModes:
+    - ReadWriteOnce
+  size: 1Gi
 
 extraVolumes: []
 

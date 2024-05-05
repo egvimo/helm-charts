@@ -1,6 +1,10 @@
 volumes:
   mediaPath: /tmp
 
+persistence:
+  enabled: true
+  size: 100Mi
+
 extraVolumes:
   - name: test
     mountPath: /test

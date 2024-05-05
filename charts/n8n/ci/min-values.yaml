@@ -1,1 +1,2 @@
-timezone: America/New_York
+persistence:
+  enabled: false
