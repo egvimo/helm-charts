@@ -34,7 +34,7 @@ resources:
     cpu: "200m"
   limits:
     memory: "512Mi"
-    cpu: "2000m"
+    cpu: "4000m"
 
 nodeSelector: {}
 
