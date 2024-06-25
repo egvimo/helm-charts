@@ -1,6 +1,8 @@
 {{- include "common.deployment" (list . "gotify.deployment") -}}
 {{- define "gotify.deployment" -}}
 spec:
+  strategy:
+    type: Recreate
   template:
     spec:
       enableServiceLinks: false
