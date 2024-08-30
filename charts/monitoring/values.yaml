@@ -1,4 +1,6 @@
 kube-prometheus-stack:
+  crds:
+    enabled: true
   alertmanager:
     enabled: true
   grafana:
