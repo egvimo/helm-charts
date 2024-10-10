@@ -1,0 +1,43 @@
+{{- include "common.deployment" (list . "home-assistant.deployment") -}}
+{{- define "home-assistant.deployment" -}}
+spec:
+  strategy:
+    type: Recreate
+  template:
+    spec:
+      containers:
+        - env:
+            - name: TZ
+              value: {{ .Values.timezone | default "Europe/Berlin" | quote }}
+          ports:
+            - name: http
+              containerPort: 8123
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /manifest.json
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /manifest.json
+              port: http
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: configuration
+              mountPath: /config/configuration.yaml
+              subPath: configuration.yaml
+          {{- include "common.container" . | nindent 10 }}
+      hostNetwork: true
+      volumes:
+        - name: config
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ include "common.fullname" . }}
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+        - name: configuration
+          configMap:
+            name: {{ include "common.fullname" . }}
+{{- end -}}

@@ -1,0 +1,7 @@
+{{- include "common.configmap" (list . "home-assistant.configmap") -}}
+{{- define "home-assistant.configmap" -}}
+data:
+  configuration.yaml: |-
+    default_config:
+    {{- .Values.config | toYaml | nindent 4 }}
+{{- end -}}
