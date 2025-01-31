@@ -4,7 +4,7 @@ description: A file managing web interface
 type: application
 version: 0.1.0
 # renovate: image=filebrowser/filebrowser
-appVersion: "v2.31.2"
+appVersion: "v2.32.0"
 dependencies:
   - name: common
     version: 0.1.0
