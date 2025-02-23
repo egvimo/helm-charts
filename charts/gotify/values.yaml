@@ -48,7 +48,7 @@ persistence:
   storageClass: ""
   accessModes:
     - ReadWriteOnce
-  size: 250Mi
+  size: 500Mi
 
 defaultUser:
   name: ""
