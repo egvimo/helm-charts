@@ -61,3 +61,4 @@ kube-prometheus-stack:
       serviceMonitorNamespaceSelector:
         matchLabels:
           export-prometheus-metrics: "true"
+      maximumStartupDurationSeconds: 900
