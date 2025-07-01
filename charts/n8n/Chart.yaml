@@ -4,7 +4,7 @@ description: An extendable workflow automation tool
 type: application
 version: 0.1.0
 # renovate: image=ghcr.io/egvimo/n8n-python
-appVersion: "1.99.1"
+appVersion: "1.100.1"
 dependencies:
   - name: common
     version: 0.1.0
