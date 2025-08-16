@@ -1,6 +1,6 @@
 {{- include "common.configmap" (list . "filebrowser.configmap") -}}
 {{- define "filebrowser.configmap" -}}
 data:
-  .filebrowser.json: |
+  settings.json: |
     {{- .Values.config | toPrettyJson | nindent 4 }}
 {{- end -}}
