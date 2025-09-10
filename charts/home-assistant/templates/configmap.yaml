@@ -3,5 +3,13 @@
 data:
   configuration.yaml: |-
     default_config:
+
     {{- .Values.config | toYaml | nindent 4 }}
+
+    frontend:
+      themes: !include_dir_merge_named themes
+
+    automation: !include automations.yaml
+    script: !include scripts.yaml
+    scene: !include scenes.yaml
 {{- end -}}
