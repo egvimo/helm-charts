@@ -53,8 +53,8 @@ spec:
                 touch /config/scenes.yaml
               fi
           volumeMounts:
-          - name: config
-            mountPath: /config
+            - name: config
+              mountPath: /config
       hostNetwork: true
       volumes:
         - name: config

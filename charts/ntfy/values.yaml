@@ -1,0 +1,57 @@
+replicaCount: 1
+
+image:
+  repository: binwiederhier/ntfy
+  pullPolicy: IfNotPresent
+  tag: ""  # Defaults to chart appVersion
+
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: traefik
+  hosts:
+    - host: ntfy.192-168-178-31.sslip.io
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+
+resources:
+  requests:
+    memory: "32Mi"
+    cpu: "50m"
+  limits:
+    memory: "128Mi"
+    cpu: "500m"
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+persistence:
+  enabled: false
+  annotations: {}
+  storageClass: ""
+  accessModes:
+    - ReadWriteOnce
+  size: 500Mi
+
+timezone: ""  # Defaults to 'Europe/Berlin'
+
+config:
+  base-url: https://ntfy.192-168-178-31.sslip.io
+  cache-duration: "12h"
