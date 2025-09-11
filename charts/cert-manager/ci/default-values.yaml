@@ -1,5 +1,6 @@
 cert-manager:
   namespace: ""
+  installCRDs: true
 
 issuer:
   type: staging
