@@ -21,8 +21,30 @@ jobs:
       - name: Run chart-testing (lint)
         run: ct lint --config .github/ct-lint-config.yaml
 
-  test:
+  discover-charts:
     runs-on: ubuntu-latest
+    outputs:
+      charts: ${{ steps.set-matrix.outputs.charts }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Build matrix
+        id: set-matrix
+        run: |
+          JSON=$(ls -d charts/* \
+                 | xargs -n1 basename \
+                 | grep -vxFf <(yq '.excluded-charts[]' .github/ct-install-config.yaml) \
+                 | jq -R -s 'split("\n")[:-1]' -c)
+          echo "Matrix: $JSON"
+          echo "charts=$JSON" >> $GITHUB_OUTPUT
+
+  test:
+    needs: discover-charts
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        chart: ${{ fromJson(needs.discover-charts.outputs.charts) }}
     steps:
       - uses: actions/checkout@v5
         with:
@@ -35,4 +57,7 @@ jobs:
         uses: helm/kind-action@v1.12.0
 
       - name: Run chart-testing (install)
-        run: ct install --config .github/ct-install-config.yaml
+        run: |
+          ct install \
+            --config .github/ct-install-config.yaml \
+            --charts charts/${{ matrix.chart }}
