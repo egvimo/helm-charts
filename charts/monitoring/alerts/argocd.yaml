@@ -1,0 +1,56 @@
+apiVersion: 1
+groups:
+  - orgId: 1
+    name: ArgoCD
+    folder: Alerts
+    interval: 1m
+    rules:
+      - uid: argo-cd-app-sync
+        title: Argo CD App Out of Sync
+        condition: A
+        data:
+          - refId: A
+            relativeTimeRange:
+              from: 300
+              to: 0
+            datasourceUid: prometheus
+            model:
+              expr: argocd_app_info{sync_status!="Synced"} != 0
+              format: table
+              instant: true
+              refId: A
+        noDataState: OK
+        execErrState: Error
+        for: 5m
+        annotations:
+          summary: Argo CD app not synced
+          description: 'Argo CD application {{ $labels.name }} is out of sync'
+        labels:
+          severity: warning
+          receiver: gotify
+        isPaused: false
+
+      - uid: argo-cd-app-health
+        title: Argo CD App Unhealthy
+        condition: A
+        data:
+          - refId: A
+            relativeTimeRange:
+              from: 300
+              to: 0
+            datasourceUid: prometheus
+            model:
+              expr: argocd_app_info{health_status!="Healthy"} != 0
+              format: table
+              instant: true
+              refId: A
+        noDataState: OK
+        execErrState: Error
+        for: 5m
+        annotations:
+          summary: Argo CD app not healthy
+          description: 'Argo CD application {{ $labels.name }} is not healthy (status={{ $labels.health_status }})'
+        labels:
+          severity: critical
+          receiver: gotify
+        isPaused: false

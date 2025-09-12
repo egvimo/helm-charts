@@ -1,0 +1,56 @@
+apiVersion: 1
+groups:
+  - orgId: 1
+    name: Node
+    folder: Alerts
+    interval: 1m
+    rules:
+      - uid: node-temperature
+        title: Node Temperature
+        condition: A
+        data:
+          - refId: A
+            relativeTimeRange:
+              from: 600
+              to: 0
+            datasourceUid: prometheus
+            model:
+              expr: max_over_time(node_thermal_zone_temp[5m]) > 60
+              format: table
+              range: true
+              refId: A
+        noDataState: OK
+        execErrState: Error
+        for: 10m
+        annotations:
+          summary: Node temperature warning
+          description: 'Node {{ $labels.instance }} temperature above 60°C'
+        labels:
+          severity: warning
+          receiver: gotify
+        isPaused: false
+
+      - uid: update-available
+        title: Update Available
+        condition: A
+        data:
+          - refId: A
+            relativeTimeRange:
+              from: 900
+              to: 0
+            datasourceUid: prometheus
+            model:
+              expr: last_over_time(file_exists{file=~"/.*/dietpi/.*"}[1h]) != 0
+              format: table
+              instant: true
+              refId: A
+        noDataState: OK
+        execErrState: Error
+        for: 15m
+        annotations:
+          summary: System update available
+          description: 'Update for {{ $labels.instance }} available'
+        labels:
+          severity: info
+          receiver: gotify
+        isPaused: false

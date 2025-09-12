@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "common.fullname" . }}-grafana-dashboard-raspberry
+  labels:
+    grafana_dashboard: "1"
+data:
+  raspberry.json: |-
+    {{- .Files.Get "dashboards/raspberry.json" | nindent 4 }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "common.fullname" . }}-grafana-dashboard-argocd
+  labels:
+    grafana_dashboard: "1"
+data:
+  argocd.json: |-
+    {{- .Files.Get "dashboards/argocd.json" | nindent 4 }}
