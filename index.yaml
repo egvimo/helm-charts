@@ -104,6 +104,20 @@ entries:
     version: 0.1.0
   gotify:
   - apiVersion: v2
+    appVersion: 2.7.2
+    created: "2025-09-14T15:27:37.141580538Z"
+    dependencies:
+    - name: common
+      repository: file://../common
+      version: 0.1.0
+    description: A simple server for sending and receiving messages
+    digest: 34d794e1f3d26a8df54c3d8031c13112044a418f0248c6eecf209e6d83653ae6
+    name: gotify
+    type: application
+    urls:
+    - https://github.com/egvimo/helm-charts/releases/download/gotify-0.1.1/gotify-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
     appVersion: 2.6.3
     created: "2025-09-14T08:51:33.885658699Z"
     dependencies:
@@ -229,4 +243,4 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/whoami-0.1.0/whoami-0.1.0.tgz
     version: 0.1.0
-generated: "2025-09-14T15:25:16.43752346Z"
+generated: "2025-09-14T15:27:37.141594444Z"
