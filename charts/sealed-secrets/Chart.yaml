@@ -2,9 +2,9 @@ apiVersion: v2
 name: sealed-secrets
 description: A Kubernetes controller and tool for one-way encrypted Secrets
 type: application
-version: 0.1.0
+version: 0.1.1
 appVersion: "0.32.1"
 dependencies:
   - name: sealed-secrets
-    version: "2.17.4"
+    version: "2.17.6"
     repository: "https://bitnami-labs.github.io/sealed-secrets"
