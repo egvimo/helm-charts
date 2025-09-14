@@ -2,9 +2,9 @@ apiVersion: v2
 name: filebrowser
 description: A file managing web interface
 type: application
-version: 0.1.0
+version: 0.1.1
 # renovate: image=filebrowser/filebrowser
-appVersion: "v2.42.5"
+appVersion: "v2.43.0"
 dependencies:
   - name: common
     version: 0.1.0
