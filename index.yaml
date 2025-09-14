@@ -60,6 +60,20 @@ entries:
     version: 0.1.0
   filebrowser:
   - apiVersion: v2
+    appVersion: v2.43.0
+    created: "2025-09-14T15:25:16.437514002Z"
+    dependencies:
+    - name: common
+      repository: file://../common
+      version: 0.1.0
+    description: A file managing web interface
+    digest: a06718f98b701ee2ffe394a0f79c66b2bc61dee3474c6d8c241394a6af8e0f02
+    name: filebrowser
+    type: application
+    urls:
+    - https://github.com/egvimo/helm-charts/releases/download/filebrowser-0.1.1/filebrowser-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
     appVersion: v2.42.5
     created: "2025-09-14T08:51:33.645539904Z"
     dependencies:
@@ -215,4 +229,4 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/whoami-0.1.0/whoami-0.1.0.tgz
     version: 0.1.0
-generated: "2025-09-14T08:51:34.882524261Z"
+generated: "2025-09-14T15:25:16.43752346Z"
