@@ -212,6 +212,21 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/ntfy-0.1.0/ntfy-0.1.0.tgz
     version: 0.1.0
+  sealed-secrets:
+  - apiVersion: v2
+    appVersion: 0.32.1
+    created: "2025-09-14T16:02:37.443900163Z"
+    dependencies:
+    - name: sealed-secrets
+      repository: https://bitnami-labs.github.io/sealed-secrets
+      version: 2.17.4
+    description: A Kubernetes controller and tool for one-way encrypted Secrets
+    digest: c6242722d209098057ac8f017e3cac2d7e332131bd009e00e9d60f062a26c770
+    name: sealed-secrets
+    type: application
+    urls:
+    - https://github.com/egvimo/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
+    version: 0.1.0
   syncthing:
   - apiVersion: v2
     appVersion: 2.0.9
@@ -243,4 +258,4 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/whoami-0.1.0/whoami-0.1.0.tgz
     version: 0.1.0
-generated: "2025-09-14T15:27:37.141594444Z"
+generated: "2025-09-14T16:02:37.443918277Z"
