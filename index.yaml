@@ -1,5 +1,20 @@
 apiVersion: v1
 entries:
+  apprise:
+  - apiVersion: v2
+    appVersion: 1.2.1
+    created: "2025-09-16T17:18:13.304350075Z"
+    dependencies:
+    - name: common
+      repository: file://../common
+      version: 0.1.0
+    description: A unified gateway for sending notifications anywhere
+    digest: 76fbedc8ecb76dae66dced6c0ddb3984731b92d8dcb77bf2056517a1940b588d
+    name: apprise
+    type: application
+    urls:
+    - https://github.com/egvimo/helm-charts/releases/download/apprise-0.1.0/apprise-0.1.0.tgz
+    version: 0.1.0
   audiobookshelf:
   - apiVersion: v2
     appVersion: 2.29.0
@@ -272,4 +287,4 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/whoami-0.1.0/whoami-0.1.0.tgz
     version: 0.1.0
-generated: "2025-09-16T10:26:00.396151995Z"
+generated: "2025-09-16T17:18:13.30436386Z"
