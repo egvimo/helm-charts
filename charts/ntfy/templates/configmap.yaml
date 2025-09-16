@@ -1,6 +1,0 @@
-{{- include "common.configmap" (list . "ntfy.configmap") -}}
-{{- define "ntfy.configmap" -}}
-data:
-  server.yml: |-
-    {{- .Values.config | toYaml | nindent 4 }}
-{{- end -}}

@@ -1,8 +1,0 @@
-persistence:
-  enabled: true
-  size: 100Mi
-
-timezone: America/New_York
-
-config:
-  cache-duration: "48h"
