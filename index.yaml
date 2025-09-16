@@ -184,6 +184,20 @@ entries:
     version: 0.1.0
   n8n:
   - apiVersion: v2
+    appVersion: 1.111.0
+    created: "2025-09-16T10:26:00.396135654Z"
+    dependencies:
+    - name: common
+      repository: file://../common
+      version: 0.1.0
+    description: An extendable workflow automation tool
+    digest: 87817840c0dacbc89e667fadc72559626720452c11ab74f7573bb5b2bc7f1981
+    name: n8n
+    type: application
+    urls:
+    - https://github.com/egvimo/helm-charts/releases/download/n8n-0.1.1/n8n-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
     appVersion: 1.110.1
     created: "2025-09-14T08:51:34.527756668Z"
     dependencies:
@@ -258,4 +272,4 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/whoami-0.1.0/whoami-0.1.0.tgz
     version: 0.1.0
-generated: "2025-09-14T16:02:37.443918277Z"
+generated: "2025-09-16T10:26:00.396151995Z"
