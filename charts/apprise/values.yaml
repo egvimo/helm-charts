@@ -1,0 +1,51 @@
+replicaCount: 1
+
+image:
+  repository: caronc/apprise
+  pullPolicy: IfNotPresent
+  tag: ""  # Defaults to chart appVersion
+
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: traefik
+  hosts:
+    - host: apprise.192-168-178-31.sslip.io
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+
+resources:
+  requests:
+    memory: "64Mi"
+    cpu: "250m"
+  limits:
+    memory: "128Mi"
+    cpu: "500m"
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+persistence:
+  enabled: false
+  annotations: {}
+  storageClass: ""
+  accessModes:
+    - ReadWriteOnce
+  size: 250Mi

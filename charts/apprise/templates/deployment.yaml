@@ -1,0 +1,42 @@
+{{- include "common.deployment" (list . "apprise.deployment") -}}
+{{- define "apprise.deployment" -}}
+spec:
+  template:
+    spec:
+      containers:
+        - env:
+            - name: APPRISE_DEFAULT_THEME
+              value: "dark"
+            - name: APPRISE_WORKER_COUNT
+              value: "1"
+            - name: APPRISE_STATEFUL_MODE
+              value: "simple"
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /status
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /status
+              port: http
+          volumeMounts:
+            - name: data
+              mountPath: /config
+            - name: data
+              mountPath: /plugin
+            - name: data
+              mountPath: /attach
+          {{- include "common.container" . | nindent 10 }}
+      volumes:
+        - name: data
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ include "common.fullname" . }}
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+{{- end -}}
