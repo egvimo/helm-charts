@@ -49,3 +49,5 @@ persistence:
   accessModes:
     - ReadWriteOnce
   size: 250Mi
+
+configSecretRef: {}

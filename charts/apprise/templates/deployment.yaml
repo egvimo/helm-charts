@@ -30,6 +30,11 @@ spec:
               mountPath: /plugin
             - name: data
               mountPath: /attach
+            {{- if .Values.configSecretRef }}
+            - name: config
+              mountPath: /config/{{ .Values.configSecretRef.key }}
+              subPath: {{ .Values.configSecretRef.key }}
+            {{- end }}
           {{- include "common.container" . | nindent 10 }}
       volumes:
         - name: data
@@ -39,4 +44,12 @@ spec:
           {{- else }}
           emptyDir: {}
           {{- end }}
+        {{- if .Values.configSecretRef }}
+        - name: config
+          secret:
+            secretName: {{ .Values.configSecretRef.name }}
+            items:
+              - key: {{ .Values.configSecretRef.key }}
+                path: {{ .Values.configSecretRef.key }}
+        {{- end }}
 {{- end -}}
