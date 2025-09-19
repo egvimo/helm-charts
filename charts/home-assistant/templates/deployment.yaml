@@ -27,6 +27,11 @@ spec:
             - name: configuration
               mountPath: /config/configuration.yaml
               subPath: configuration.yaml
+            {{- if .Values.secretsSecretName }}
+            - name: secrets
+              mountPath: /config/secrets.yaml
+              subPath: secrets.yaml
+            {{- end }}
           {{- include "common.container" . | nindent 10 }}
       initContainers:
         - name: ensure-config
@@ -67,4 +72,12 @@ spec:
         - name: configuration
           configMap:
             name: {{ include "common.fullname" . }}
+        {{- if .Values.secretsSecretName }}
+        - name: config
+          secret:
+            secretName: {{ .Values.secretsSecretName }}
+            items:
+              - key: secrets.yaml
+                path: secrets.yaml
+        {{- end }}
 {{- end -}}
