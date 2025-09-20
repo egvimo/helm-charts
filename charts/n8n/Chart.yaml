@@ -2,9 +2,9 @@ apiVersion: v2
 name: n8n
 description: An extendable workflow automation tool
 type: application
-version: 0.1.1
+version: 0.1.2
 # renovate: image=ghcr.io/egvimo/n8n-python
-appVersion: "1.111.0"
+appVersion: "1.111.1"
 dependencies:
   - name: common
     version: 0.1.0
