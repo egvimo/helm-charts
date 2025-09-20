@@ -73,7 +73,7 @@ spec:
           configMap:
             name: {{ include "common.fullname" . }}
         {{- if .Values.secretsSecretName }}
-        - name: config
+        - name: secrets
           secret:
             secretName: {{ .Values.secretsSecretName }}
             items:
