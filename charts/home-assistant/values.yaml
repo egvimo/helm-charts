@@ -65,4 +65,4 @@ config:
       - 10.42.0.0/16
       - 192.168.178.0/24
 
-secretsSecretName: ""
+notifiersSecretRef: {}

@@ -27,10 +27,10 @@ spec:
             - name: configuration
               mountPath: /config/configuration.yaml
               subPath: configuration.yaml
-            {{- if .Values.secretsSecretName }}
-            - name: secrets
-              mountPath: /config/secrets.yaml
-              subPath: secrets.yaml
+            {{- if .Values.notifiersSecretRef }}
+            - name: notifiers
+              mountPath: /config/{{ .Values.notifiersSecretRef.key }}
+              subPath: {{ .Values.notifiersSecretRef.key }}
             {{- end }}
           {{- include "common.container" . | nindent 10 }}
       initContainers:
@@ -72,12 +72,12 @@ spec:
         - name: configuration
           configMap:
             name: {{ include "common.fullname" . }}
-        {{- if .Values.secretsSecretName }}
-        - name: secrets
+        {{- if .Values.notifiersSecretRef }}
+        - name: notifiers
           secret:
-            secretName: {{ .Values.secretsSecretName }}
+            secretName: {{ .Values.notifiersSecretRef.name }}
             items:
-              - key: secrets.yaml
-                path: secrets.yaml
+              - key: {{ .Values.notifiersSecretRef.key }}
+                path: {{ .Values.notifiersSecretRef.key }}
         {{- end }}
 {{- end -}}
