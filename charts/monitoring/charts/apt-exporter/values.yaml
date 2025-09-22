@@ -35,3 +35,7 @@ tolerations:
     effect: NoSchedule
 
 affinity: {}
+
+serviceMonitor:
+  enabled: true
+  interval: 30m

@@ -1,12 +1,1 @@
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: {{ include "common.fullname" . }}
-  labels: {{- include "common.labels" . | nindent 4 }}
-spec:
-  selector:
-    matchLabels:
-      {{- include "common.selectorLabels" . | nindent 6 }}
-  endpoints:
-    - port: {{ .Values.service.name | default "http" }}
-      interval: 30m
+{{- include "common.servicemonitor" . }}

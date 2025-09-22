@@ -36,6 +36,10 @@ tolerations:
 
 affinity: {}
 
+serviceMonitor:
+  enabled: true
+  interval: 30m
+
 files:
   - /host/run/dietpi/.update_available
   - /host/run/dietpi/.live_patches
