@@ -56,6 +56,10 @@ persistence:
     - ReadWriteOnce
   size: 250Mi
 
+serviceMonitor:
+  enabled: true
+  path: /api/prometheus
+
 timezone: ""  # Defaults to 'Europe/Berlin'
 
 config:
@@ -64,5 +68,7 @@ config:
     trusted_proxies:
       - 10.42.0.0/16
       - 192.168.178.0/24
+  prometheus:
+    namespace: home_assistant
 
 notifiersSecretRef: {}

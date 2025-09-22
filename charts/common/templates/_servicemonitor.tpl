@@ -36,5 +36,9 @@ spec:
       metricRelabelings:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- with .Values.serviceMonitor.authorization }}
+      authorization:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
 {{- end }}
 {{- end }}
