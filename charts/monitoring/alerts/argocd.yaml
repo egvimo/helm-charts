@@ -27,7 +27,7 @@ groups:
           description: 'Argo CD application {{ $labels.name }} is out of sync'
         labels:
           severity: warning
-          receiver: gotify
+          receiver: apprise
         isPaused: false
 
       - uid: argo-cd-app-health
@@ -52,5 +52,5 @@ groups:
           description: 'Argo CD application {{ $labels.name }} is not healthy (status={{ $labels.health_status }})'
         labels:
           severity: critical
-          receiver: gotify
+          receiver: apprise
         isPaused: false

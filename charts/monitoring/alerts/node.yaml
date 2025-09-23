@@ -27,7 +27,7 @@ groups:
           description: 'Node {{ $labels.instance }} temperature above 60°C'
         labels:
           severity: warning
-          receiver: gotify
+          receiver: apprise
         isPaused: false
 
       - uid: update-available
@@ -52,5 +52,5 @@ groups:
           description: 'Update for {{ $labels.instance }} available'
         labels:
           severity: info
-          receiver: gotify
+          receiver: apprise
         isPaused: false

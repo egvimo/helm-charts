@@ -27,7 +27,7 @@ groups:
           description: 'Pod {{ $labels.namespace }}/{{ $labels.pod }} is in phase {{ $labels.phase }}'
         labels:
           severity: warning
-          receiver: gotify
+          receiver: apprise
         isPaused: false
 
       - uid: pod-crash-looping
@@ -52,5 +52,5 @@ groups:
           description: 'Pod {{ $labels.namespace }}/{{ $labels.pod }} is crash looping'
         labels:
           severity: critical
-          receiver: gotify
+          receiver: apprise
         isPaused: false
