@@ -37,3 +37,13 @@ metadata:
 data:
   rules.yaml: |-
     {{- .Files.Get "alerts/longhorn.yaml" | nindent 4 }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "common.fullname" . }}-home-assistant-alerts
+  labels:
+    grafana_alert: "1"
+data:
+  rules.yaml: |-
+    {{- .Files.Get "alerts/home-assistant.yaml" | nindent 4 }}
