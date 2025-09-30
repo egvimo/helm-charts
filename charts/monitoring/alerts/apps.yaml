@@ -1,0 +1,64 @@
+apiVersion: 1
+groups:
+  - orgId: 1
+    name: Apps
+    folder: Alerts
+    interval: 1m
+    rules:
+      - uid: jd-download-in-progress
+        title: "Download in Progress"
+        condition: C
+        data:
+          - refId: A
+            relativeTimeRange:
+              from: 600
+              to: 0
+            datasourceUid: prometheus
+            model:
+              expr: rate(container_network_receive_bytes_total{pod=~"jdownloader.*"}[1m])
+              instant: true
+              refId: A
+          - refId: reducer
+            queryType: expression
+            datasourceUid: __expr__
+            model:
+              conditions:
+                - type: query
+                  operator:
+                    type: and
+                  query:
+                    params: []
+                  reducer:
+                    type: avg
+                    params: []
+                  evaluator:
+                    params: [0, 0]
+                    type: gt
+              expression: A
+              reducer: last
+              refId: reducer
+              type: reduce
+          - refId: C
+            datasourceUid: __expr__
+            model:
+              expression: reducer
+              type: threshold
+              conditions:
+                - type: query
+                  query:
+                    params: ["C"]
+                  reducer:
+                    type: last
+                  evaluator:
+                    type: gt
+                    params: [2000]
+        noDataState: NoData
+        execErrState: Error
+        for: 5m
+        annotations:
+          summary: Download in progress
+          description: 'Download in progress on {{ $labels.pod }}'
+        labels:
+          severity: info
+        notification_settings:
+          receiver: apprise
