@@ -1214,5 +1214,6 @@
   },
   "timezone": "Europe/Berlin",
   "title": "Raspberry",
+  "uid": "raspberry",
   "version": 0
 }

@@ -2336,9 +2336,9 @@
       "1d"
     ]
   },
-  "timezone": "",
+  "timezone": "Europe/Berlin",
   "title": "Longhorn",
-  "uid": "ozk-lh-mon",
+  "uid": "longhorn",
   "version": 3,
   "weekStart": ""
 }
