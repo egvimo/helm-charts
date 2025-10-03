@@ -2,9 +2,9 @@ apiVersion: v2
 name: home-assistant
 description: Home automation that puts local control and privacy first
 type: application
-version: 0.1.1
+version: 0.1.2
 # renovate: image=ghcr.io/home-assistant/home-assistant
-appVersion: "2025.10.0"
+appVersion: "2025.10.1"
 dependencies:
   - name: common
     version: 0.1.0
