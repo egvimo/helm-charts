@@ -20,6 +20,10 @@ jobs:
       - name: Set up chart-testing
         uses: helm/chart-testing-action@v2.7.0
 
+      - name: Add repositories
+        run: |
+          helm repo add cnpg https://cloudnative-pg.github.io/charts/
+
       - name: Run chart-testing (lint)
         run: ct lint --config .github/ct-lint-config.yaml
 
@@ -58,10 +62,16 @@ jobs:
       - name: Create kind cluster
         uses: helm/kind-action@v1.12.0
 
+      - name: Add repositories
+        if: matrix.chart == 'cnpg'
+        run: |
+          helm repo add cnpg https://cloudnative-pg.github.io/charts/
+
       - name: Install CRDs
-        if: matrix.chart == 'home-assistant'
+        if: matrix.chart == 'home-assistant' || matrix.chart == 'cnpg'
         run: |
           kubectl apply -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/refs/heads/main/example/prometheus-operator-crd/monitoring.coreos.com_servicemonitors.yaml
+          kubectl apply -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/refs/heads/main/example/prometheus-operator-crd/monitoring.coreos.com_podmonitors.yaml
 
       - name: Run chart-testing (install)
         run: |
