@@ -2,9 +2,9 @@ apiVersion: v2
 name: apprise
 description: A unified gateway for sending notifications anywhere
 type: application
-version: 0.1.0
+version: 0.1.1
 # renovate: image=caronc/apprise
-appVersion: "1.2.1"
+appVersion: "1.2.2"
 dependencies:
   - name: common
     version: 0.1.0
