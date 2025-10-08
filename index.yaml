@@ -31,6 +31,20 @@ entries:
     version: 0.1.0
   audiobookshelf:
   - apiVersion: v2
+    appVersion: 2.30.0
+    created: "2025-10-08T19:13:46.86947074Z"
+    dependencies:
+    - name: common
+      repository: file://../common
+      version: 0.1.0
+    description: A self-hosted audiobook and podcast server
+    digest: abfc486a59d1193edb9a4fd20b07984747ae3ce6c25353a238a17248dd81f93a
+    name: audiobookshelf
+    type: application
+    urls:
+    - https://github.com/egvimo/helm-charts/releases/download/audiobookshelf-0.1.1/audiobookshelf-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
     appVersion: 2.29.0
     created: "2025-09-14T08:51:33.185116608Z"
     dependencies:
@@ -458,4 +472,4 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/whoami-0.1.0/whoami-0.1.0.tgz
     version: 0.1.0
-generated: "2025-10-07T18:57:55.97385911Z"
+generated: "2025-10-08T19:13:46.869505305Z"
