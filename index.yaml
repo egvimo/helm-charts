@@ -61,6 +61,23 @@ entries:
   cert-manager:
   - apiVersion: v2
     appVersion: v1.12.4
+    created: "2025-10-09T07:34:44.091801463Z"
+    dependencies:
+    - name: cert-manager
+      repository: https://charts.jetstack.io
+      version: v1.19.0
+    - name: cert-manager-webhook-ionos
+      repository: https://fabmade.github.io/cert-manager-webhook-ionos
+      version: 1.2.2
+    description: A Helm chart for cert-manager
+    digest: 769177fb9c743284b48086b3aaa8c28ce825239859b18912cef595e7f396b60e
+    name: cert-manager
+    type: application
+    urls:
+    - https://github.com/egvimo/helm-charts/releases/download/cert-manager-0.1.1/cert-manager-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: v1.12.4
     created: "2025-09-14T08:51:33.308921382Z"
     dependencies:
     - name: cert-manager
@@ -486,4 +503,4 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/whoami-0.1.0/whoami-0.1.0.tgz
     version: 0.1.0
-generated: "2025-10-09T05:27:06.026869374Z"
+generated: "2025-10-09T07:34:44.091842991Z"
