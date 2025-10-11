@@ -1,0 +1,3 @@
+schemas:
+  - name: test
+    password: test
