@@ -25,7 +25,7 @@ jobs:
           helm repo add cnpg https://cloudnative-pg.github.io/charts/
 
       - name: Run chart-testing (lint)
-        run: ct lint --config .github/ct-lint-config.yaml
+        run: ct lint --config ci/ct-lint-config.yaml
 
   discover-charts:
     runs-on: ubuntu-latest
@@ -39,7 +39,7 @@ jobs:
         run: |
           JSON=$(ls -d charts/* \
                  | xargs -n1 basename \
-                 | grep -vxFf <(yq '.excluded-charts[]' .github/ct-install-config.yaml) \
+                 | grep -vxFf <(yq '.excluded-charts[]' ci/ct-install-config.yaml) \
                  | jq -R -s 'split("\n")[:-1]' -c)
           echo "Matrix: $JSON"
           echo "charts=$JSON" >> $GITHUB_OUTPUT
@@ -62,19 +62,20 @@ jobs:
       - name: Create kind cluster
         uses: helm/kind-action@v1.12.0
 
-      - name: Add repositories
-        if: matrix.chart == 'cnpg'
-        run: |
-          helm repo add cnpg https://cloudnative-pg.github.io/charts/
+      - name: Create namespace
+        run: kubectl create namespace ${{ matrix.chart }}-ns
 
-      - name: Install CRDs
-        if: matrix.chart == 'home-assistant' || matrix.chart == 'cnpg'
+      - name: Run chart-specific preparation
         run: |
-          kubectl apply -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/refs/heads/main/example/prometheus-operator-crd/monitoring.coreos.com_servicemonitors.yaml
-          kubectl apply -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/refs/heads/main/example/prometheus-operator-crd/monitoring.coreos.com_podmonitors.yaml
+          PREP_FILE="ci/prepare-${{ matrix.chart }}.sh"
+          if [ -f "$PREP_FILE" ]; then
+            echo "Preparing ${{ matrix.chart }}"
+            bash "$PREP_FILE"
+          fi
 
       - name: Run chart-testing (install)
         run: |
           ct install \
-            --config .github/ct-install-config.yaml \
-            --charts charts/${{ matrix.chart }}
+            --config ci/ct-install-config.yaml \
+            --charts charts/${{ matrix.chart }} \
+            --namespace ${{ matrix.chart }}-ns
