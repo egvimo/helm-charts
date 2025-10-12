@@ -78,3 +78,9 @@ kube-prometheus-stack:
         matchLabels:
           export-prometheus-metrics: "true"
       maximumStartupDurationSeconds: 900
+
+file-exporter:
+  enabled: true
+
+apt-exporter:
+  enabled: true
