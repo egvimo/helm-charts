@@ -106,6 +106,20 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/cnpg-0.1.0/cnpg-0.1.0.tgz
     version: 0.1.0
+  cnpg-cluster:
+  - apiVersion: v2
+    appVersion: 17.6-0.5.3
+    created: "2025-10-13T18:59:29.01555048Z"
+    dependencies:
+    - name: common
+      repository: file://../common
+      version: 0.1.0
+    digest: 93856e9b9d687a2fdabe1ea23e13c8bbe0fce0f6218f88f980cd36194e3eccab
+    name: cnpg-cluster
+    type: application
+    urls:
+    - https://github.com/egvimo/helm-charts/releases/download/cnpg-cluster-0.1.0/cnpg-cluster-0.1.0.tgz
+    version: 0.1.0
   common:
   - apiVersion: v2
     created: "2025-09-14T08:51:33.417757012Z"
@@ -539,4 +553,4 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/whoami-0.1.0/whoami-0.1.0.tgz
     version: 0.1.0
-generated: "2025-10-12T16:40:52.408772508Z"
+generated: "2025-10-13T18:59:29.015607116Z"
