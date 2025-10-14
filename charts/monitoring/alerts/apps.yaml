@@ -5,6 +5,64 @@ groups:
     folder: Alerts
     interval: 1m
     rules:
+      - uid: ha-sensor-battery-low
+        title: "Low sensor battery"
+        condition: C
+        data:
+          - refId: A
+            relativeTimeRange:
+              from: 600
+              to: 0
+            datasourceUid: prometheus
+            model:
+              expr: home_assistant_sensor_battery_percent
+              range: true
+              refId: A
+          - refId: reducer
+            queryType: expression
+            datasourceUid: __expr__
+            model:
+              conditions:
+                - type: query
+                  operator:
+                    type: and
+                  query:
+                    params: []
+                  reducer:
+                    type: avg
+                    params: []
+                  evaluator:
+                    params: [0, 0]
+                    type: gt
+              expression: A
+              reducer: last
+              refId: reducer
+              type: reduce
+          - refId: C
+            datasourceUid: __expr__
+            model:
+              expression: reducer
+              type: threshold
+              conditions:
+                - type: query
+                  query:
+                    params: ["C"]
+                  reducer:
+                    type: last
+                  evaluator:
+                    type: lt
+                    params: [10]
+        noDataState: NoData
+        execErrState: Error
+        for: 5m
+        annotations:
+          summary: Battery below 10%
+          description: 'Battery below 10% for {{ $labels.friendly_name }} ({{ $labels.entity }})'
+        labels:
+          severity: info
+        notification_settings:
+          receiver: apprise
+
       - uid: jd-download-in-progress
         title: "Download in Progress"
         condition: C
@@ -60,5 +118,63 @@ groups:
           description: 'Download in progress on {{ $labels.pod }}'
         labels:
           severity: info
+        notification_settings:
+          receiver: apprise
+
+      - uid: apprise-notify-failures
+        title: "Apprise Notify Failures"
+        condition: C
+        data:
+          - refId: A
+            relativeTimeRange:
+              from: 600
+              to: 0
+            datasourceUid: prometheus
+            model:
+              expr: increase(apprise_django_http_responses_total_by_status_view_method_total{view="notify", status!~"2.."}[5m])
+              range: true
+              refId: A
+          - refId: reducer
+            queryType: expression
+            datasourceUid: __expr__
+            model:
+              conditions:
+                - type: query
+                  operator:
+                    type: and
+                  query:
+                    params: []
+                  reducer:
+                    type: last
+                    params: []
+                  evaluator:
+                    params: [0, 0]
+                    type: gt
+              expression: A
+              reducer: last
+              refId: reducer
+              type: reduce
+          - refId: C
+            datasourceUid: __expr__
+            model:
+              expression: reducer
+              type: threshold
+              conditions:
+                - type: query
+                  query:
+                    params: ["C"]
+                  reducer:
+                    type: last
+                  evaluator:
+                    type: gt
+                    params: [0]
+        noDataState: OK
+        execErrState: Error
+        for: 1m
+        annotations:
+          summary: Notify failed
+          description: 'Notify failed with {{ $labels.status }}'
+        labels:
+          severity: warning
         notification_settings:
           receiver: apprise
