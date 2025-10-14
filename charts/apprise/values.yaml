@@ -50,4 +50,7 @@ persistence:
     - ReadWriteOnce
   size: 250Mi
 
+serviceMonitor:
+  enabled: true
+
 configSecretRef: {}
