@@ -127,11 +127,16 @@ groups:
         data:
           - refId: A
             relativeTimeRange:
-              from: 600
+              from: 300
               to: 0
             datasourceUid: prometheus
             model:
-              expr: increase(apprise_django_http_responses_total_by_status_view_method_total{view="notify", status!~"2.."}[5m])
+              expr: |-
+                sum(
+                    increase(apprise_django_http_responses_total_by_status_view_method_total{view="notify", status!~"2.."}[$__range])
+                    + min_over_time(apprise_django_http_responses_total_by_status_view_method_total{view="notify", status!~"2.."}[$__range])
+                )
+                - sum(apprise_django_http_responses_total_by_status_view_method_total{view="notify", status!~"2.."} @ start() or vector(0))
               range: true
               refId: A
           - refId: reducer
