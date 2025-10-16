@@ -1,23 +1,15 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:base"
-  ],
+  "extends": ["config:recommended"],
   "customManagers": [
     {
       "customType": "regex",
       "fileMatch": ["(^|/)Chart\\.yaml$"],
       "matchStrings": [
-        "#\\s?renovate: image=(?<depName>.*?)\\s?appVersion:\\s?\\\"?(?<currentValue>[\\w+\\.\\-]*)"
+        "#\\s?renovate: image=(?<depName>.*?)\\s?appVersion:\\s?\\\"?v?(?<currentValue>[\\w+\\.\\-]*)"
       ],
-      "datasourceTemplate": "docker"
-    }
-  ],
-  "bumpVersions": [
-    {
-      "filePatterns": ["{{packageFileDir}}/Chart.yaml"],
-      "matchStrings": ["version:\\s(?<version>[^\\s]+)"],
-      "bumpType": "patch"
+      "datasourceTemplate": "docker",
+      "extractVersionTemplate": "{{currentValue}}-chart.1"
     }
   ]
 }
