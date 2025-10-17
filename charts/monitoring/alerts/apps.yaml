@@ -132,11 +132,11 @@ groups:
             datasourceUid: prometheus
             model:
               expr: |-
-                sum(
+                sum by(status) (
                     increase(apprise_django_http_responses_total_by_status_view_method_total{view="notify", status!~"2.."}[$__range])
                     + min_over_time(apprise_django_http_responses_total_by_status_view_method_total{view="notify", status!~"2.."}[$__range])
                 )
-                - sum(apprise_django_http_responses_total_by_status_view_method_total{view="notify", status!~"2.."} @ start() or vector(0))
+                - sum by(status) (apprise_django_http_responses_total_by_status_view_method_total{view="notify", status!~"2.."} @ start() or vector(0))
               range: true
               refId: A
           - refId: reducer
