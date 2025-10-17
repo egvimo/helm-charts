@@ -1,6 +1,5 @@
 apiVersion: v2
 name: n8n
-description: An extendable workflow automation tool
 type: application
 version: 0.1.11
 # renovate: image=ghcr.io/egvimo/n8n-custom

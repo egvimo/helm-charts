@@ -1,6 +1,5 @@
 apiVersion: v2
 name: fan-control
-description: PWM fan control for Raspberry Pi
 type: application
 version: 0.1.0
 # renovate: image=ghcr.io/egvimo/pwm-fan-control

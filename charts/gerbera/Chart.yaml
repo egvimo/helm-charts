@@ -1,6 +1,5 @@
 apiVersion: v2
 name: gerbera
-description: UPnP Media Server
 type: application
 version: 0.1.0
 # renovate: image=gerbera/gerbera

@@ -1,6 +1,5 @@
 apiVersion: v2
 name: audiobookshelf
-description: A self-hosted audiobook and podcast server
 type: application
 version: 0.1.1
 # renovate: image=ghcr.io/advplyr/audiobookshelf

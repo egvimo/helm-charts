@@ -1,6 +1,5 @@
 apiVersion: v2
 name: gotify
-description: A simple server for sending and receiving messages
 type: application
 version: 0.1.2
 # renovate: image=gotify/server-arm64
