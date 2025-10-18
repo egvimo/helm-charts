@@ -6,23 +6,20 @@
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["(^|/)Chart\\.yaml$"],
+      "managerFilePatterns": [
+        "/(^|/)Chart\\.yaml$/"
+      ],
       "matchStrings": [
         "#\\s?renovate: image=(?<depName>.*?)\\s?appVersion:\\s?\\\"?v?(?<currentValue>[\\w+\\.\\-]*)"
       ],
       "datasourceTemplate": "docker"
     }
   ],
-  "packageRules": [
+  "bumpVersions": [
     {
-      "matchManagers": ["helmv3", "regex"],
-      "matchPaths": ["**/Chart.yaml"],
-      "postUpgradeTasks": {
-        "commands": [
-          "yq -i '.version = ((.appVersion // .dependencies[0].version) + \"-chart.1\")' Chart.yaml"
-        ],
-        "fileFilters": ["Chart.yaml"]
-      }
+      "filePatterns": ["{{packageFileDir}}/Chart.yaml"],
+      "matchStrings": ["version:\\s(?<version>[^\\s]+)"],
+      "bumpType": "patch"
     }
   ]
 }
