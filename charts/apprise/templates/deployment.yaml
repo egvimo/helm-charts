@@ -24,6 +24,9 @@ spec:
               path: /status
               port: http
           volumeMounts:
+            - name: nginxLocationOverride
+              mountPath: /etc/nginx/location-override.conf
+              subPath: location-override.conf
             - name: data
               mountPath: /config
             - name: data
@@ -37,6 +40,9 @@ spec:
             {{- end }}
           {{- include "common.container" . | nindent 10 }}
       volumes:
+        - name: nginxLocationOverride
+          configMap:
+            name: {{ include "common.fullname" . }}
         - name: data
           {{- if .Values.persistence.enabled }}
           persistentVolumeClaim:
