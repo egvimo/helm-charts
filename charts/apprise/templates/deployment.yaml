@@ -8,7 +8,7 @@ spec:
             - name: APPRISE_DEFAULT_THEME
               value: "dark"
             - name: APPRISE_WORKER_COUNT
-              value: {{ .Values.workerCount | default "2" | quote }}
+              value: {{ .Values.workerCount | default "1" | quote }}
             - name: APPRISE_STATEFUL_MODE
               value: "simple"
           ports:

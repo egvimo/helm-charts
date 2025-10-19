@@ -53,6 +53,6 @@ persistence:
 serviceMonitor:
   enabled: true
 
-workerCount: ""  # Defaults to '2'
+workerCount: ""  # Defaults to '1'
 
 configSecretRef: {}
