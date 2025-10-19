@@ -17,10 +17,12 @@ spec:
             httpGet:
               path: /manifest.json
               port: http
+            initialDelaySeconds: 5
           readinessProbe:
             httpGet:
               path: /manifest.json
               port: http
+            initialDelaySeconds: 5
           volumeMounts:
             - name: config
               mountPath: /config

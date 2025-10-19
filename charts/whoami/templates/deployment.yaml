@@ -15,9 +15,11 @@ spec:
             httpGet:
               path: /
               port: http
+            initialDelaySeconds: 1
           readinessProbe:
             httpGet:
               path: /
               port: http
+            initialDelaySeconds: 1
           {{- include "common.container" . | nindent 10 }}
 {{- end -}}

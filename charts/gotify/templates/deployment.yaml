@@ -31,10 +31,12 @@ spec:
             httpGet:
               path: /
               port: http
+            initialDelaySeconds: 2
           readinessProbe:
             httpGet:
               path: /
               port: http
+            initialDelaySeconds: 2
           volumeMounts:
             - name: data
               mountPath: /app/data
