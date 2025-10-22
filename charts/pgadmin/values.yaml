@@ -1,0 +1,18 @@
+pgadmin4:
+  ingress:
+    enabled: true
+    hostname: pgadmin.192-168-178-31.sslip.io
+  # TODO Remove after fix of chart
+  persistence:
+    enabled: false
+  serverDefinitions:
+    enabled: true
+    data:
+      cnpg:
+        Name: "CNPG"
+        Group: "CNPG"
+        Host: "cnpg-cluster-rw"
+        Port: 5432
+        Username: "postgres"
+        MaintenanceDB: "postgres"
+        Shared: true

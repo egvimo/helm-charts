@@ -1,0 +1,6 @@
+dependencies:
+- name: pgadmin4-helm
+  repository: oci://docker.io/dpage
+  version: 9.9.0
+digest: sha256:eb7a5fc762c361398dd27d89e432804a27fab6b8f38264874f5c75f20a5e7ef2
+generated: "2025-10-21T07:44:52.657336919+02:00"
