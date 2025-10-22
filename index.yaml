@@ -492,6 +492,19 @@ entries:
     version: 0.1.0
   n8n:
   - apiVersion: v2
+    appVersion: 1.116.2
+    created: "2025-10-22T08:12:55.945951024Z"
+    dependencies:
+    - name: common
+      repository: file://../common
+      version: 0.1.0
+    digest: 0959ba15ef0f9328e3b7adfaa0e123ef5902a10b95c51c255056ef7f7e9413b8
+    name: n8n
+    type: application
+    urls:
+    - https://github.com/egvimo/helm-charts/releases/download/n8n-0.1.12/n8n-0.1.12.tgz
+    version: 0.1.12
+  - apiVersion: v2
     appVersion: 1.115.3
     created: "2025-10-15T05:37:28.512466412Z"
     dependencies:
@@ -664,4 +677,4 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/whoami-0.1.0/whoami-0.1.0.tgz
     version: 0.1.0
-generated: "2025-10-22T05:37:25.25560352Z"
+generated: "2025-10-22T08:12:55.946054488Z"
