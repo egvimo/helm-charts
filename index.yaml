@@ -617,6 +617,19 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/ntfy-0.1.0/ntfy-0.1.0.tgz
     version: 0.1.0
+  pgadmin:
+  - apiVersion: v2
+    created: "2025-10-22T16:48:08.953849727Z"
+    dependencies:
+    - name: pgadmin4-helm
+      repository: oci://docker.io/dpage
+      version: 9.9.0
+    digest: 82efd3ad640d5e1a648b169725897409a63196c5de26ad3ca3bc8aff643b17be
+    name: pgadmin
+    type: application
+    urls:
+    - https://github.com/egvimo/helm-charts/releases/download/pgadmin-0.1.0/pgadmin-0.1.0.tgz
+    version: 0.1.0
   sealed-secrets:
   - apiVersion: v2
     appVersion: 0.32.1
@@ -677,4 +690,4 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/whoami-0.1.0/whoami-0.1.0.tgz
     version: 0.1.0
-generated: "2025-10-22T08:12:55.946054488Z"
+generated: "2025-10-22T16:48:08.953908977Z"
