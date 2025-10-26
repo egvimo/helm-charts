@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: caronc/apprise
+  repository: ghcr.io/egvimo/apprise-api-headless
   pullPolicy: IfNotPresent
   tag: ""  # Defaults to chart appVersion
 
@@ -52,7 +52,5 @@ persistence:
 
 serviceMonitor:
   enabled: true
-
-workerCount: ""  # Defaults to '1'
 
 configSecretRef: {}

@@ -2,8 +2,8 @@ apiVersion: v2
 name: apprise
 type: application
 version: 0.1.1
-# renovate: image=caronc/apprise
-appVersion: "1.2.2"
+# renovate: image=ghcr.io/egvimo/apprise-api-headless
+appVersion: "0.1.1"
 dependencies:
   - name: common
     version: 0.1.0

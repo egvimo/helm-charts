@@ -4,14 +4,7 @@ spec:
   template:
     spec:
       containers:
-        - env:
-            - name: APPRISE_DEFAULT_THEME
-              value: "dark"
-            - name: APPRISE_WORKER_COUNT
-              value: {{ .Values.workerCount | default "1" | quote }}
-            - name: APPRISE_STATEFUL_MODE
-              value: "simple"
-          ports:
+        - ports:
             - name: http
               containerPort: 8000
               protocol: TCP
@@ -26,25 +19,15 @@ spec:
               port: http
             initialDelaySeconds: 10
           volumeMounts:
-            - name: nginx-conf
-              mountPath: /opt/apprise/webapp/etc/nginx.conf
-              subPath: nginx.conf
             - name: data
-              mountPath: /config
-            - name: data
-              mountPath: /plugin
-            - name: data
-              mountPath: /attach
+              mountPath: /apprise/config
             {{- if .Values.configSecretRef }}
             - name: config
-              mountPath: /config/{{ .Values.configSecretRef.key }}
+              mountPath: /apprise/config/{{ .Values.configSecretRef.key }}
               subPath: {{ .Values.configSecretRef.key }}
             {{- end }}
           {{- include "common.container" . | nindent 10 }}
       volumes:
-        - name: nginx-conf
-          configMap:
-            name: {{ include "common.fullname" . }}
         - name: data
           {{- if .Values.persistence.enabled }}
           persistentVolumeClaim:
