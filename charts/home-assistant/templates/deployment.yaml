@@ -29,11 +29,6 @@ spec:
             - name: configuration
               mountPath: /config/configuration.yaml
               subPath: configuration.yaml
-            {{- if .Values.notifiersSecretRef }}
-            - name: notifiers
-              mountPath: /config/{{ .Values.notifiersSecretRef.key }}
-              subPath: {{ .Values.notifiersSecretRef.key }}
-            {{- end }}
           {{- include "common.container" . | nindent 10 }}
       initContainers:
         - name: ensure-config
@@ -81,5 +76,13 @@ spec:
             items:
               - key: {{ .Values.notifiersSecretRef.key }}
                 path: {{ .Values.notifiersSecretRef.key }}
+        {{- end }}
+        {{- if .Values.restCommandsSecretRef }}
+        - name: restCommands
+          secret:
+            secretName: {{ .Values.restCommandsSecretRef.name }}
+            items:
+              - key: {{ .Values.restCommandsSecretRef.key }}
+                path: {{ .Values.restCommandsSecretRef.key }}
         {{- end }}
 {{- end -}}

@@ -70,5 +70,3 @@ config:
       - 192.168.178.0/24
   prometheus:
     namespace: home_assistant
-
-notifiersSecretRef: {}
