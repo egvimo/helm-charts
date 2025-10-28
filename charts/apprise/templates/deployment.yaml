@@ -20,11 +20,13 @@ spec:
               path: /status
               port: http
             initialDelaySeconds: 10
+            successThreshold: 10
           readinessProbe:
             httpGet:
               path: /status
               port: http
             initialDelaySeconds: 10
+            successThreshold: 10
           volumeMounts:
             - name: data
               mountPath: /config
