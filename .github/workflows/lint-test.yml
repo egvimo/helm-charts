@@ -8,6 +8,11 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      charts:
+        description: "Comma-separated list of charts to test. Leave empty to auto-discover."
+        required: false
+        default: ""
 
 jobs:
   lint:
@@ -37,10 +42,17 @@ jobs:
       - name: Build matrix
         id: set-matrix
         run: |
-          JSON=$(ls -d charts/* \
-                 | xargs -n1 basename \
-                 | grep -vxFf <(yq '.excluded-charts[]' ci/ct-install-config.yaml) \
-                 | jq -R -s 'split("\n")[:-1]' -c)
+          set -euo pipefail
+          if [ -n "${{ github.event.inputs.charts }}" ]; then
+            # Use charts provided in the workflow_dispatch input
+            JSON=$(echo "${{ github.event.inputs.charts }}" | tr -d ' ' | tr ',' '\n' | jq -R -s 'split("\n")[:-1]' -c)
+          else
+            # Auto-discover charts
+            JSON=$(ls -d charts/* \
+                   | xargs -n1 basename \
+                   | grep -vxFf <(yq '.excluded-charts[]' ci/ct-install-config.yaml) \
+                   | jq -R -s 'split("\n")[:-1]' -c)
+          fi
           echo "Matrix: $JSON"
           echo "charts=$JSON" >> $GITHUB_OUTPUT
 
