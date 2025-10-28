@@ -12,5 +12,5 @@ spec:
       image: busybox
       command: ['wget']
       # TODO Reuse template
-      args: ['{{ include "common.fullname" . }}:{{ .Values.service.port }}']
+      args: ['{{ include "common.fullname" . }}:{{ .Values.service.port }}/status']
   restartPolicy: Never
