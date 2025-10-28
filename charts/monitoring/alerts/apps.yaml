@@ -131,7 +131,7 @@ groups:
               to: 0
             datasourceUid: prometheus
             model:
-              expr: increase(http_requests_total{container="apprise", handler=~"/notify.*", status=~"[45]xx"}[5m])
+              expr: increase(apprise_notify_errors_total[5m])
               range: true
               refId: A
           - refId: reducer
