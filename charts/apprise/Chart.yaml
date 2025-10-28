@@ -3,7 +3,7 @@ name: apprise
 type: application
 version: 0.1.1
 # renovate: image=caronc/apprise
-appVersion: "1.2.2"
+appVersion: "edge"
 dependencies:
   - name: common
     version: 0.1.0
