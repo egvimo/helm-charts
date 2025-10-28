@@ -17,18 +17,15 @@ spec:
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /status/
+              path: /status
               port: http
             initialDelaySeconds: 10
           readinessProbe:
             httpGet:
-              path: /status/
+              path: /status
               port: http
             initialDelaySeconds: 10
           volumeMounts:
-            - name: nginx-conf
-              mountPath: /opt/apprise/webapp/etc/nginx.conf
-              subPath: nginx.conf
             - name: data
               mountPath: /config
             - name: data
@@ -42,9 +39,6 @@ spec:
             {{- end }}
           {{- include "common.container" . | nindent 10 }}
       volumes:
-        - name: nginx-conf
-          configMap:
-            name: {{ include "common.fullname" . }}
         - name: data
           {{- if .Values.persistence.enabled }}
           persistentVolumeClaim:
