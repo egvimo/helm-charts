@@ -11,8 +11,12 @@ indent_size = 2
 [*.md]
 trim_trailing_whitespace = false
 
-[Dockerfile]
+[*.{toml,json,py}]
 indent_size = 4
 
-[*.py]
+[Makefile]
+indent_style = tab
+indent_size = 4
+
+[Dockerfile]
 indent_size = 4
