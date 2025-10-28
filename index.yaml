@@ -2,6 +2,19 @@ apiVersion: v1
 entries:
   apprise:
   - apiVersion: v2
+    appVersion: 0.1.2
+    created: "2025-10-28T18:18:27.391403671Z"
+    dependencies:
+    - name: common
+      repository: file://../common
+      version: 0.1.0
+    digest: 6da971f00d6ccdad395d8825b46d4bc1dae30a54611b198cb5255fa0ed836bd5
+    name: apprise
+    type: application
+    urls:
+    - https://github.com/egvimo/helm-charts/releases/download/apprise-0.1.2/apprise-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
     appVersion: 1.2.2
     created: "2025-10-06T05:23:13.390916948Z"
     dependencies:
@@ -748,4 +761,4 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/whoami-0.1.0/whoami-0.1.0.tgz
     version: 0.1.0
-generated: "2025-10-27T19:11:36.009048524Z"
+generated: "2025-10-28T18:18:27.804615387Z"
