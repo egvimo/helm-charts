@@ -1,4 +1,6 @@
 {{- define "common.test-connection" -}}
+{{- $args := .Args | default dict -}}
+{{- $path := $args.path | default "" -}}
 apiVersion: v1
 kind: Pod
 metadata:
@@ -12,6 +14,6 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "common.fullname" . }}:{{ .Values.service.port }}']
+      args: ['{{ include "common.fullname" . }}:{{ .Values.service.port }}{{ $path }}']
   restartPolicy: Never
 {{- end }}

@@ -1,16 +1,1 @@
-apiVersion: v1
-kind: Pod
-metadata:
-  name: "{{ include "common.fullname" . }}-test-connection"
-  labels:
-    {{- include "common.labels" . | nindent 4 }}
-  annotations:
-    "helm.sh/hook": test
-spec:
-  containers:
-    - name: wget
-      image: busybox
-      command: ['wget']
-      # TODO Reuse template
-      args: ['{{ include "common.fullname" . }}:{{ .Values.service.port }}/status']
-  restartPolicy: Never
+{{- include "common.test-connection" (merge . (dict "Args" (dict "path" "/status"))) }}
