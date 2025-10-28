@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: caronc/apprise
   pullPolicy: IfNotPresent
-  tag: ""  # Defaults to chart appVersion
+  tag: "edge"  # Defaults to chart appVersion
 
 nameOverride: ""
 fullnameOverride: ""
