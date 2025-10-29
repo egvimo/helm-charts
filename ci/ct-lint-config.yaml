@@ -1,3 +1,5 @@
 debug: true
 all: true
+chart-repos:
+  - cnpg=https://cloudnative-pg.github.io/charts/
 validate-maintainers: false

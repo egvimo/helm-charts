@@ -1,4 +1,6 @@
 debug: true
+chart-repos:
+  - cnpg=https://cloudnative-pg.github.io/charts/
 excluded-charts:
   - common
   - jdownloader
