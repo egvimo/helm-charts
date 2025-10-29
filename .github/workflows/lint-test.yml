@@ -75,7 +75,7 @@ jobs:
 
       - name: Run chart-specific preparation
         run: |
-          PREP_FILE="ci/prepare-${{ matrix.chart }}.sh"
+          PREP_FILE="charts/${{ matrix.chart }}/ci/prepare.sh"
           if [ -f "$PREP_FILE" ]; then
             echo "Preparing ${{ matrix.chart }}"
             bash "$PREP_FILE"
