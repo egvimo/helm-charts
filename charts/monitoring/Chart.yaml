@@ -1,10 +1,10 @@
 apiVersion: v2
 name: monitoring
 type: application
-version: 0.1.10
+version: 0.1.11
 dependencies:
   - name: kube-prometheus-stack
-    version: "78.5.0"
+    version: "79.0.1"
     repository: "https://prometheus-community.github.io/helm-charts"
   - name: file-exporter
     version: "0.1.0"
