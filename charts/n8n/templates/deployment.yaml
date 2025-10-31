@@ -10,6 +10,12 @@ spec:
               value: {{ .Values.timezone | default "Europe/Berlin" | quote }}
             - name: TZ
               value: {{ .Values.timezone | default "Europe/Berlin" | quote }}
+            - name: N8N_RUNNERS_ENABLED
+              value: "true"
+            - name: N8N_RUNNERS_MODE
+              value: "internal"
+            - name: DB_SQLITE_POOL_SIZE
+              value: "4"
             - name: DB_SQLITE_VACUUM_ON_STARTUP
               value: "true"
           ports:
