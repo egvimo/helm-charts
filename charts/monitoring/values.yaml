@@ -6,6 +6,18 @@ kube-prometheus-stack:
       forceConflicts: true
   alertmanager:
     enabled: true
+    config:
+      route:
+        receiver: "apprise"
+        group_by: ['alertname', 'namespace']
+        routes:
+          - receiver: "apprise"
+            matchers:
+              - severity =~ "info|warning|critical"
+      receivers:
+        - name: "apprise"
+          webhook_configs:
+            - url: "http://apprise.apprise.svc.cluster.local/notify/apprise"
   grafana:
     defaultDashboardsTimezone: Europe/Berlin
     ingress:
