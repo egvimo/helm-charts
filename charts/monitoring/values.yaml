@@ -24,10 +24,8 @@ kube-prometheus-stack:
               - uid: apprise
                 type: webhook
                 settings:
-                  url: https://apprise.192-168-178-31.sslip.io/notify/apprise
+                  url: http://apprise.apprise.svc.cluster.local/notify/apprise
                   httpMethod: POST
-                  username: admin
-                  password: <password>
                   payload:
                     template: |-
                       {{`{{ define "apprise.custom.payload" -}}`}}
