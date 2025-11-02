@@ -1,18 +1,24 @@
-pgadmin4:
+pgadmin4-helm:
   ingress:
     enabled: true
     hostname: pgadmin.192-168-178-31.sslip.io
-  # TODO Remove after fix of chart
   persistence:
     enabled: false
+  resources:
+    requests:
+      cpu: 250m
+      memory: 256Mi
+    limits:
+      cpu: 1000m
+      memory: 512Mi
   serverDefinitions:
     enabled: true
     data:
       cnpg:
-        Name: "CNPG"
-        Group: "CNPG"
-        Host: "cnpg-cluster-rw"
+        Name: CNPG
+        Group: Servers
+        Host: cnpg-cluster-rw
         Port: 5432
-        Username: "postgres"
-        MaintenanceDB: "postgres"
+        Username: postgres
+        MaintenanceDB: postgres
         Shared: true
