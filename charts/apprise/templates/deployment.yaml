@@ -18,29 +18,20 @@ spec:
               path: /status
               port: http
             initialDelaySeconds: 10
+          {{- if .Values.configSecretRef }}
           volumeMounts:
-            - name: data
-              mountPath: /apprise/config
-            {{- if .Values.configSecretRef }}
             - name: config
               mountPath: /apprise/config/{{ .Values.configSecretRef.key }}
               subPath: {{ .Values.configSecretRef.key }}
-            {{- end }}
-          {{- include "common.container" . | nindent 10 }}
-      volumes:
-        - name: data
-          {{- if .Values.persistence.enabled }}
-          persistentVolumeClaim:
-            claimName: {{ include "common.fullname" . }}
-          {{- else }}
-          emptyDir: {}
           {{- end }}
-        {{- if .Values.configSecretRef }}
+          {{- include "common.container" . | nindent 10 }}
+      {{- if .Values.configSecretRef }}
+      volumes:
         - name: config
           secret:
             secretName: {{ .Values.configSecretRef.name }}
             items:
               - key: {{ .Values.configSecretRef.key }}
                 path: {{ .Values.configSecretRef.key }}
-        {{- end }}
+      {{- end }}
 {{- end -}}

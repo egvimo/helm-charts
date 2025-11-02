@@ -42,14 +42,6 @@ tolerations: []
 
 affinity: {}
 
-persistence:
-  enabled: false
-  annotations: {}
-  storageClass: ""
-  accessModes:
-    - ReadWriteOnce
-  size: 250Mi
-
 serviceMonitor:
   enabled: true
 
