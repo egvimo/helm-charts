@@ -1,2 +1,2 @@
-persistence:
-  enabled: false
+database:
+  type: sqlite

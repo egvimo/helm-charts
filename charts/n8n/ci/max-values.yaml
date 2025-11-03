@@ -12,3 +12,6 @@ extraVolumes:
     readOnly: true
 
 timezone: America/New_York
+
+database:
+  type: sqlite

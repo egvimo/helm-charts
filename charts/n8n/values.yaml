@@ -53,3 +53,16 @@ persistence:
 extraVolumes: []
 
 timezone: ""  # Defaults to 'Europe/Berlin'
+
+database:
+  type: postgresdb  # sqlite or postgresdb
+  sqlite:
+    poolSize: 4
+    vacuumOnStartup: true
+  postgresdb:
+    host: cnpg-cluster-rw.cnpg-system.svc.cluster.local
+    port: 5432
+    database: data
+    schema: n8n
+    user: n8n
+    password: ""

@@ -14,10 +14,27 @@ spec:
               value: "true"
             - name: N8N_RUNNERS_MODE
               value: "internal"
+            {{- if eq .Values.database.type "sqlite" }}
             - name: DB_SQLITE_POOL_SIZE
-              value: "4"
+              value: {{ .Values.database.sqlite.poolSize | quote }}
             - name: DB_SQLITE_VACUUM_ON_STARTUP
-              value: "true"
+              value: {{ .Values.database.sqlite.vacuumOnStartup | quote }}
+            {{- else if eq .Values.database.type "postgresdb" }}
+            - name: DB_TYPE
+              value: "postgresdb"
+            - name: DB_POSTGRESDB_HOST
+              value: {{ .Values.database.postgresdb.host | quote }}
+            - name: DB_POSTGRESDB_PORT
+              value: {{ .Values.database.postgresdb.port | quote }}
+            - name: DB_POSTGRESDB_DATABASE
+              value: {{ .Values.database.postgresdb.database | quote }}
+            - name: DB_POSTGRESDB_SCHEMA
+              value: {{ .Values.database.postgresdb.schema | quote }}
+            - name: DB_POSTGRESDB_USER
+              value: {{ .Values.database.postgresdb.user | quote }}
+            - name: DB_POSTGRESDB_PASSWORD
+              value: {{ .Values.database.postgresdb.password | quote }}
+            {{- end }}
           ports:
             - name: http
               containerPort: 5678
