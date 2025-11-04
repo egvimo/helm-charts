@@ -64,7 +64,8 @@ database:
   postgresdb:
     host: "cnpg-cluster-rw.cnpg-system.svc.cluster.local"
     port: 5432
-    database: data
-    schema: n8n
+    database: n8n
     user: n8n
-    password: ""
+    passwordSecretRef:
+      name: n8n
+      key: password

@@ -32,12 +32,13 @@ spec:
               value: {{ .Values.database.postgresdb.port | quote }}
             - name: DB_POSTGRESDB_DATABASE
               value: {{ .Values.database.postgresdb.database | quote }}
-            - name: DB_POSTGRESDB_SCHEMA
-              value: {{ .Values.database.postgresdb.schema | quote }}
             - name: DB_POSTGRESDB_USER
               value: {{ .Values.database.postgresdb.user | quote }}
             - name: DB_POSTGRESDB_PASSWORD
-              value: {{ .Values.database.postgresdb.password | quote }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.database.postgresdb.passwordSecretRef.name | quote }}
+                  key: {{ .Values.database.postgresdb.passwordSecretRef.key | quote }}
             {{- end }}
           ports:
             - name: http
