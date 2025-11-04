@@ -54,13 +54,15 @@ extraVolumes: []
 
 timezone: ""  # Defaults to 'Europe/Berlin'
 
+logLevel: ""  # Use n8n default log level
+
 database:
   type: postgresdb  # sqlite or postgresdb
   sqlite:
     poolSize: 4
     vacuumOnStartup: true
   postgresdb:
-    host: cnpg-cluster-rw.cnpg-system.svc.cluster.local
+    host: "cnpg-cluster-rw.cnpg-system.svc.cluster.local"
     port: 5432
     database: data
     schema: n8n

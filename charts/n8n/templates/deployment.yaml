@@ -10,6 +10,10 @@ spec:
               value: {{ .Values.timezone | default "Europe/Berlin" | quote }}
             - name: TZ
               value: {{ .Values.timezone | default "Europe/Berlin" | quote }}
+            {{- if .Values.logLevel }}
+            - name: N8N_LOG_LEVEL
+              value: {{ .Values.logLevel | quote }}
+            {{- end }}
             - name: N8N_RUNNERS_ENABLED
               value: "true"
             - name: N8N_RUNNERS_MODE
