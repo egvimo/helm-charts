@@ -14,11 +14,19 @@ pgadmin4-helm:
   serverDefinitions:
     enabled: true
     data:
-      cnpg:
-        Name: CNPG
+      cnpg-postgres:
+        Name: CNPG (postgres)
         Group: Servers
         Host: cnpg-cluster-rw
         Port: 5432
         Username: postgres
         MaintenanceDB: postgres
+        Shared: true
+      cnpg-data:
+        Name: CNPG (data)
+        Group: Servers
+        Host: cnpg-cluster-rw
+        Port: 5432
+        Username: data
+        MaintenanceDB: data
         Shared: true
