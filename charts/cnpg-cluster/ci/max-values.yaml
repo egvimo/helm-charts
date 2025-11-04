@@ -1,0 +1,4 @@
+databases:
+  - database: test
+    owner: test
+    passwordSecretName: test

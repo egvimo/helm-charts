@@ -12,27 +12,22 @@ spec:
   storage:
     size: 1Gi
   postgresql:
+    parameters:
+      timezone: "Europe/Berlin"
     shared_preload_libraries:
       - "vchord.so"
-  bootstrap:
-    initdb:
-      database: data
-      owner: data
-      {{- if .Values.dataSecret.name }}
-      secret:
-        name: {{ .Values.dataSecret.name }}
+  {{- if .Values.databases }}
+  managed:
+    roles:
+      {{- range .Values.databases }}
+      - name: {{ .owner }}
+        ensure: present
+        login: true
+        superuser: false
+        passwordSecret:
+          name: {{ .passwordSecretName }}
       {{- end }}
-      postInitApplicationSQL:
-        - CREATE EXTENSION vchord CASCADE;
-        - CREATE EXTENSION earthdistance CASCADE;
-        {{- range .Values.schemas }}
-        - CREATE ROLE {{ .name }} LOGIN PASSWORD '{{ .password }}';
-        - CREATE SCHEMA {{ .name }} AUTHORIZATION {{ .name }};
-        - REVOKE ALL ON SCHEMA {{ .name }} FROM PUBLIC;
-        - GRANT ALL ON SCHEMA {{ .name }} TO {{ .name }};
-        - ALTER ROLE {{ .name }} SET search_path = {{ .name }}, public;
-        {{- end }}
-        - REVOKE ALL ON SCHEMA public FROM PUBLIC;
+  {{- end }}
   monitoring:
     enablePodMonitor: true
   resources:

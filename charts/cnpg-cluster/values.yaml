@@ -5,9 +5,6 @@ image:
 superuserSecret:
   name: ''
 
-dataSecret:
-  name: ''
-
 resources:
   requests:
     cpu: 100m
@@ -16,4 +13,4 @@ resources:
     cpu: 500m
     memory: 512Mi
 
-schemas: []
+databases: []

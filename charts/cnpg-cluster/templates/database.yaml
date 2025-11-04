@@ -1,0 +1,12 @@
+{{- $fullName := include "common.fullname" . -}}
+{{- range .Values.databases }}
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: {{ .database }}
+spec:
+  name: {{ .database }}
+  owner: {{ .owner }}
+  cluster:
+    name: {{ $fullName }}
+{{- end }}

@@ -22,11 +22,3 @@ pgadmin4-helm:
         Username: postgres
         MaintenanceDB: postgres
         Shared: true
-      cnpg-data:
-        Name: CNPG (data)
-        Group: Servers
-        Host: cnpg-cluster-rw
-        Port: 5432
-        Username: data
-        MaintenanceDB: data
-        Shared: true
