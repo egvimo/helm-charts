@@ -771,6 +771,19 @@ entries:
     version: 0.1.0
   syncthing:
   - apiVersion: v2
+    appVersion: 2.0.11
+    created: "2025-11-05T06:47:32.81467223Z"
+    dependencies:
+    - name: common
+      repository: file://../common
+      version: 0.1.0
+    digest: b2cee759d8626a47b930a1a66f3f8532106ee7c9572aae680f80eac50d6fe102
+    name: syncthing
+    type: application
+    urls:
+    - https://github.com/egvimo/helm-charts/releases/download/syncthing-0.1.2/syncthing-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
     appVersion: 2.0.10
     created: "2025-10-05T13:10:23.443079465Z"
     dependencies:
@@ -814,4 +827,4 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/whoami-0.1.0/whoami-0.1.0.tgz
     version: 0.1.0
-generated: "2025-11-02T09:25:57.744428791Z"
+generated: "2025-11-05T06:47:32.814759513Z"
