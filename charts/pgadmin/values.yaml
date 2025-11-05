@@ -15,8 +15,8 @@ pgadmin4-helm:
     enabled: true
     data:
       cnpg-postgres:
-        Name: CNPG (postgres)
-        Group: Servers
+        Name: postgres
+        Group: CNPG
         Host: cnpg-cluster-rw
         Port: 5432
         Username: postgres
