@@ -1,9 +1,9 @@
 apiVersion: v2
 name: home-assistant
 type: application
-version: 0.1.5
+version: 0.1.6
 # renovate: image=ghcr.io/home-assistant/home-assistant
-appVersion: "2025.10.4"
+appVersion: "2025.11.0"
 dependencies:
   - name: common
     version: 0.1.0
