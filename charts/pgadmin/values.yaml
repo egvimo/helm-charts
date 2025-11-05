@@ -11,6 +11,14 @@ pgadmin4-helm:
     limits:
       cpu: 1000m
       memory: 512Mi
+  startupProbe:
+    enabled: true
+    initialDelaySeconds: 45
+    failureThreshold: 30
+  readinessProbe:
+    enabled: true
+  livenessProbe:
+    enabled: true
   serverDefinitions:
     enabled: true
     data:
