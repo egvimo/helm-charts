@@ -1,5 +1,6 @@
 {{- $root := . }}
 {{- range $path, $_ := .Files.Glob "alerts/*.yaml" }}
+---
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -9,5 +10,4 @@ metadata:
 data:
   rules.yaml: |-
     {{- $root.Files.Get $path | nindent 4 }}
----
 {{- end }}
