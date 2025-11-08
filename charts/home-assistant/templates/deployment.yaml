@@ -58,6 +58,7 @@ spec:
             - name: config
               mountPath: /config
       hostNetwork: true
+      dnsPolicy: "ClusterFirstWithHostNet"
       volumes:
         - name: config
           {{- if .Values.persistence.enabled }}
