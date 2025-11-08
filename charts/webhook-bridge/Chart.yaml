@@ -1,0 +1,10 @@
+apiVersion: v2
+name: webhook-bridge
+type: application
+version: 0.1.3
+# renovate: image=ghcr.io/egvimo/webhook-bridge
+appVersion: "0.1.0"
+dependencies:
+  - name: common
+    version: 0.1.0
+    repository: file://../common
