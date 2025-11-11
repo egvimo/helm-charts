@@ -478,6 +478,22 @@ entries:
     version: 0.1.0
   monitoring:
   - apiVersion: v2
+    created: "2025-11-11T20:41:59.054907602Z"
+    dependencies:
+    - name: kube-prometheus-stack
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 79.5.0
+    - condition: file-exporter.enabled
+      name: file-exporter
+      repository: ""
+      version: 0.1.0
+    digest: 582b284b2aa498f9d73ff54315e8bb044077201495dcc89a80715da88f36c736
+    name: monitoring
+    type: application
+    urls:
+    - https://github.com/egvimo/helm-charts/releases/download/monitoring-0.1.14/monitoring-0.1.14.tgz
+    version: 0.1.14
+  - apiVersion: v2
     created: "2025-11-06T06:15:02.017304085Z"
     dependencies:
     - name: kube-prometheus-stack
@@ -938,4 +954,4 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/whoami-0.1.0/whoami-0.1.0.tgz
     version: 0.1.0
-generated: "2025-11-11T16:35:51.790706428Z"
+generated: "2025-11-11T20:41:59.055011196Z"
