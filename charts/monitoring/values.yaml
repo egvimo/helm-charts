@@ -92,6 +92,3 @@ kube-prometheus-stack:
 
 file-exporter:
   enabled: true
-
-apt-exporter:
-  enabled: true

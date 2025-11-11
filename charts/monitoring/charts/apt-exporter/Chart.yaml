@@ -1,6 +1,0 @@
-apiVersion: v2
-name: apt-exporter
-type: application
-version: 0.1.0
-# renovate: image=ghcr.io/egvimo/apt-exporter
-appVersion: "0.3.3"
