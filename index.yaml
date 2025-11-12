@@ -68,6 +68,19 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/apprise-0.1.0/apprise-0.1.0.tgz
     version: 0.1.0
+  argo-workflows:
+  - apiVersion: v2
+    created: "2025-11-12T12:41:41.010635471Z"
+    dependencies:
+    - name: argo-workflows
+      repository: https://argoproj.github.io/argo-helm
+      version: 0.45.27
+    digest: eb2b90b5c46758f766a5a37f8755c1d247a83468c7be76a1fbffbf70d4b0cc4d
+    name: argo-workflows
+    type: application
+    urls:
+    - https://github.com/egvimo/helm-charts/releases/download/argo-workflows-0.1.0/argo-workflows-0.1.0.tgz
+    version: 0.1.0
   audiobookshelf:
   - apiVersion: v2
     appVersion: 2.30.0
@@ -967,4 +980,4 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/whoami-0.1.0/whoami-0.1.0.tgz
     version: 0.1.0
-generated: "2025-11-12T05:22:26.027649496Z"
+generated: "2025-11-12T12:41:41.010728806Z"
