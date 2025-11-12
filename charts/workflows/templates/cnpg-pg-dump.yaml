@@ -1,0 +1,90 @@
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: cnpg-pg-dump
+spec:
+  schedule: {{ .Values.cnpgPgDump.schedule | quote }}
+  concurrencyPolicy: Forbid
+  timezone: {{ .Values.timezone | quote }}
+
+  workflowSpec:
+    entrypoint: pg-dump
+    serviceAccountName: argo-workflow
+    parallelism: 2
+
+    templates:
+      - name: pg-dump
+        dag:
+          tasks:
+            - name: list-databases
+              template: list-databases
+            - name: dump-database
+              template: dump-database
+              dependencies: [list-databases]
+              withParam: "{{`{{tasks.list-databases.outputs.parameters.database-list}}`}}"
+              arguments:
+                parameters:
+                  - name: database-name
+                    value: "{{`{{item}}`}}"
+
+      - name: list-databases
+        script:
+          image: postgres:18-alpine
+          command: [bash]
+          source: |
+            set -e
+            echo "Fetching list of databases"
+            DATABASE_LIST=$(psql -h {{ .Values.cnpgPgDump.host }} \
+                -U postgres \
+                -d postgres \
+                -t -A \
+                -c "SELECT datname FROM pg_database WHERE datistemplate = false AND datname NOT IN ('postgres');" \
+                | awk '{$1=$1};1' \
+                | grep -v '^[[:space:]]*$')
+            echo "["$(echo "$DATABASE_LIST" | paste -sd, - | sed 's/,/","/g; s/^/"/; s/$/"/')"]" > /tmp/databases.json
+            cat /tmp/databases.json
+          env:
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.cnpgPgDump.superuserSecretName }}
+                  key: password
+        outputs:
+          parameters:
+            - name: database-list
+              valueFrom:
+                path: /tmp/databases.json
+
+      - name: dump-database
+        inputs:
+          parameters:
+            - name: database-name
+        script:
+          image: postgres:18-alpine
+          command: [bash]
+          source: |
+            set -e
+            DATABASE_NAME="{{`{{inputs.parameters.database-name}}`}}"
+            echo "Dumping database: $DATABASE_NAME"
+            pg_dump -h {{ .Values.cnpgPgDump.host }} -U postgres -f "/mnt/dumps/$DATABASE_NAME.dump" $DATABASE_NAME -Fc
+            echo "Database $DATABASE_NAME dumped successfully"
+          env:
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.cnpgPgDump.superuserSecretName }}
+                  key: password
+          volumeMounts:
+            - name: dumps
+              mountPath: /mnt/dumps
+
+    volumes:
+      - name: dumps
+        hostPath:
+          path: {{ .Values.cnpgPgDump.hostPath }}
+          type: Directory
+
+    {{- with .Values.nodeSelector }}
+    nodeSelector:
+      {{- toYaml . | nindent 6 }}
+    {{- end }}
