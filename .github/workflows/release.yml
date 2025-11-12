@@ -27,6 +27,7 @@ jobs:
 
       - name: Add repositories
         run: |
+          helm repo add argo https://argoproj.github.io/argo-helm
           helm repo add cnpg https://cloudnative-pg.github.io/charts/
 
       - name: Run chart-releaser

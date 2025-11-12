@@ -1,0 +1,15 @@
+argo-workflows:
+  singleNamespace: true
+  server:
+    enabled: true
+    authModes:
+      - server
+    ingress:
+      enabled: true
+      hosts:
+        - argo-workflows.192-168-178-31.sslip.io
+  workflow:
+    serviceAccount:
+      create: true
+    rbac:
+      create: true
