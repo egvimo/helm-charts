@@ -1005,4 +1005,13 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/whoami-0.1.0/whoami-0.1.0.tgz
     version: 0.1.0
-generated: "2025-11-13T10:01:14.340901063Z"
+  workflows:
+  - apiVersion: v2
+    created: "2025-11-13T10:02:12.58134488Z"
+    digest: 17b7789b6d162cd521c3858562b8fcd3fabf8b85273c58bcfb80a476be3c2cda
+    name: workflows
+    type: application
+    urls:
+    - https://github.com/egvimo/helm-charts/releases/download/workflows-0.1.0/workflows-0.1.0.tgz
+    version: 0.1.0
+generated: "2025-11-13T10:02:12.5814413Z"
