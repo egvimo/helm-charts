@@ -8,13 +8,15 @@ kube-prometheus-stack:
     enabled: true
     config:
       route:
-        receiver: "apprise"
+        receiver: 'null'
         group_by: ['alertname', 'namespace']
         routes:
           - receiver: "apprise"
             matchers:
               - severity =~ "info|warning|critical"
+              - alertname !~ "NodeClockNotSynchronising"
       receivers:
+        - name: 'null'
         - name: "apprise"
           webhook_configs:
             - url: "http://n8n.n8n.svc.cluster.local/webhook/alertmanager"
