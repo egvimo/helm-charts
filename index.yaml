@@ -253,6 +253,19 @@ entries:
     version: 0.1.0
   filebrowser:
   - apiVersion: v2
+    appVersion: v2.46.1
+    created: "2025-11-15T10:30:44.890024363Z"
+    dependencies:
+    - name: common
+      repository: file://../common
+      version: 0.1.0
+    digest: ac738c545be18838a927405a56c15abd2d0aa8418dd65bb3d56acf7abd6704fd
+    name: filebrowser
+    type: application
+    urls:
+    - https://github.com/egvimo/helm-charts/releases/download/filebrowser-0.1.6/filebrowser-0.1.6.tgz
+    version: 0.1.6
+  - apiVersion: v2
     appVersion: v2.45.1
     created: "2025-11-11T08:17:33.462251147Z"
     dependencies:
@@ -1052,4 +1065,4 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/workflows-0.1.0/workflows-0.1.0.tgz
     version: 0.1.0
-generated: "2025-11-15T10:30:03.563479724Z"
+generated: "2025-11-15T10:30:44.890165585Z"
