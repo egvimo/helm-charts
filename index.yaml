@@ -394,6 +394,19 @@ entries:
     version: 0.1.0
   home-assistant:
   - apiVersion: v2
+    appVersion: 2025.11.2
+    created: "2025-11-15T10:29:38.286672145Z"
+    dependencies:
+    - name: common
+      repository: file://../common
+      version: 0.1.0
+    digest: 86edc66ea46f5d8c42f7ea766f620429d5d4dee51da27f215a395c99de5c47ce
+    name: home-assistant
+    type: application
+    urls:
+    - https://github.com/egvimo/helm-charts/releases/download/home-assistant-0.1.8/home-assistant-0.1.8.tgz
+    version: 0.1.8
+  - apiVersion: v2
     appVersion: 2025.11.1
     created: "2025-11-08T07:50:44.620290039Z"
     dependencies:
@@ -1027,4 +1040,4 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/workflows-0.1.0/workflows-0.1.0.tgz
     version: 0.1.0
-generated: "2025-11-15T10:29:29.437335317Z"
+generated: "2025-11-15T10:29:38.286791138Z"
