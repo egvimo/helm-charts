@@ -11,6 +11,7 @@ spec:
     entrypoint: pg-dump
     serviceAccountName: argo-workflow
     parallelism: 2
+    onExit: notify
 
     templates:
       - name: pg-dump
@@ -77,6 +78,19 @@ spec:
           volumeMounts:
             - name: dumps
               mountPath: /mnt/dumps
+
+      - name: notify
+        script:
+          image: quay.io/curl/curl:latest
+          command: [sh]
+          source: |
+            STATUS="{{`{{workflow.status}}`}}"
+            NAME="{{`{{workflow.name}}`}}"
+            if [ "$STATUS" != "Succeeded" ]; then
+              curl -X POST -H "Content-Type: application/json" \
+                -d "{\"title\": \"🚨 Workflow failed\", \"body\": \"Workflow $NAME failed (status: $STATUS)\", \"tag\": \"alerts\"}" \
+                {{ .Values.appriseUrl }}
+            fi
 
     volumes:
       - name: dumps

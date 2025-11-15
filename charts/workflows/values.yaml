@@ -1,4 +1,5 @@
-timezone: "Europe/Berlin"
+timezone: Europe/Berlin
+appriseUrl: http://apprise.apprise.svc.cluster.local/notify/apprise
 
 cnpgPgDump:
   schedule: "15 3 * * *"
