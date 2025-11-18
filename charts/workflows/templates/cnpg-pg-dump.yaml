@@ -30,21 +30,26 @@ spec:
 
       - name: list-databases
         script:
-          image: postgres:18-alpine
-          command: [bash]
+          image: ghcr.io/egvimo/toolbox:0.1.1
+          command: [sh]
           source: |
-            set -e
+            set -euo pipefail
+
             echo "Fetching list of databases"
-            DATABASE_LIST=$(psql -h {{ .Values.cnpgPgDump.host }} \
-                -U postgres \
-                -d postgres \
-                -t -A \
-                -c "SELECT datname FROM pg_database WHERE datistemplate = false AND datname NOT IN ('postgres');" \
-                | awk '{$1=$1};1' \
-                | grep -v '^[[:space:]]*$')
-            echo "["$(echo "$DATABASE_LIST" | paste -sd, - | sed 's/,/","/g; s/^/"/; s/$/"/')"]" > /tmp/databases.json
+
+            DATABASE_LIST=$(psql -d postgres -t -A \
+                -c "SELECT datname FROM pg_database WHERE datistemplate = false AND datname NOT IN ('postgres');")
+
+            echo "$DATABASE_LIST" \
+              | jq -R -s -c 'split("\n") | map(select(length>0))' \
+              > /tmp/databases.json
+
             cat /tmp/databases.json
           env:
+            - name: PGHOST
+              value: {{ .Values.cnpgPgDump.host }}
+            - name: PGUSER
+              value: postgres
             - name: PGPASSWORD
               valueFrom:
                 secretKeyRef:
@@ -61,15 +66,21 @@ spec:
           parameters:
             - name: database-name
         script:
-          image: postgres:18-alpine
-          command: [bash]
+          image: ghcr.io/egvimo/toolbox:0.1.1
+          command: [sh]
           source: |
-            set -e
+            set -euo pipefail
+
             DATABASE_NAME="{{`{{inputs.parameters.database-name}}`}}"
+
             echo "Dumping database: $DATABASE_NAME"
-            pg_dump -h {{ .Values.cnpgPgDump.host }} -U postgres -f "/mnt/dumps/$DATABASE_NAME.dump" $DATABASE_NAME -Fc
+            pg_dump -f "/mnt/dumps/$DATABASE_NAME.dump" $DATABASE_NAME -Fc
             echo "Database $DATABASE_NAME dumped successfully"
           env:
+            - name: PGHOST
+              value: {{ .Values.cnpgPgDump.host }}
+            - name: PGUSER
+              value: postgres
             - name: PGPASSWORD
               valueFrom:
                 secretKeyRef:
@@ -84,8 +95,11 @@ spec:
           image: quay.io/curl/curl:latest
           command: [sh]
           source: |
+            set -euo pipefail
+
             STATUS="{{`{{workflow.status}}`}}"
             NAME="{{`{{workflow.name}}`}}"
+
             if [ "$STATUS" != "Succeeded" ]; then
               curl -X POST -H "Content-Type: application/json" \
                 -d "{\"title\": \"🚨 Workflow failed\", \"body\": \"Workflow $NAME failed (status: $STATUS)\", \"tag\": \"alerts\"}" \
