@@ -18,7 +18,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -33,7 +33,7 @@ jobs:
     outputs:
       charts: ${{ steps.set-matrix.outputs.charts }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: Build matrix
         id: set-matrix
@@ -60,7 +60,7 @@ jobs:
       matrix:
         chart: ${{ fromJson(needs.discover-charts.outputs.charts) }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
