@@ -10,9 +10,14 @@ fullnameOverride: ""
 
 podAnnotations: {}
 
-podSecurityContext: {}
+podSecurityContext:
+  runAsUser: 11319
+  runAsGroup: 11319
+  fsGroup: 11319
 
-securityContext: {}
+securityContext:
+  runAsNonRoot: true
+  runAsUser: 11319
 
 service:
   type: ClusterIP
