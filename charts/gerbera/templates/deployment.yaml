@@ -6,7 +6,15 @@ spec:
   template:
     spec:
       containers:
-        - ports:
+        - env:
+            {{- if eq .Values.database.type "postgres" }}
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.database.postgres.passwordSecretRef.name }}
+                  key: {{ .Values.database.postgres.passwordSecretRef.key }}
+            {{- end }}
+          ports:
             - name: http
               containerPort: 49494
               protocol: TCP
@@ -19,6 +27,9 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /var/run/gerbera
+            - name: config-script
+              mountPath: /mnt/customization/shell/gerbera_config.sh
+              subPath: gerbera_config.sh
             {{- range .Values.extraVolumes }}
             - name: {{ .name }}
               mountPath: {{ .mountPath }}
@@ -27,6 +38,7 @@ spec:
           {{- include "common.container" . | nindent 10 }}
       {{ if .Values.enableDLNA }}
       hostNetwork: true
+      dnsPolicy: "ClusterFirstWithHostNet"
       {{- end }}
       volumes:
         - name: config
@@ -36,6 +48,10 @@ spec:
           {{- else }}
           emptyDir: {}
           {{- end }}
+        - name: config-script
+          configMap:
+            name: {{ include "common.fullname" . }}
+            defaultMode: 0755
         {{- range .Values.extraVolumes }}
         - name: {{ .name }}
           hostPath:

@@ -1,0 +1,38 @@
+{{- include "common.configmap" (list . "gerbera.configmap") -}}
+{{- define "gerbera.configmap" -}}
+data:
+  gerbera_config.sh: |
+    {{- if eq .Values.database.type "postgres" }}
+    # Switch from sqlite3 to postgres
+    sed -i 's/<sqlite3 enabled="yes">/<sqlite3 enabled="no">/' /var/run/gerbera/config.xml
+    sed -i 's/<postgres enabled="no">/<postgres enabled="yes">/' /var/run/gerbera/config.xml
+
+    # Replace host, user, database in postgres block
+    sed -i "/<postgres/,/<\/postgres>/s|<host>.*</host>|<host>{{ .Values.database.postgres.host }}</host>|" /var/run/gerbera/config.xml
+    sed -i "/<postgres/,/<\/postgres>/s|<username>.*</username>|<username>{{ .Values.database.postgres.username }}</username>|" /var/run/gerbera/config.xml
+    sed -i "/<postgres/,/<\/postgres>/s|<database>.*</database>|<database>{{ .Values.database.postgres.database }}</database>|" /var/run/gerbera/config.xml
+
+    # Add or update port in postgres block
+    if ! sed -n '/<postgres/,/<\/postgres>/p' /var/run/gerbera/config.xml | grep -q "<port>"; then
+        sed -i "/<postgres/,/<\/postgres>/s|</postgres>|<port>{{ .Values.database.postgres.port }}</port>\n</postgres>|" /var/run/gerbera/config.xml
+    else
+        sed -i "/<postgres/,/<\/postgres>/s|<port>.*</port>|<port>{{ .Values.database.postgres.port }}</port>|" /var/run/gerbera/config.xml
+    fi
+
+    # Add or update password in postgres block
+    if ! sed -n '/<postgres/,/<\/postgres>/p' /var/run/gerbera/config.xml | grep -q "<password>"; then
+        sed -i "/<postgres/,/<\/postgres>/s|</postgres>|<password>${POSTGRES_PASSWORD}</password>\n</postgres>|" /var/run/gerbera/config.xml
+    else
+        sed -i "/<postgres/,/<\/postgres>/s|<password>.*</password>|<password>${POSTGRES_PASSWORD}</password>|" /var/run/gerbera/config.xml
+    fi
+    {{- end }}
+
+    {{- if .Values.server.virtualURL }}
+    # Add or update virtualURL
+    if ! sed -n '/<server/,/<\/server>/p' /var/run/gerbera/config.xml | grep -q "<virtualURL>"; then
+        sed -i "/<server/,/<\/server>/s|</server>|<virtualURL>{{ .Values.server.virtualURL }}</virtualURL>\n</server>|" /var/run/gerbera/config.xml
+    else
+        sed -i "/<server/,/<\/server>/s|<virtualURL>.*</virtualURL>|<virtualURL>{{ .Values.server.virtualURL }}</virtualURL>|" /var/run/gerbera/config.xml
+    fi
+    {{- end }}
+{{- end -}}

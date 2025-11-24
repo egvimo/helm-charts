@@ -53,3 +53,17 @@ persistence:
 extraVolumes: []
 
 enableDLNA: false
+
+server:
+  virtualURL: https://gerbera.192-168-178-31.sslip.io
+
+database:
+  type: postgres  # sqlite3 or postgres
+  postgres:
+    host: cnpg-cluster-rw.cnpg-system.svc.cluster.local
+    port: 5432
+    database: gerbera
+    username: gerbera
+    passwordSecretRef:
+      name: gerbera
+      key: password

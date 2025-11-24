@@ -9,3 +9,6 @@ extraVolumes:
     readOnly: true
 
 enableDLNA: true
+
+database:
+  type: sqlite3
