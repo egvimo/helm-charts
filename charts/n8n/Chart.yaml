@@ -1,9 +1,9 @@
 apiVersion: v2
 name: n8n
 type: application
-version: 0.1.18
+version: 0.1.19
 # renovate: image=ghcr.io/egvimo/n8n-custom
-appVersion: "1.120.4"
+appVersion: "1.122.1"
 dependencies:
   - name: common
     version: 0.1.0
