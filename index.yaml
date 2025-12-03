@@ -568,6 +568,22 @@ entries:
     version: 0.1.0
   monitoring:
   - apiVersion: v2
+    created: "2025-12-03T14:26:34.335192093Z"
+    dependencies:
+    - name: kube-prometheus-stack
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 79.11.0
+    - condition: file-exporter.enabled
+      name: file-exporter
+      repository: ""
+      version: 0.1.0
+    digest: 1d2df43b2412314fe0e1c766b355c6a439d61a0a45542174319ff6be4c8ab2ca
+    name: monitoring
+    type: application
+    urls:
+    - https://github.com/egvimo/helm-charts/releases/download/monitoring-0.1.18/monitoring-0.1.18.tgz
+    version: 0.1.18
+  - apiVersion: v2
     created: "2025-11-28T18:09:09.98958538Z"
     dependencies:
     - name: kube-prometheus-stack
@@ -1191,4 +1207,4 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/workflows-0.1.0/workflows-0.1.0.tgz
     version: 0.1.0
-generated: "2025-12-03T14:26:22.821485838Z"
+generated: "2025-12-03T14:26:34.335421963Z"
