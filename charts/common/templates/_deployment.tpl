@@ -19,6 +19,7 @@ spec:
       labels:
         {{- include "common.selectorLabels" . | nindent 8 }}
     spec:
+      automountServiceAccountToken: false
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers: []
