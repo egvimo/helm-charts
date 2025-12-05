@@ -86,11 +86,22 @@ kube-prometheus-stack:
     enabled: true
   prometheus:
     prometheusSpec:
+      ruleSelectorNilUsesHelmValues: false
       serviceMonitorSelectorNilUsesHelmValues: false
       serviceMonitorNamespaceSelector:
         matchLabels:
           export-prometheus-metrics: "true"
       maximumStartupDurationSeconds: 900
+
+prometheus-smartctl-exporter:
+  serviceMonitor:
+    enabled: true
+  prometheusRules:
+    enabled: true
+  image:
+    # TODO Revert to default image when multi-arch is re-enabled
+    repository: ghcr.io/home-operations/smartctl-exporter
+    tag: "0.14.0"
 
 file-exporter:
   enabled: true
