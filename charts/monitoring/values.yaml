@@ -92,5 +92,11 @@ kube-prometheus-stack:
           export-prometheus-metrics: "true"
       maximumStartupDurationSeconds: 900
 
+prometheus-smartctl-exporter:
+  serviceMonitor:
+    enabled: true
+  prometheusRules:
+    enabled: true
+
 file-exporter:
   enabled: true
