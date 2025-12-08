@@ -75,6 +75,7 @@ jobs:
 
       - name: Run chart-specific preparation
         run: |
+          set -euo pipefail
           PREP_FILE="charts/${{ matrix.chart }}/ci/prepare.sh"
           if [ -f "$PREP_FILE" ]; then
             echo "Preparing ${{ matrix.chart }}"

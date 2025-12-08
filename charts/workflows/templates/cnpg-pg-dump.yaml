@@ -30,7 +30,7 @@ spec:
 
       - name: list-databases
         script:
-          image: ghcr.io/egvimo/toolbox:0.1.1
+          image: ghcr.io/egvimo/postgresql-client:0.1.0
           command: [sh]
           source: |
             set -euo pipefail
@@ -66,7 +66,7 @@ spec:
           parameters:
             - name: database-name
         script:
-          image: ghcr.io/egvimo/toolbox:0.1.1
+          image: ghcr.io/egvimo/postgresql-client:0.1.0
           command: [sh]
           source: |
             set -euo pipefail
