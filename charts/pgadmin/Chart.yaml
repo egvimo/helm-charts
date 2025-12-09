@@ -1,8 +1,0 @@
-apiVersion: v2
-name: pgadmin
-type: application
-version: 0.1.1
-dependencies:
-  - name: pgadmin4-helm
-    version: 9.10.0
-    repository: oci://docker.io/dpage
