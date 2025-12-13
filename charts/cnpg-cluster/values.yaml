@@ -5,6 +5,9 @@ image:
 superuserSecret:
   name: ''
 
+storage:
+  size: 3Gi
+
 resources:
   requests:
     cpu: 100m
