@@ -279,6 +279,19 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/cnpg-cluster-0.1.0/cnpg-cluster-0.1.0.tgz
     version: 0.1.0
+  code-server:
+  - apiVersion: v2
+    created: "2025-12-16T20:39:06.101574641Z"
+    dependencies:
+    - name: code-server
+      repository: ""
+      version: 3.31.2
+    digest: 0273edd7df716b5d26525790d96387006c08579a25b7a8068d0910846519acb0
+    name: code-server
+    type: application
+    urls:
+    - https://github.com/egvimo/helm-charts/releases/download/code-server-0.1.0/code-server-0.1.0.tgz
+    version: 0.1.0
   common:
   - apiVersion: v2
     created: "2025-09-14T08:51:33.417757012Z"
@@ -1415,4 +1428,4 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/workflows-0.1.0/workflows-0.1.0.tgz
     version: 0.1.0
-generated: "2025-12-16T05:37:25.28193364Z"
+generated: "2025-12-16T20:39:06.10177915Z"
