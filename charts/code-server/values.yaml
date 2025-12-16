@@ -1,0 +1,36 @@
+code-server:
+  serviceAccount:
+    create: false
+  ingress:
+    enabled: true
+    hosts:
+      - host: code-server.192-168-178-31.sslip.io
+        paths:
+          - /
+  persistence:
+    enabled: true
+    size: 1Gi
+  resources:
+    requests:
+      memory: "128Mi"
+      cpu: "250m"
+    limits:
+      memory: "512Mi"
+      cpu: "1000m"
+  extraInitContainers: |
+    - name: customization
+      image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+      imagePullPolicy: IfNotPresent
+      env:
+        - name: SERVICE_URL
+          value: https://open-vsx.org/vscode/gallery
+        - name: ITEM_URL
+          value: https://open-vsx.org/vscode/item
+      command:
+        - sh
+        - -c
+        - |
+          code-server --install-extension ms-python.python
+      volumeMounts:
+        - name: data
+          mountPath: /home/coder
