@@ -15,11 +15,11 @@ code-server:
     size: 1Gi
   resources:
     requests:
-      memory: "128Mi"
-      cpu: "250m"
+      memory: "256Mi"
+      cpu: "350m"
     limits:
       memory: "512Mi"
-      cpu: "1000m"
+      cpu: "3000m"
   extraInitContainers: |
     - name: customization
       image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
