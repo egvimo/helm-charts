@@ -1,0 +1,10 @@
+apiVersion: v2
+name: games
+type: application
+version: 0.1.0
+# renovate: image=ghcr.io/egvimo/games
+appVersion: "0.1.0"
+dependencies:
+  - name: common
+    version: 0.1.0
+    repository: file://../common
