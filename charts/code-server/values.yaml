@@ -16,7 +16,7 @@ code-server:
   resources:
     requests:
       memory: "256Mi"
-      cpu: "350m"
+      cpu: "200m"
     limits:
       memory: "512Mi"
       cpu: "3000m"
