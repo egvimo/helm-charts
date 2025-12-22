@@ -1,6 +1,6 @@
 apiVersion: v2
 name: file-exporter
 type: application
-version: 0.1.0
+version: 0.1.1
 # renovate: image=ghcr.io/egvimo/file-exporter
-appVersion: "0.2.2"
+appVersion: "0.237.0"
