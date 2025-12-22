@@ -1,25 +1,42 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended"
-  ],
-  "customManagers": [
-    {
-      "customType": "regex",
-      "managerFilePatterns": [
-        "/(^|/)Chart\\.yaml$/"
-      ],
-      "matchStrings": [
-        "#\\s?renovate: image=(?<depName>.*?)\\s?appVersion:\\s?\\\"?v?(?<currentValue>[\\w+\\.\\-]*)"
-      ],
-      "datasourceTemplate": "docker"
-    }
-  ],
-  "bumpVersions": [
-    {
-      "filePatterns": ["{{packageFileDir}}/Chart.yaml"],
-      "matchStrings": ["version:\\s(?<version>[^\\s]+)"],
-      "bumpType": "patch"
-    }
-  ]
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": ["config:recommended"],
+    "customManagers": [
+        {
+            "customType": "regex",
+            "description": "Chart.yaml appVersion as image tag",
+            "managerFilePatterns": ["/(^|/)Chart\\.yaml$/"],
+            "matchStrings": [
+                "#\\s?renovate: image=(?<depName>.*?)\\s?appVersion:\\s?\\\"?v?(?<currentValue>[\\w+\\.\\-]*)"
+            ],
+            "datasourceTemplate": "docker"
+        },
+        {
+            "customType": "regex",
+            "description": "n8n via GitHub releases to filter pre-releases",
+            "managerFilePatterns": ["/(^|/)Chart\\.yaml$/"],
+            "matchStrings": [
+                "#\\s?renovate: image=(?<depName>.*?)\\s?appVersion:\\s?\\\"?v?(?<currentValue>[\\w+\\.\\-]*)"
+            ],
+            "datasourceTemplate": "github-releases",
+            "depNameTemplate": "n8n-io/n8n",
+            "extractVersionTemplate": "n8n@(?<version>.*)",
+            "versioningTemplate": "semver-coerced"
+        }
+    ],
+    "packageRules": [
+        {
+            "description": "Disable default n8n rule to avoid conflicts with custom manager",
+            "matchPackageNames": ["n8nio/n8n"],
+            "matchManagers": ["docker"],
+            "enabled": false
+        }
+    ],
+    "bumpVersions": [
+        {
+            "filePatterns": ["{{packageFileDir}}/Chart.yaml"],
+            "matchStrings": ["version:\\s(?<version>[^\\s]+)"],
+            "bumpType": "patch"
+        }
+    ]
 }
