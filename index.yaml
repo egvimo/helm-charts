@@ -453,6 +453,19 @@ entries:
     version: 0.1.0
   games:
   - apiVersion: v2
+    appVersion: 0.1.2
+    created: "2025-12-22T15:26:52.713089521Z"
+    dependencies:
+    - name: common
+      repository: file://../common
+      version: 0.1.0
+    digest: 6aa97d2902d80d1f28b3cf520be0a2491cfa5825b781802f9b750beff12860af
+    name: games
+    type: application
+    urls:
+    - https://github.com/egvimo/helm-charts/releases/download/games-0.1.1/games-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
     appVersion: 0.1.0
     created: "2025-12-21T15:01:21.244627529Z"
     dependencies:
@@ -1512,4 +1525,4 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/workflows-0.1.0/workflows-0.1.0.tgz
     version: 0.1.0
-generated: "2025-12-21T15:01:22.09088865Z"
+generated: "2025-12-22T15:26:52.71329841Z"
