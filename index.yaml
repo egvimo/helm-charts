@@ -120,6 +120,19 @@ entries:
     version: 0.1.0
   audiobookshelf:
   - apiVersion: v2
+    appVersion: 2.32.1
+    created: "2025-12-24T06:21:34.48577903Z"
+    dependencies:
+    - name: common
+      repository: file://../common
+      version: 0.1.0
+    digest: 13c39ed9e1c414124995bc7ff673355289c595bfa60056c7017d775c23b6bc69
+    name: audiobookshelf
+    type: application
+    urls:
+    - https://github.com/egvimo/helm-charts/releases/download/audiobookshelf-0.1.3/audiobookshelf-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
     appVersion: 2.31.0
     created: "2025-12-03T18:26:57.304994851Z"
     dependencies:
@@ -1525,4 +1538,4 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/workflows-0.1.0/workflows-0.1.0.tgz
     version: 0.1.0
-generated: "2025-12-22T15:26:52.71329841Z"
+generated: "2025-12-24T06:21:34.686072824Z"
