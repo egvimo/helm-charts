@@ -34,7 +34,7 @@
         {
             "description": "Disable regex-managed docker datasource for n8n",
             "matchPackageNames": ["n8nio/n8n"],
-            "matchManagers": ["regex"],
+            "matchManagers": ["custom.regex"],
             "enabled": false
         }
     ],
