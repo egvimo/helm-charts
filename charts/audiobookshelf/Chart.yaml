@@ -1,9 +1,9 @@
 apiVersion: v2
 name: audiobookshelf
 type: application
-version: 0.1.2
+version: 0.1.3
 # renovate: image=ghcr.io/advplyr/audiobookshelf
-appVersion: "2.31.0"
+appVersion: "2.32.1"
 dependencies:
   - name: common
     version: 0.1.0
