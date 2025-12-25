@@ -750,6 +750,19 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/jdownloader-0.1.0/jdownloader-0.1.0.tgz
     version: 0.1.0
+  longhorn:
+  - apiVersion: v2
+    created: "2025-12-25T08:51:05.039959995Z"
+    dependencies:
+    - name: longhorn
+      repository: https://charts.longhorn.io
+      version: 1.10.1
+    digest: c5c0c475f90cfa4736ee61e50008f04aff63f03e4eb7e86ee21da4d26cff7723
+    name: longhorn
+    type: application
+    urls:
+    - https://github.com/egvimo/helm-charts/releases/download/longhorn-0.1.0/longhorn-0.1.0.tgz
+    version: 0.1.0
   monitoring:
   - apiVersion: v2
     created: "2025-12-19T20:08:11.385967217Z"
@@ -1538,4 +1551,4 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/workflows-0.1.0/workflows-0.1.0.tgz
     version: 0.1.0
-generated: "2025-12-24T06:21:34.686072824Z"
+generated: "2025-12-25T08:51:05.040175607Z"
