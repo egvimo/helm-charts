@@ -763,6 +763,15 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/longhorn-0.1.0/longhorn-0.1.0.tgz
     version: 0.1.0
+  longhorn-config:
+  - apiVersion: v2
+    created: "2025-12-27T20:12:42.703064065Z"
+    digest: f70685880a6cce4f14db2e8421c3d7281f1615f97029e9026690f1b0d56afa16
+    name: longhorn-config
+    type: application
+    urls:
+    - https://github.com/egvimo/helm-charts/releases/download/longhorn-config-0.1.0/longhorn-config-0.1.0.tgz
+    version: 0.1.0
   monitoring:
   - apiVersion: v2
     created: "2025-12-27T06:48:56.18327759Z"
@@ -1570,4 +1579,4 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/workflows-0.1.0/workflows-0.1.0.tgz
     version: 0.1.0
-generated: "2025-12-27T06:48:56.183558013Z"
+generated: "2025-12-27T20:12:42.703335311Z"
