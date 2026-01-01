@@ -242,6 +242,18 @@ entries:
     version: 0.1.0
   cnpg:
   - apiVersion: v2
+    created: "2026-01-01T13:47:42.380764569Z"
+    dependencies:
+    - name: cloudnative-pg
+      repository: https://cloudnative-pg.github.io/charts
+      version: 0.27.0
+    digest: cf3fce5d02c7597ad378a06196ce5db8501817d88d9719f1645cce6ed4998e6d
+    name: cnpg
+    type: application
+    urls:
+    - https://github.com/egvimo/helm-charts/releases/download/cnpg-0.1.2/cnpg-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
     created: "2025-10-24T04:33:25.136194612Z"
     dependencies:
     - name: cloudnative-pg
@@ -1611,4 +1623,4 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/workflows-0.1.0/workflows-0.1.0.tgz
     version: 0.1.0
-generated: "2025-12-30T07:05:46.295438385Z"
+generated: "2026-01-01T13:47:42.511290329Z"
