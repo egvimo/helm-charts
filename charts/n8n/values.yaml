@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: n8nio/n8n
+  repository: ghcr.io/egvimo/n8n
   pullPolicy: IfNotPresent
   tag: ""  # Defaults to chart appVersion
 
