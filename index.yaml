@@ -799,6 +799,25 @@ entries:
     version: 0.1.0
   monitoring:
   - apiVersion: v2
+    created: "2026-01-05T19:09:57.834412176Z"
+    dependencies:
+    - name: kube-prometheus-stack
+      repository: oci://ghcr.io/prometheus-community/charts
+      version: 80.11.0
+    - name: prometheus-smartctl-exporter
+      repository: oci://ghcr.io/prometheus-community/charts
+      version: 0.16.0
+    - condition: file-exporter.enabled
+      name: file-exporter
+      repository: ""
+      version: 0.1.0
+    digest: 49d5963b606cdb5694540f873d1344cc7e595e6d489996b412ca56f1c11bca2b
+    name: monitoring
+    type: application
+    urls:
+    - https://github.com/egvimo/helm-charts/releases/download/monitoring-0.1.26/monitoring-0.1.26.tgz
+    version: 0.1.26
+  - apiVersion: v2
     created: "2025-12-30T07:05:46.295222222Z"
     dependencies:
     - name: kube-prometheus-stack
@@ -1636,4 +1655,4 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/workflows-0.1.0/workflows-0.1.0.tgz
     version: 0.1.0
-generated: "2026-01-02T16:29:13.402635694Z"
+generated: "2026-01-05T19:09:57.834709422Z"
