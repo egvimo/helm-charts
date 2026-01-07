@@ -19,7 +19,7 @@ kube-prometheus-stack:
         - name: 'null'
         - name: "apprise"
           webhook_configs:
-            - url: "http://n8n.n8n.svc.cluster.local/webhook/alertmanager"
+            - url: "http://apprise.apprise.svc.cluster.local/webhook/alertmanager?config_key=apprise&tag=alerts"
   grafana:
     defaultDashboardsTimezone: Europe/Berlin
     ingress:
