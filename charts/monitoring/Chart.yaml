@@ -1,10 +1,10 @@
 apiVersion: v2
 name: monitoring
 type: application
-version: 0.1.29
+version: 0.1.30
 dependencies:
   - name: kube-prometheus-stack
-    version: "80.13.2"
+    version: "80.13.3"
     repository: oci://ghcr.io/prometheus-community/charts
   - name: prometheus-smartctl-exporter
     version: "0.16.0"
