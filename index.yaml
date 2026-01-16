@@ -580,6 +580,19 @@ entries:
     version: 0.1.0
   gerbera:
   - apiVersion: v2
+    appVersion: 3.1.0
+    created: "2026-01-16T11:25:24.661613004Z"
+    dependencies:
+    - name: common
+      repository: file://../common
+      version: 0.1.0
+    digest: c77547e833b928174cc90f1372bf5c7c8714c9af6ee5d2a20aeb1977b6bf14f0
+    name: gerbera
+    type: application
+    urls:
+    - https://github.com/egvimo/helm-charts/releases/download/gerbera-0.1.2/gerbera-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
     appVersion: 3.0.0
     created: "2025-11-11T16:35:51.790591845Z"
     dependencies:
@@ -1877,4 +1890,4 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/workflows-0.1.0/workflows-0.1.0.tgz
     version: 0.1.0
-generated: "2026-01-14T19:21:19.296740722Z"
+generated: "2026-01-16T11:25:24.661907441Z"
