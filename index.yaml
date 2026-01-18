@@ -331,6 +331,18 @@ entries:
     version: 0.1.0
   code-server:
   - apiVersion: v2
+    created: "2026-01-18T20:08:34.551229597Z"
+    dependencies:
+    - name: code-server
+      repository: ""
+      version: 3.31.2
+    digest: 4301ea245e2c62014ed8b0b6697158e518b5ed4e0f3dca34414940220455fa09
+    name: code-server
+    type: application
+    urls:
+    - https://github.com/egvimo/helm-charts/releases/download/code-server-0.1.3/code-server-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
     created: "2026-01-13T12:09:41.883270544Z"
     dependencies:
     - name: code-server
@@ -1916,4 +1928,4 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/workflows-0.1.0/workflows-0.1.0.tgz
     version: 0.1.0
-generated: "2026-01-18T17:18:00.78326261Z"
+generated: "2026-01-18T20:08:34.551511724Z"
