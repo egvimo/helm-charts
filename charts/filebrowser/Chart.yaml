@@ -1,9 +1,9 @@
 apiVersion: v2
 name: filebrowser
 type: application
-version: 0.1.11
+version: 0.1.12
 # renovate: image=filebrowser/filebrowser
-appVersion: "v2.54.0"
+appVersion: "v2.55.0"
 dependencies:
   - name: common
     version: 0.1.0
