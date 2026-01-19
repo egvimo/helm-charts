@@ -1,9 +1,9 @@
 apiVersion: v2
 name: gerbera
 type: application
-version: 0.1.2
+version: 0.1.3
 # renovate: image=gerbera/gerbera
-appVersion: "3.1.0"
+appVersion: "3.1.1"
 dependencies:
   - name: common
     version: 0.1.0
