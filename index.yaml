@@ -96,6 +96,18 @@ entries:
     version: 0.1.0
   argo-workflows:
   - apiVersion: v2
+    created: "2026-01-21T17:50:15.844654543Z"
+    dependencies:
+    - name: argo-workflows
+      repository: https://argoproj.github.io/argo-helm
+      version: 0.47.1
+    digest: 4998bdadbdd952afdc8b715142ebe1a497757191d9f4d7e1f374749f9e40820b
+    name: argo-workflows
+    type: application
+    urls:
+    - https://github.com/egvimo/helm-charts/releases/download/argo-workflows-0.1.4/argo-workflows-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
     created: "2026-01-09T12:54:47.370010093Z"
     dependencies:
     - name: argo-workflows
@@ -1992,4 +2004,4 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/workflows-0.1.0/workflows-0.1.0.tgz
     version: 0.1.0
-generated: "2026-01-20T20:00:19.594012924Z"
+generated: "2026-01-21T17:50:15.844877096Z"
