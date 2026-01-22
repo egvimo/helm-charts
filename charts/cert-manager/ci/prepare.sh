@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 trap 'echo "❌ Error: Command \"${BASH_COMMAND}\" failed at line $LINENO"' ERR
-set -x
 
 CERT_MANAGER_VERSION=$(yq '.dependencies[] | select(.name == "cert-manager") | .version' charts/cert-manager/Chart.yaml)
 

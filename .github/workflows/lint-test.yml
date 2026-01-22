@@ -59,6 +59,8 @@ jobs:
       fail-fast: false
       matrix:
         chart: ${{ fromJson(needs.discover-charts.outputs.charts) }}
+    env:
+      CT_NAMESPACE: ${{ matrix.chart }}-ns
     steps:
       - uses: actions/checkout@v6
         with:
@@ -71,14 +73,14 @@ jobs:
         uses: helm/kind-action@v1.13.0
 
       - name: Create namespace
-        run: kubectl create namespace ${{ matrix.chart }}-ns
+        run: kubectl create namespace ${CT_NAMESPACE}
 
       - name: Run chart-specific preparation
         run: |
           set -euo pipefail
           PREP_FILE="charts/${{ matrix.chart }}/ci/prepare.sh"
           if [ -f "$PREP_FILE" ]; then
-            echo "Preparing ${{ matrix.chart }}"
+            echo "🛠️ Prepare ${{ matrix.chart }}"
             bash "$PREP_FILE"
           fi
 
@@ -86,5 +88,4 @@ jobs:
         run: |
           ct install \
             --config ci/ct-install-config.yaml \
-            --charts charts/${{ matrix.chart }} \
-            --namespace ${{ matrix.chart }}-ns
+            --charts charts/${{ matrix.chart }}
