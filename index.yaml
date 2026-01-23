@@ -2,6 +2,19 @@ apiVersion: v1
 entries:
   apprise:
   - apiVersion: v2
+    appVersion: 0.2.1
+    created: "2026-01-23T05:31:34.36159634Z"
+    dependencies:
+    - name: common
+      repository: file://../common
+      version: 0.1.0
+    digest: 8d5445b9adf09252fd4c9bb8ee4724a324724f965d7c20e771c38ed2efbc891f
+    name: apprise
+    type: application
+    urls:
+    - https://github.com/egvimo/helm-charts/releases/download/apprise-0.1.7/apprise-0.1.7.tgz
+    version: 0.1.7
+  - apiVersion: v2
     appVersion: 0.2.0
     created: "2026-01-07T18:16:19.122224264Z"
     dependencies:
@@ -2017,4 +2030,4 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/workflows-0.1.0/workflows-0.1.0.tgz
     version: 0.1.0
-generated: "2026-01-22T19:34:09.416045923Z"
+generated: "2026-01-23T05:31:35.719887293Z"
