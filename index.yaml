@@ -924,6 +924,22 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/home-assistant-0.1.0/home-assistant-0.1.0.tgz
     version: 0.1.0
+  immich:
+  - apiVersion: v2
+    created: "2026-01-24T18:26:51.738855773Z"
+    dependencies:
+    - name: immich
+      repository: oci://ghcr.io/immich-app/immich-charts
+      version: 0.10.3
+    - name: common
+      repository: file://../common
+      version: 0.1.0
+    digest: 2bfa8473483a08cb144123f7782c6630ff2a984aa9c85e8009fcd854504fb2f5
+    name: immich
+    type: application
+    urls:
+    - https://github.com/egvimo/helm-charts/releases/download/immich-0.1.0/immich-0.1.0.tgz
+    version: 0.1.0
   jdownloader:
   - apiVersion: v2
     appVersion: "2"
@@ -2062,4 +2078,4 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/workflows-0.1.0/workflows-0.1.0.tgz
     version: 0.1.0
-generated: "2026-01-24T07:43:49.884795853Z"
+generated: "2026-01-24T18:26:51.739038032Z"
