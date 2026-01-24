@@ -1,4 +1,10 @@
+superuserSecret:
+  name: superuser
+
 databases:
   - database: test
     owner: test
     passwordSecretName: test
+    extensions:
+      - vchord
+      - earthdistance

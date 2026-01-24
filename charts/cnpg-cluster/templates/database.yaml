@@ -10,4 +10,11 @@ spec:
   owner: {{ .owner }}
   cluster:
     name: {{ $fullName }}
+  {{- if .extensions }}
+  extensions:
+    {{- range .extensions }}
+    - name: {{ . }}
+      ensure: present
+    {{- end }}
+  {{- end }}
 {{- end }}
