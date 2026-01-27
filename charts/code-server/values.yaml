@@ -1,7 +1,7 @@
 code-server:
   image:
     repository: ghcr.io/egvimo/code-server
-    tag: "4.108.1"
+    tag: "4.108.2"
   serviceAccount:
     create: false
   ingress:
