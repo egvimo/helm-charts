@@ -29,4 +29,7 @@ install_chart() {
   fi
 
   helm install "$chart_name" "$chart_path" --namespace "$namespace" --wait "${helm_args[@]}"
+
+  echo "🧪 Test ${chart_name}"
+  helm test "$chart_name" --namespace "$namespace"
 }

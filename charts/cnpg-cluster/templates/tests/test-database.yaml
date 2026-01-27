@@ -1,0 +1,45 @@
+{{- if .Values.databases }}
+{{- $db := index .Values.databases 0 -}}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ include "common.fullname" . }}-test-database"
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  backoffLimit: 15
+  template:
+    metadata:
+      labels:
+        {{- include "common.labels" . | nindent 8 }}
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: database-readiness-check
+          image: ghcr.io/egvimo/postgresql-client:18.1.0
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: PGHOST
+              value: "{{ include "common.fullname" . }}-rw"
+            - name: PGPORT
+              value: "5432"
+            - name: PGDATABASE
+              value: {{ $db.database | quote }}
+            - name: PGUSER
+              value: {{ $db.owner | quote }}
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $db.passwordSecretName }}
+                  key: password
+            - name: PGCONNECT_TIMEOUT
+              value: "10"
+          command:
+            - psql
+            - -v
+            - ON_ERROR_STOP=1
+            - -c
+            - SELECT 1
+{{- end }}
