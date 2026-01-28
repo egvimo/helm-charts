@@ -1,0 +1,6 @@
+{{- include "common.configmap" (list . "immich.configmap") -}}
+{{- define "immich.configmap" -}}
+data:
+  immich-config.yaml: |-
+    {{- .Values.configuration | toYaml | nindent 4 }}
+{{- end -}}

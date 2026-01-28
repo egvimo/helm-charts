@@ -1,0 +1,72 @@
+replicaCount: 1
+
+image:
+  repository: ghcr.io/immich-app/immich-server
+  pullPolicy: IfNotPresent
+  tag: ""  # Defaults to chart appVersion
+
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  runAsGroup: 3000
+  fsGroup: 2000
+  seccompProfile:
+    type: RuntimeDefault
+
+securityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+  privileged: false
+  readOnlyRootFilesystem: true
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: traefik
+  hosts:
+    - host: immich.192-168-178-31.sslip.io
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+
+resources:
+  requests:
+    memory: "512Mi"
+    cpu: "100m"
+  limits:
+    memory: "1024Mi"
+    cpu: "1500m"
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+timezone: "Europe/Berlin"
+
+database:
+  hostname: cnpg-cluster-rw.cnpg-system.svc.cluster.local
+  port: 5432
+  databaseName: immich
+  username: immich
+  passwordSecretName: immich
+
+configuration:
+  storageTemplate:
+    enabled: true
+    template: "{{y}}/{{y}}-{{MM}}/{{filename}}"
+
+library:
+  hostPath: /tmp

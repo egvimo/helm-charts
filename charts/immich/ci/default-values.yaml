@@ -1,0 +1,5 @@
+database:
+  hostname: cnpg-cluster-rw
+  databaseName: test
+  username: test
+  passwordSecretName: test
