@@ -969,6 +969,18 @@ entries:
     version: 0.1.0
   longhorn:
   - apiVersion: v2
+    created: "2026-01-29T09:06:42.644664884Z"
+    dependencies:
+    - name: longhorn
+      repository: https://charts.longhorn.io
+      version: 1.11.0
+    digest: e4bd0b4ec81787f8fa63aeca98e0700a94dd3100954db8625d69831cd7dd0640
+    name: longhorn
+    type: application
+    urls:
+    - https://github.com/egvimo/helm-charts/releases/download/longhorn-0.1.2/longhorn-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
     created: "2026-01-28T10:50:39.072059144Z"
     dependencies:
     - name: longhorn
@@ -2121,4 +2133,4 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/workflows-0.1.0/workflows-0.1.0.tgz
     version: 0.1.0
-generated: "2026-01-29T05:38:52.717270276Z"
+generated: "2026-01-29T09:06:42.644856374Z"
