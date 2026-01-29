@@ -20,7 +20,6 @@ service:
 
 ingress:
   enabled: true
-  ingressClassName: traefik
   hosts:
     - host: gerbera.192-168-178-31.sslip.io
       paths:

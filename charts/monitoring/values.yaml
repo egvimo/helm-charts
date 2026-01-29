@@ -24,8 +24,6 @@ kube-prometheus-stack:
     defaultDashboardsTimezone: Europe/Berlin
     ingress:
       enabled: true
-      annotations:
-        kubernetes.io/ingress.class: traefik
       hosts:
         - grafana.192-168-178-31.sslip.io
     alerting:
