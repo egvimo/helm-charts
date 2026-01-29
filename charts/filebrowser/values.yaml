@@ -20,8 +20,7 @@ service:
 
 ingress:
   enabled: true
-  annotations:
-    kubernetes.io/ingress.class: traefik
+  ingressClassName: traefik
   hosts:
     - host: filebrowser.192-168-178-31.sslip.io
       paths:
