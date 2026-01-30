@@ -1641,6 +1641,19 @@ entries:
     version: 0.1.0
   n8n:
   - apiVersion: v2
+    appVersion: 2.5.2
+    created: "2026-01-30T07:25:41.61419785Z"
+    dependencies:
+    - name: common
+      repository: file://../common
+      version: 0.1.0
+    digest: 8891b86dea2961d853894b368e09b26571e71c79770a2732508f7207327c0e25
+    name: n8n
+    type: application
+    urls:
+    - https://github.com/egvimo/helm-charts/releases/download/n8n-0.1.33/n8n-0.1.33.tgz
+    version: 0.1.33
+  - apiVersion: v2
     appVersion: 2.4.5
     created: "2026-01-22T19:34:09.415573522Z"
     dependencies:
@@ -2133,4 +2146,4 @@ entries:
     urls:
     - https://github.com/egvimo/helm-charts/releases/download/workflows-0.1.0/workflows-0.1.0.tgz
     version: 0.1.0
-generated: "2026-01-29T09:06:42.644856374Z"
+generated: "2026-01-30T07:25:41.754315603Z"
