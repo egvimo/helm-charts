@@ -1,0 +1,15 @@
+apiVersion: v2
+name: immich
+type: application
+version: 0.1.0
+# renovate: image=ghcr.io/immich-app/immich-server
+appVersion: "v2.4.1"
+dependencies:
+  - name: common
+    version: 0.1.0
+    repository: file://../common
+  - name: machine-learning
+    version: 0.1.0
+  - name: valkey
+    version: 0.9.3
+    repository: https://valkey.io/valkey-helm/

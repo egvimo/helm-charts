@@ -1,0 +1,66 @@
+{{- include "common.deployment" (list . "immich.deployment") -}}
+{{- define "immich.deployment" -}}
+spec:
+  template:
+    spec:
+      containers:
+        - env:
+            - name: TZ
+              value: {{ .Values.timezone | quote }}
+            - name: IMMICH_CONFIG_FILE
+              value: /config/immich-config.yaml
+            - name: DB_HOSTNAME
+              value: {{ .Values.database.hostname | quote }}
+            - name: DB_PORT
+              value: {{ .Values.database.port | quote }}
+            - name: DB_DATABASE_NAME
+              value: {{ .Values.database.databaseName | quote }}
+            - name: DB_USERNAME
+              value: {{ .Values.database.username | quote }}
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.database.passwordSecretName }}
+                  key: password
+            - name: IMMICH_MACHINE_LEARNING_URL
+              value: "http://{{ include "common.fullname" . }}-machine-learning"
+            - name: REDIS_HOSTNAME
+              value: "{{ include "common.fullname" . }}-valkey"
+          ports:
+            - name: http
+              containerPort: 2283
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /api/server/ping
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /api/server/ping
+              port: http
+          startupProbe:
+            httpGet:
+              path: /api/server/ping
+              port: http
+            initialDelaySeconds: 120
+            failureThreshold: 30
+          volumeMounts:
+            - name: configuration
+              mountPath: /config
+            {{- range .Values.extraVolumes }}
+            - name: {{ .name }}
+              mountPath: {{ .mountPath }}
+              readOnly: {{ .readOnly | default false }}
+            {{- end }}
+          {{- include "common.container" . | nindent 10 }}
+      volumes:
+        - name: configuration
+          configMap:
+            name: {{ include "common.fullname" . }}
+        {{- range .Values.extraVolumes }}
+        - name: {{ .name }}
+          hostPath:
+            path: {{ .hostPath }}
+            type: Directory
+        {{- end }}
+{{- end -}}
