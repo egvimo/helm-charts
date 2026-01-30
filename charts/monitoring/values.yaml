@@ -97,7 +97,7 @@ prometheus-smartctl-exporter:
   prometheusRules:
     enabled: true
   image:
-    # TODO Revert to default image when multi-arch is re-enabled
+    # TODO Revert to default prometheus-community image when multi-arch is re-enabled (#105)
     repository: ghcr.io/home-operations/smartctl-exporter
     tag: "0.14.0"
 

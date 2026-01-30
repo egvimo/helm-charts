@@ -1,0 +1,51 @@
+{{- include "common.deployment" (list . "machine-learning.deployment") -}}
+{{- define "machine-learning.deployment" -}}
+spec:
+  template:
+    spec:
+      containers:
+        - env:
+            - name: TZ
+              value: {{ .Values.timezone | quote }}
+            - name: IMMICH_PORT
+              value: "3003"
+            - name: TRANSFORMERS_CACHE
+              value: /cache
+            - name: HF_XET_CACHE
+              value: /cache/huggingface-xet
+            - name: MPLCONFIGDIR
+              value: /cache/matplotlib-config
+          ports:
+            - name: http
+              containerPort: 3003
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /ping
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /ping
+              port: http
+          startupProbe:
+            httpGet:
+              path: /ping
+              port: http
+            failureThreshold: 60
+          volumeMounts:
+            - name: cache
+              mountPath: /cache
+            - name: tmp
+              mountPath: /tmp
+          {{- include "common.container" . | nindent 10 }}
+      volumes:
+        - name: cache
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ include "common.fullname" . }}
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+        - name: tmp
+          emptyDir: {}
+{{- end -}}

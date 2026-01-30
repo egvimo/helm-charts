@@ -1,0 +1,21 @@
+resources:
+  limits:
+    cpu: 4
+    memory: 7Gi
+
+database:
+  hostname: cnpg-cluster-rw
+  databaseName: test
+  username: test
+  passwordSecretName: test
+
+extraVolumes:
+  - name: data
+    mountPath: /data
+    hostPath: /tmp
+
+machine-learning:
+  resources:
+    limits:
+      cpu: 4
+      memory: 7Gi
