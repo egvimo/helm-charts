@@ -8,3 +8,8 @@ databases:
     extensions:
       - vchord
       - earthdistance
+
+resources:
+  limits:
+    cpu: 4
+    memory: 7Gi
