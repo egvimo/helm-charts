@@ -1,10 +1,10 @@
 apiVersion: v2
 name: cert-manager
 type: application
-version: 0.1.3
+version: 0.1.4
 dependencies:
   - name: cert-manager
-    version: "v1.19.2"
+    version: "v1.19.3"
     repository: "https://charts.jetstack.io"
   - name: cert-manager-webhook-ionos
     version: "1.2.2"
