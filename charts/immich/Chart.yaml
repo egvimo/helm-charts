@@ -1,9 +1,9 @@
 apiVersion: v2
 name: immich
 type: application
-version: 0.1.1
+version: 0.1.2
 # renovate: image=ghcr.io/immich-app/immich-server
-appVersion: "v2.5.3"
+appVersion: "v2.5.5"
 dependencies:
   - name: common
     version: 0.1.0
