@@ -1,38 +1,39 @@
 name: Release Charts
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'charts/**'
   workflow_dispatch:
+    inputs:
+      chart:
+        description: "Chart name"
+        required: true
+        type: string
 
 jobs:
-  release:
+  push-chart:
     runs-on: ubuntu-latest
+
     permissions:
-      contents: write
-      pages: write
+      contents: read
+      packages: write
+
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
 
-      - name: Configure Git
+      - name: Setup Helm
+        uses: azure/setup-helm@v4
+
+      - name: Login to GHCR
         run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          echo "${{ secrets.GITHUB_TOKEN }}" | helm registry login ghcr.io \
+              --username "${{ github.actor }}" --password-stdin
 
-      - name: Add repositories
+      - name: Package chart
         run: |
-          helm repo add argo https://argoproj.github.io/argo-helm
-          helm repo add cnpg https://cloudnative-pg.github.io/charts/
-          helm repo add longhorn https://charts.longhorn.io
+          helm dependency update charts/${{ inputs.chart }}
+          helm package charts/${{ inputs.chart }}
 
-      - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.7.0
-        env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          CR_SKIP_EXISTING: true
+      - name: Push chart
+        run: |
+          helm push "${{ inputs.chart }}-"*.tgz \
+            oci://ghcr.io/${{ github.repository_owner }}/charts
