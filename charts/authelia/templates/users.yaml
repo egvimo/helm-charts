@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: authelia-users-database
+  labels:
+    {{- include "authelia.labels" . | nindent 4 }}
+data:
+  users_database.yml: |
+    users:
+      {{- .Values.users | toYaml | nindent 6 }}

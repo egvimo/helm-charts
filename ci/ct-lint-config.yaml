@@ -2,6 +2,7 @@ debug: true
 all: true
 chart-repos:
   - argo=https://argoproj.github.io/argo-helm
+  - authelia=https://charts.authelia.com
   - cnpg=https://cloudnative-pg.github.io/charts/
   - longhorn=https://charts.longhorn.io
 validate-maintainers: false

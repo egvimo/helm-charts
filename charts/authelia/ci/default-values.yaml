@@ -1,0 +1,7 @@
+users:
+  admin:
+    displayname: Admin
+    password: "$2a$12$vHW1QlHNfSlsOXRs2gR.2uwF72.QFZEpeZ14gN/B/K5VSh5zYhTYS"
+    email: admin@local.test
+    groups:
+      - admins

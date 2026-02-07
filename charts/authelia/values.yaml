@@ -1,0 +1,35 @@
+authelia:
+  ingress:
+    enabled: true
+
+  pod:
+    kind: Deployment
+    extraVolumeMounts:
+      - name: users
+        mountPath: /config/users_database.yml
+        subPath: users_database.yml
+        readOnly: true
+    extraVolumes:
+      - name: users
+        configMap:
+          name: authelia-users-database
+
+  configMap:
+    theme: dark
+    authentication_backend:
+      file:
+        enabled: true
+        password:
+          algorithm: bcrypt
+    session:
+      cookies:
+        - domain: 192-168-178-31.sslip.io
+          subdomain: auth
+    storage:
+      local:
+        enabled: true
+    notifier:
+      filesystem:
+        enabled: true
+
+users: {}
