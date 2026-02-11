@@ -1,6 +1,9 @@
 authelia:
   ingress:
     enabled: true
+    traefikCRD:
+      enabled: true
+      disableIngressRoute: true
 
   pod:
     kind: Deployment
@@ -21,6 +24,8 @@ authelia:
         enabled: true
         password:
           algorithm: bcrypt
+    access_control:
+      rules: []
     session:
       cookies:
         - domain: 192-168-178-31.sslip.io
