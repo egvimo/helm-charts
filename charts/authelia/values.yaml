@@ -36,5 +36,10 @@ authelia:
     notifier:
       filesystem:
         enabled: true
+    identity_providers:
+      oidc:
+        enabled: true
+        jwks: []
+        clients: []
 
 users: {}

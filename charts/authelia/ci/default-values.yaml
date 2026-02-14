@@ -1,3 +1,47 @@
+authelia:
+  configMap:
+    identity_providers:
+      oidc:
+        jwks:
+          - key:
+              value: |
+                -----BEGIN PRIVATE KEY-----
+                MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDOPSgqw1w1WlWA
+                UbM1i/vpbeTIrOL8Y2+8Abt2Z2SWTdrAct3Lwjk9MGHuvDN6n+teeIohUkUi7iH1
+                xnHHkrRTarPTDJBbbll2JyAYffYA2c18ygyyRDw6d09M+bG7BCTdbjFzS0v8/LGl
+                8tn/7T1o1LU0nzyc/qeu+QkrngE4EGD0KYkzQNXpEKmi4QSxMGT+qB60HXUUmJ/c
+                YhsCGFFdO7pKPAX3TklMdwb7OskU2S/Tmi0Y9kLPqYtbdoxwszX5UFclSo6bHvPq
+                3bxznTWDABf2L8OIIuXLJtq6bvsvjvhn1JkTjvot5D76hozlNS48vAnlqV3L/yXK
+                jgPhHKqvAgMBAAECggEAIClRVjnY60kHBFe5RqRpyGEmyFSNoSYwinUKstA002uY
+                rWI8TEYhfvVIkF4w+PJvVfAeOkwGFAhmq1ki7ShnjoqZOFRBPsDamp5HVwptjnxo
+                mwk3KaWSbtukNjDKEov248EHXR9k3jLZ0TMp48svRGXHTEl4vlLH+3VChNbDAebk
+                D5By8ThU9Ijcni8fZoAY3b0bW4nOJx2Dp/kxzqN1rU5EioNSZuZDtH2GAjslUkMe
+                2JvmYicE+nC1JDNWH2bLa+jSSUOkLD7vxUxbaVaW1LsSImB1pMFJFg3yrN6dpLUy
+                CcftXIYkziJMO39DSC6HUg8K1HB7xNG4qdEc8W8SgQKBgQDTqG7MQYXTMXX7T0lc
+                +rzhkEt64hdkWEGH6M36WwNVLnpsmLBnAL2Yk7j3dLLMfPbOuqpS5CbBV41PBWHb
+                DNZW47eRPtFlfjwelVukOBDSo6TtJykx1N8az5GHrcL3wByOznNKL+V7/Fp42a38
+                EiZ6pShUNd1x79vtbs7VmO0wEQKBgQD5chd03Jt+ozgPPVr/PjqePNDW52+6vqcu
+                QgKy8UuVdn8gyUuSrwI/OyqcNNfA8QwiFMKW0si21kCEWq2Iirc6MdiK7tdoo8WT
+                ZjzXdrbDx1yZMCaH82q5EHK9Fg7X96RXY6BApnR0xKXeoZwtpQWyRlv6iLzJXCZ9
+                Tfm55BbuvwKBgQDJD8ew4M1vwhyBjt/yI34qCBirsvrlp7EYml6Q5MRVtsE1SBbK
+                wjlZJ3seFw2Ck3MhDtGdzH3ETJc/6az7mUZDZC6NG09vSmtx4hAb/+Z7MlkJr5nC
+                bKVDospsSPRcxXJbdmKuprEpBqArDR3pxpQnDZ0x4blq8p/I/OoenhczAQKBgQDD
+                tMnGfBbbQn+HJWIxg8dFwv0uvqGgaFiOKGgpsLrWZwPS21uZmAkxRuBlcegcjoIw
+                cw1Ae9vR50LzFJm12O9sjxMP3dfPVz56KOpvOcqmy9FQtsBkRYxj6g27YIUA2GBt
+                19IxJueTfX2NsEnyXdicSCt94q4LZWslQHo/aD69zQKBgQCx1QFA7kgAA44m3dC4
+                uyJwiOw8GetVaA/Uw+vtJWBauf6K6LYF33Bh7NCq9gzwu+mjugbvSxxQS9YQe6c2
+                kJRvqVaMxFf1JktomYOtpXSQDpmFVCEbRSb863Z0oybxjxdeAQzhUqF3h/LExFFO
+                sdRPu8E2M1WaLwwLF0WVqXa9rQ==
+                -----END PRIVATE KEY-----
+        clients:
+          - client_id: test
+            client_name: Test
+            client_secret:
+              value: "$pbkdf2-sha512$310000$lEHLOI3Q11Z9RxFHi9lNSg$MRgLyVhcSd6cELb9IMD3evvko8YQse24VySOKWHgWmNtGADZOW4itd1AnPHJr/QGn8g1ZCqE1HUcQ68lyW/zOQ"  # test
+            redirect_uris:
+              - https://oidc.example.com/oauth2/callback
+            authorization_policy: one_factor
+
 users:
   admin:
     displayname: Admin
