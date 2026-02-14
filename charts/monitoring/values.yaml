@@ -21,6 +21,9 @@ kube-prometheus-stack:
           webhook_configs:
             - url: "http://apprise.apprise.svc.cluster.local/webhook/alertmanager?config_key=apprise&tag=alerts"
   grafana:
+    grafana.ini:
+      server:
+        root_url: "{{ if (and .Values.ingress.enabled .Values.ingress.hosts) }}https://{{ tpl (.Values.ingress.hosts | first) . }}{{ else }}''{{ end }}"
     defaultDashboardsTimezone: Europe/Berlin
     ingress:
       enabled: true
