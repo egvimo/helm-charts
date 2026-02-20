@@ -41,5 +41,9 @@ spec:
             - -v
             - ON_ERROR_STOP=1
             - -c
-            - SELECT 1
+            - |
+              SELECT 1;
+              CREATE TABLE IF NOT EXISTS helm_test(id int);
+              DROP TABLE helm_test;
+              SELECT datname, pg_catalog.pg_get_userbyid(datdba) FROM pg_database WHERE datname = current_database();
 {{- end }}

@@ -1,0 +1,30 @@
+temporal:
+  server:
+    config:
+      persistence:
+        datastores:
+          default:
+            sql:
+              createDatabase: false
+              manageSchema: true
+              pluginName: postgres12
+              databaseName: temporal
+              connectAddr: cnpg-cluster-rw.cnpg-system.svc.cluster.local:5432
+              connectProtocol: tcp
+              user: temporal
+              existingSecret: temporal
+              secretKey: password
+          visibility:
+            sql:
+              createDatabase: false
+              manageSchema: true
+              pluginName: postgres12
+              databaseName: temporal
+              connectAddr: cnpg-cluster-rw.cnpg-system.svc.cluster.local:5432
+              connectProtocol: tcp
+              user: temporal
+              existingSecret: temporal
+              secretKey: password
+  web:
+    ingress:
+      enabled: true
