@@ -4,6 +4,7 @@ chart-repos:
   - authelia=https://charts.authelia.com
   - cnpg=https://cloudnative-pg.github.io/charts/
   - longhorn=https://charts.longhorn.io
+  - temporal=https://go.temporal.io/helm-charts/
 excluded-charts:
   - common
   - jdownloader

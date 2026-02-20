@@ -1,0 +1,17 @@
+temporal:
+  server:
+    config:
+      persistence:
+        datastores:
+          default:
+            sql:
+              databaseName: test
+              connectAddr: cnpg-cluster-rw:5432
+              user: test
+              existingSecret: test
+          visibility:
+            sql:
+              databaseName: test
+              connectAddr: cnpg-cluster-rw:5432
+              user: test
+              existingSecret: test
