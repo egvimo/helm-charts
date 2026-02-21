@@ -3,7 +3,7 @@ name: filebrowser
 type: application
 version: 0.1.13
 # renovate: image=filebrowser/filebrowser
-appVersion: "v2.59.0"
+appVersion: "v2.60.0"
 dependencies:
   - name: common
     version: 0.1.0
