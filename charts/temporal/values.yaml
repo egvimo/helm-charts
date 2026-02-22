@@ -28,3 +28,14 @@ temporal:
   web:
     ingress:
       enabled: true
+      hosts:
+        - temporal.192-168-178-31.sslip.io
+    additionalEnv:
+      - name: TEMPORAL_AUTH_ENABLED
+        value: "true"
+      - name: TEMPORAL_AUTH_PROVIDER_URL
+        value: "https://accounts.google.com"
+      - name: TEMPORAL_AUTH_CLIENT_ID
+        value: "temporal"
+      - name: TEMPORAL_AUTH_CALLBACK_URL
+        value: "https://xxxx.com:8080/auth/sso/callback"
