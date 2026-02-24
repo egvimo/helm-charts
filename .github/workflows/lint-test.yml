@@ -84,8 +84,27 @@ jobs:
             bash "$PREP_FILE"
           fi
 
+      - name: Prepare chart-testing config
+        run: |
+          set -euo pipefail
+
+          GLOBAL_CONFIG="ci/ct-install-config.yaml"
+          CHART_CONFIG="charts/${{ matrix.chart }}/ci/ct-install-config.yaml"
+          EFFECTIVE_CONFIG="/tmp/ct-install-${{ matrix.chart }}.yaml"
+
+          if [ -f "$CHART_CONFIG" ]; then
+            echo "🔀 Merging global and chart-specific config"
+            yq eval-all 'select(fileIndex == 0) * select(fileIndex == 1)' \
+              "$GLOBAL_CONFIG" "$CHART_CONFIG" > "$EFFECTIVE_CONFIG"
+          else
+            cp "$GLOBAL_CONFIG" "$EFFECTIVE_CONFIG"
+          fi
+
+          echo "Effective config:"
+          cat "$EFFECTIVE_CONFIG"
+
       - name: Run chart-testing (install)
         run: |
           ct install \
-            --config ci/ct-install-config.yaml \
+            --config /tmp/ct-install-${{ matrix.chart }}.yaml \
             --charts charts/${{ matrix.chart }}
