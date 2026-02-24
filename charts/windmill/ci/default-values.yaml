@@ -1,0 +1,38 @@
+windmill:
+  windmill:
+    databaseUrl: postgres://test:$(DATABASE_PASSWORD)@cnpg-cluster-rw/test
+
+    workerGroups:
+      - name: "default"
+        controller: "Deployment"
+        replicas: 1
+        privileged: false
+        disableUnsharePid: true
+        podSecurityContext:
+          runAsNonRoot: true
+          runAsUser: 11319
+          runAsGroup: 11319
+          fsGroup: 11319
+          seccompProfile:
+            type: RuntimeDefault
+        containerSecurityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - ALL
+        extraEnv:
+          - name: DATABASE_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: test
+                key: password
+        mode: "worker"
+        exposeHostDocker: false
+
+    app:
+      extraEnv:
+      - name: DATABASE_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: test
+            key: password

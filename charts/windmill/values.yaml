@@ -1,0 +1,84 @@
+windmill:
+  postgresql:
+    enabled: false
+  minio:
+    enabled: false
+
+  windmill:
+    appReplicas: 1
+    databaseUrl: postgres://windmill:$(DATABASE_PASSWORD)@cnpg-cluster-rw.cnpg-system.svc.cluster.local/windmill
+    baseDomain: windmill.192-168-178-31.sslip.io
+    baseProtocol: https
+
+    app:
+      podSecurityContext:
+        runAsNonRoot: true
+        runAsUser: 11319
+        runAsGroup: 11319
+        fsGroup: 11319
+        seccompProfile:
+          type: RuntimeDefault
+      containerSecurityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+            - ALL
+        privileged: false
+      extraEnv:
+      - name: DATABASE_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: windmill
+            key: password
+
+    workerGroups:
+      - name: "default"
+        controller: "Deployment"
+        replicas: 1
+        privileged: false
+        disableUnsharePid: true
+        podSecurityContext:
+          runAsNonRoot: true
+          runAsUser: 11319
+          runAsGroup: 11319
+          fsGroup: 11319
+          seccompProfile:
+            type: RuntimeDefault
+        containerSecurityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - ALL
+          privileged: false
+        resources:
+          limits:
+            memory: "2Gi"
+        extraEnv:
+          - name: DATABASE_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: windmill
+                key: password
+        mode: "worker"
+        exposeHostDocker: false
+
+    windmillExtra:
+      podSecurityContext:
+        runAsNonRoot: true
+        runAsUser: 11319
+        runAsGroup: 11319
+        fsGroup: 11319
+        seccompProfile:
+          type: RuntimeDefault
+      containerSecurityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+            - ALL
+        privileged: false
+
+    indexer:
+      enabled: false
+
+    operator:
+      enabled: false  # TODO Enable

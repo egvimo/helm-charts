@@ -1,0 +1,3 @@
+chart-repos:
+  - windmill=https://windmill-labs.github.io/windmill-helm-charts/
+release-label: release

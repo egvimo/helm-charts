@@ -5,4 +5,5 @@ chart-repos:
   - authelia=https://charts.authelia.com
   - cnpg=https://cloudnative-pg.github.io/charts/
   - longhorn=https://charts.longhorn.io
+  - windmill=https://windmill-labs.github.io/windmill-helm-charts/
 validate-maintainers: false

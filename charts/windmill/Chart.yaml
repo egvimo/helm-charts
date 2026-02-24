@@ -1,0 +1,8 @@
+apiVersion: v2
+name: windmill
+type: application
+version: 0.1.0
+dependencies:
+  - name: windmill
+    version: 4.0.84
+    repository: https://windmill-labs.github.io/windmill-helm-charts/
