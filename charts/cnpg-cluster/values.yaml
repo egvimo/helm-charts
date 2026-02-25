@@ -8,6 +8,10 @@ superuserSecret:
 storage:
   size: 3Gi
 
+databases: []
+
+roles: []
+
 resources:
   requests:
     cpu: 100m
@@ -15,5 +19,3 @@ resources:
   limits:
     cpu: 2250m
     memory: 1Gi
-
-databases: []

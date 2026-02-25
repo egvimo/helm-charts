@@ -1,5 +1,5 @@
-{{- if .Values.databases }}
 {{- $db := index .Values.databases 0 -}}
+{{- $role := index .Values.roles 0 -}}
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -32,7 +32,7 @@ spec:
             - name: PGPASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ $db.passwordSecretName }}
+                  name: {{ $role.passwordSecret.name }}
                   key: password
             - name: PGCONNECT_TIMEOUT
               value: "10"
@@ -47,4 +47,3 @@ spec:
               WHERE d.datname = current_database();
               CREATE TABLE IF NOT EXISTS helm_test(id int);
               DROP TABLE helm_test;
-{{- end }}

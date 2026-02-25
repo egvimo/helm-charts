@@ -18,17 +18,10 @@ spec:
       wal_keep_size: "128MB"
     shared_preload_libraries:
       - "vchord.so"
-  {{- if .Values.databases }}
+  {{- if .Values.roles }}
   managed:
     roles:
-      {{- range .Values.databases }}
-      - name: {{ .owner }}
-        ensure: present
-        login: true
-        superuser: false
-        passwordSecret:
-          name: {{ .passwordSecretName }}
-      {{- end }}
+      {{- toYaml .Values.roles | nindent 6 }}
   {{- end }}
   monitoring:
     enablePodMonitor: true

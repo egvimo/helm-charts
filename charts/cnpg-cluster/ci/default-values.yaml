@@ -4,10 +4,14 @@ superuserSecret:
 databases:
   - database: test
     owner: test
-    passwordSecretName: test
     extensions:
       - vchord
-      - earthdistance
+
+roles:
+  - name: test
+    login: true
+    passwordSecret:
+      name: test
 
 resources:
   limits:
