@@ -27,6 +27,8 @@ authelia:
     access_control:
       rules: []
     session:
+      inactivity: 1d
+      expiration: 1w
       cookies:
         - domain: 192-168-178-31.sslip.io
           subdomain: auth

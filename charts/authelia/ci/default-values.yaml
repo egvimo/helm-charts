@@ -41,6 +41,7 @@ authelia:
             redirect_uris:
               - https://oidc.example.com/oauth2/callback
             authorization_policy: one_factor
+            pre_configured_consent_duration: 4w
 
 users:
   admin:
