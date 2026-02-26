@@ -7,7 +7,6 @@ windmill:
         controller: "Deployment"
         replicas: 1
         privileged: false
-        disableUnsharePid: true
         podSecurityContext:
           runAsNonRoot: true
           runAsUser: 11319
@@ -16,11 +15,13 @@ windmill:
           seccompProfile:
             type: RuntimeDefault
         containerSecurityContext:
-          allowPrivilegeEscalation: false
           capabilities:
             drop:
               - ALL
+          privileged: true
         extraEnv:
+          - name: ENABLE_UNSHARE_PID
+            value: "true"
           - name: DATABASE_PASSWORD
             valueFrom:
               secretKeyRef:
