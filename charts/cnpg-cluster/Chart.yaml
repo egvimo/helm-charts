@@ -3,7 +3,7 @@ name: cnpg-cluster
 type: application
 version: 0.1.1
 # renovate: image=ghcr.io/tensorchord/cloudnative-vectorchord
-appVersion: "18.2-1.1.0"
+appVersion: "18.3-1.1.0"
 dependencies:
   - name: common
     version: 0.1.0
