@@ -3,7 +3,7 @@ name: apprise
 type: application
 version: 0.1.7
 # renovate: image=ghcr.io/egvimo/apprise-api-headless
-appVersion: "0.2.1"
+appVersion: "0.2.2"
 dependencies:
   - name: common
     version: 0.1.0
