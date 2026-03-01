@@ -34,7 +34,7 @@ windmill:
     workerGroups:
       - name: "default"
         controller: "Deployment"
-        replicas: 1
+        replicas: 2
         privileged: false
         podSecurityContext:
           runAsNonRoot: true
