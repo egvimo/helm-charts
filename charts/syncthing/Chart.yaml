@@ -3,7 +3,7 @@ name: syncthing
 type: application
 version: 0.1.4
 # renovate: image=syncthing/syncthing
-appVersion: "2.0.14"
+appVersion: "2.0.15"
 dependencies:
   - name: common
     version: 0.1.0
