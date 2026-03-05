@@ -1,0 +1,55 @@
+replicaCount: 1
+
+image:
+  repository: andrewgaul/s3proxy
+  pullPolicy: IfNotPresent
+  tag: ""  # Defaults to chart appVersion
+
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 11319
+  runAsGroup: 11319
+  fsGroup: 11319
+  seccompProfile:
+    type: RuntimeDefault
+
+securityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+  privileged: false
+  readOnlyRootFilesystem: true
+
+service:
+  type: ClusterIP
+  port: 80
+
+resources:
+  requests:
+    memory: "128Mi"
+    cpu: "100m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+dataVolume:
+  hostPath: /tmp
+
+extraEnv: []
+
+s3proxy:
+  authorization: "aws-v2-or-v4"
+  identity: "local-identity"
+  credential: "local-credential"

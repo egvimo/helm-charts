@@ -1,0 +1,38 @@
+{{- include "common.deployment" (list . "s3proxy.deployment") -}}
+{{- define "s3proxy.deployment" -}}
+spec:
+  template:
+    spec:
+      containers:
+        - env:
+            - name: S3PROXY_ENDPOINT
+              value: "http://0.0.0.0:8080"
+            - name: S3PROXY_AUTHORIZATION
+              value: {{ .Values.s3proxy.authorization | quote }}
+            - name: S3PROXY_IDENTITY
+              value: {{ .Values.s3proxy.identity | quote }}
+            - name: S3PROXY_CREDENTIAL
+              value: {{ .Values.s3proxy.credential | quote }}
+            {{- with .Values.extraEnv }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            tcpSocket:
+              port: http
+          readinessProbe:
+            tcpSocket:
+              port: http
+          volumeMounts:
+            - name: data
+              mountPath: /data
+          {{- include "common.container" . | nindent 10 }}
+      volumes:
+        - name: data
+          hostPath:
+            path: {{ .Values.dataVolume.hostPath }}
+            type: Directory
+{{- end -}}
