@@ -1,0 +1,6 @@
+apiVersion: v2
+name: signal
+type: application
+version: 0.1.0
+# renovate: image=bbernhard/signal-cli-rest-api
+appVersion: "0.97"

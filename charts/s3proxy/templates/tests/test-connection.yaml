@@ -11,11 +11,13 @@ spec:
     - name: aws-cli
       image: amazon/aws-cli
       env:
+        - name: AWS_ENDPOINT_URL
+          value: http://{{ include "common.fullname" . }}:{{ .Values.service.port }}
         - name: AWS_ACCESS_KEY_ID
           value: {{ .Values.s3proxy.identity | quote }}
         - name: AWS_SECRET_ACCESS_KEY
           value: {{ .Values.s3proxy.credential | quote }}
         - name: AWS_DEFAULT_REGION
           value: "eu-central-1"
-      args: ['s3', 'ls', '--endpoint-url', 'http://{{ include "common.fullname" . }}:{{ .Values.service.port }}']
+      args: ['s3', 'ls']
   restartPolicy: Never

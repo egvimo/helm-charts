@@ -1,0 +1,40 @@
+{{- include "common.deployment" (list . "signal.deployment") -}}
+{{- define "signal.deployment" -}}
+spec:
+  template:
+    spec:
+      containers:
+        - env:
+            - name: MODE
+              value: {{ .Values.signalCli.mode | quote }}
+            {{- if .Values.signalCli.autoReceiveSchedule }}
+            - name: AUTO_RECEIVE_SCHEDULE
+              value: {{ .Values.signalCli.autoReceiveSchedule | quote }}
+            {{- end }}
+            - name: SIGNAL_CLI_CHOWN_ON_STARTUP
+              value: "false"
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /v1/health
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /v1/health
+              port: http
+          volumeMounts:
+            - name: config
+              mountPath: /home/.local/share/signal-cli
+          {{- include "common.container" . | nindent 10 }}
+      volumes:
+        - name: config
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ include "common.fullname" . }}
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+{{- end -}}
