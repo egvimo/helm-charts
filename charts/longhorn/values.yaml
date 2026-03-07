@@ -1,8 +1,8 @@
 longhorn:
-  preUpgradeChecker:
-    jobEnabled: false
   persistence:
     reclaimPolicy: Retain
+  preUpgradeChecker:
+    jobEnabled: false
   ingress:
     enabled: true
     host: longhorn.192-168-178-31.sslip.io

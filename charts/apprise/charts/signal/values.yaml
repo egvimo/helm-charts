@@ -1,0 +1,58 @@
+replicaCount: 1
+
+image:
+  repository: bbernhard/signal-cli-rest-api
+  pullPolicy: IfNotPresent
+  tag: ""  # Defaults to chart appVersion
+
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+
+podSecurityContext:
+  # TODO
+  # runAsNonRoot: true
+  # runAsUser: 11319
+  # runAsGroup: 11319
+  fsGroup: 11319
+  seccompProfile:
+    type: RuntimeDefault
+
+securityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+  privileged: false
+  readOnlyRootFilesystem: true
+
+service:
+  type: ClusterIP
+  port: 80
+
+resources:
+  requests:
+    memory: "128Mi"
+    cpu: "100m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+persistence:
+  enabled: true
+  annotations: {}
+  storageClass: ""
+  accessModes:
+    - ReadWriteOnce
+  size: 500Mi
+
+signalCli:
+  mode: native
+  autoReceiveSchedule: "0 20 * * *"

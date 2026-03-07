@@ -1,0 +1,9 @@
+dependencies:
+- name: common
+  repository: oci://ghcr.io/egvimo/charts
+  version: 0.1.0
+- name: signal
+  repository: ""
+  version: 0.1.0
+digest: sha256:e036c0c2ba184979cd82a6e701806c7dec92144252371ce39a8f1b8dcb56dbed
+generated: "2026-03-07T14:59:42.209585824+01:00"
