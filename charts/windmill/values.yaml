@@ -61,6 +61,38 @@ windmill:
                 key: password
         mode: "worker"
         exposeHostDocker: false
+      - name: "native"
+        controller: "Deployment"
+        replicas: 1
+        privileged: false
+        podSecurityContext:
+          runAsNonRoot: true
+          runAsUser: 11319
+          runAsGroup: 11319
+          fsGroup: 11319
+          seccompProfile:
+            type: RuntimeDefault
+        containerSecurityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - ALL
+          privileged: false
+        resources:
+          limits:
+            memory: "2Gi"
+        extraEnv:
+          - name: "NATIVE_MODE"
+            value: "true"
+          - name: "SLEEP_QUEUE"
+            value: "200"
+          - name: DATABASE_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: windmill
+                key: password
+        mode: "worker"
+        exposeHostDocker: false
 
     windmillExtra:
       podSecurityContext:
