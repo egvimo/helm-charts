@@ -3,7 +3,10 @@ all: true
 chart-repos:
   - argo=https://argoproj.github.io/argo-helm
   - authelia=https://charts.authelia.com
+  - cert-manager=https://charts.jetstack.io
+  - cert-manager-webhook-ionos=https://fabmade.github.io/cert-manager-webhook-ionos
   - cnpg=https://cloudnative-pg.github.io/charts/
   - longhorn=https://charts.longhorn.io
+  - valkey=https://valkey.io/valkey-helm/
   - windmill=https://windmill-labs.github.io/windmill-helm-charts/
 validate-maintainers: false

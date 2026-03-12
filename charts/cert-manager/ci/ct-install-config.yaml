@@ -1,0 +1,3 @@
+chart-repos:
+  - cert-manager=https://charts.jetstack.io
+  - cert-manager-webhook-ionos=https://fabmade.github.io/cert-manager-webhook-ionos

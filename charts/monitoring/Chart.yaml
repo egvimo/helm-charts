@@ -12,3 +12,6 @@ dependencies:
   - name: file-exporter
     version: "0.1.0"
     condition: file-exporter.enabled
+  - name: common
+    version: 0.1.0
+    repository: oci://ghcr.io/egvimo/charts

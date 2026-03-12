@@ -7,4 +7,4 @@ appVersion: "v1.11.0"
 dependencies:
   - name: common
     version: 0.1.0
-    repository: file://../common
+    repository: oci://ghcr.io/egvimo/charts
