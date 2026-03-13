@@ -61,6 +61,35 @@ windmill:
                 key: password
         mode: "worker"
         exposeHostDocker: false
+      - name: "custom"
+        controller: "Deployment"
+        replicas: 1
+        privileged: false
+        podSecurityContext:
+          seccompProfile:
+            type: RuntimeDefault
+        containerSecurityContext:
+          capabilities:
+            drop:
+              - ALL
+          privileged: true
+        resources:
+          limits:
+            memory: "2Gi"
+        extraEnv:
+          - name: ENABLE_UNSHARE_PID
+            value: "true"
+          - name: DATABASE_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: windmill
+                key: password
+          - name: "INIT_SCRIPT"
+            value: "apt-get update\napt-get install -y postgresql-common\n/usr/share/postgresql-common/pgdg/apt.postgresql.org.sh -y\napt-get install -y postgresql-client-18"
+          - name: "WORKER_TAGS"
+            value: "bun,deno,python3,bash,dependency,flow,hub,psql,pg_dump,other"
+        mode: "worker"
+        exposeHostDocker: false
       - name: "native"
         controller: "Deployment"
         replicas: 1
