@@ -21,7 +21,7 @@ windmill:
           privileged: true
         extraEnv:
           - name: ENABLE_UNSHARE_PID
-            value: "true"
+            value: "false"
           - name: DATABASE_PASSWORD
             valueFrom:
               secretKeyRef:
@@ -46,7 +46,7 @@ windmill:
             memory: "2Gi"
         extraEnv:
           - name: ENABLE_UNSHARE_PID
-            value: "true"
+            value: "false"
           - name: DATABASE_PASSWORD
             valueFrom:
               secretKeyRef:
