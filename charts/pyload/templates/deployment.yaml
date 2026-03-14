@@ -1,0 +1,44 @@
+{{- include "common.deployment" (list . "pyload.deployment") -}}
+{{- define "pyload.deployment" -}}
+spec:
+  template:
+    spec:
+      containers:
+        - env:
+            - name: TZ
+              value: {{ .Values.timezone | quote }}
+            - name: PUID
+              value: "11319"
+            - name: PGID
+              value: "11319"
+          ports:
+            - name: http
+              containerPort: 8000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: downloads
+              mountPath: /downloads
+          {{- include "common.container" . | nindent 10 }}
+      volumes:
+        - name: config
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ include "common.fullname" . }}
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+        - name: downloads
+          hostPath:
+            path: {{ .Values.downloadsVolume.hostPath }}
+            type: Directory
+{{- end -}}
