@@ -5,5 +5,5 @@ dependencies:
 - name: signal
   repository: ""
   version: 0.1.0
-digest: sha256:e036c0c2ba184979cd82a6e701806c7dec92144252371ce39a8f1b8dcb56dbed
-generated: "2026-03-07T14:59:42.209585824+01:00"
+digest: sha256:2ada49a9e7e8db303006c538a4b996c15c8a449ee85a4f28eee1964a1d09ec6b
+generated: "2026-03-17T19:56:15.664572752+01:00"

@@ -11,8 +11,10 @@ spec:
             - name: AUTO_RECEIVE_SCHEDULE
               value: {{ .Values.signalCli.autoReceiveSchedule | quote }}
             {{- end }}
-            - name: SIGNAL_CLI_CHOWN_ON_STARTUP
-              value: "false"
+            - name: SIGNAL_CLI_UID
+              value: "11319"
+            - name: SIGNAL_CLI_GID
+              value: "11319"
           ports:
             - name: http
               containerPort: 8080

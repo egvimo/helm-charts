@@ -10,3 +10,4 @@ dependencies:
     repository: oci://ghcr.io/egvimo/charts
   - name: signal
     version: 0.1.0
+    condition: signal.enabled

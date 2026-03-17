@@ -44,3 +44,6 @@ serviceMonitor:
   enabled: true
 
 configSecretRef: {}
+
+signal:
+  enabled: true
