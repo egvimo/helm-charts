@@ -1,7 +1,6 @@
 debug: true
 all: true
 chart-repos:
-  - argo=https://argoproj.github.io/argo-helm
   - authelia=https://charts.authelia.com
   - cert-manager=https://charts.jetstack.io
   - cert-manager-webhook-ionos=https://fabmade.github.io/cert-manager-webhook-ionos

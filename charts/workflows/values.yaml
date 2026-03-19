@@ -1,9 +1,0 @@
-timezone: Europe/Berlin
-appriseUrl: http://apprise.apprise.svc.cluster.local/notify/apprise
-
-cnpgPgDump:
-  schedule: "15 3 * * *"
-  host: cnpg-cluster-rw.cnpg-system.svc.cluster.local
-  superuserSecretName: superuser
-  hostPath: /mnt/dumps
-  nodeSelector: {}
