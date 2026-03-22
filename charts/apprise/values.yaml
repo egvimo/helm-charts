@@ -45,5 +45,8 @@ serviceMonitor:
 
 configSecretRef: {}
 
+bridge:
+  enabled: true
+
 signal:
   enabled: true

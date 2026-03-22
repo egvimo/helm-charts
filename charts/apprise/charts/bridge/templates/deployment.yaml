@@ -1,0 +1,25 @@
+{{- include "common.deployment" (list . "bridge.deployment") -}}
+{{- define "bridge.deployment" -}}
+spec:
+  template:
+    spec:
+      containers:
+        - env:
+            - name: APPRISE_API_BASE_URL
+              value: "http://apprise"
+          ports:
+            - name: http
+              containerPort: 8001
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 10
+          {{- include "common.container" . | nindent 10 }}
+{{- end -}}
