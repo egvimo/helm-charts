@@ -1,1 +1,0 @@
-{{- include "common.test-connection" (merge . (dict "Args" (dict "path" "/healthz"))) }}
