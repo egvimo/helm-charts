@@ -4,7 +4,26 @@ spec:
   template:
     spec:
       containers:
-        - ports:
+        - env:
+            - name: PUID
+              value: "11319"
+            - name: PGID
+              value: "11319"
+            - name: APPRISE_DEFAULT_THEME
+              value: "dark"
+            - name: APPRISE_STATEFUL_MODE
+              value: "simple"
+            - name: APPRISE_WORKER_COUNT
+              value: {{ .Values.apprise.workerCount | quote }}
+            {{- if .Values.apprise.configLock }}
+            - name: APPRISE_CONFIG_LOCK
+              value: "yes"
+            {{- end }}
+            {{- if .Values.apprise.adminMode }}
+            - name: APPRISE_ADMIN
+              value: "yes"
+            {{- end }}
+          ports:
             - name: http
               containerPort: 8000
               protocol: TCP
@@ -18,20 +37,38 @@ spec:
               path: /status
               port: http
             initialDelaySeconds: 10
-          {{- if .Values.configSecretRef }}
+
           volumeMounts:
+            - name: data
+              mountPath: /config
+            - name: data
+              mountPath: /plugin
+            - name: data
+              mountPath: /attach
+            {{- if .Values.configSecretRef }}
             - name: config
-              mountPath: /apprise/config/{{ .Values.configSecretRef.key }}
+              mountPath: /config/{{ .Values.configSecretRef.key }}
               subPath: {{ .Values.configSecretRef.key }}
-          {{- end }}
+            {{- end }}
+            - name: tmp
+              mountPath: /tmp
           {{- include "common.container" . | nindent 10 }}
-      {{- if .Values.configSecretRef }}
       volumes:
+        - name: data
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ include "common.fullname" . }}
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+        {{- if .Values.configSecretRef }}
         - name: config
           secret:
             secretName: {{ .Values.configSecretRef.name }}
             items:
               - key: {{ .Values.configSecretRef.key }}
                 path: {{ .Values.configSecretRef.key }}
-      {{- end }}
+        {{- end }}
+        - name: tmp
+          emptyDir: {}
 {{- end -}}

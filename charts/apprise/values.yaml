@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: ghcr.io/egvimo/apprise-api-headless
+  repository: caronc/apprise
   pullPolicy: IfNotPresent
   tag: ""  # Defaults to chart appVersion
 
@@ -10,9 +10,21 @@ fullnameOverride: ""
 
 podAnnotations: {}
 
-podSecurityContext: {}
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 11319
+  runAsGroup: 11319
+  fsGroup: 11319
+  seccompProfile:
+    type: RuntimeDefault
 
-securityContext: {}
+securityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+  privileged: false
+  readOnlyRootFilesystem: true
 
 service:
   type: ClusterIP
@@ -40,10 +52,23 @@ tolerations: []
 
 affinity: {}
 
+persistence:
+  enabled: true
+  annotations: {}
+  storageClass: ""
+  accessModes:
+    - ReadWriteOnce
+  size: 250Mi
+
 serviceMonitor:
   enabled: true
 
 configSecretRef: {}
+
+apprise:
+  configLock: true
+  adminMode: true
+  workerCount: 1
 
 bridge:
   enabled: true
