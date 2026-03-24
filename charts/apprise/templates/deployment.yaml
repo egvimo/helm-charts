@@ -1,6 +1,8 @@
 {{- include "common.deployment" (list . "apprise.deployment") -}}
 {{- define "apprise.deployment" -}}
 spec:
+  strategy:
+    type: Recreate
   template:
     spec:
       containers:
