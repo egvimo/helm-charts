@@ -60,6 +60,8 @@ persistence:
     - ReadWriteOnce
   size: 250Mi
 
+timezone: "Europe/Berlin"
+
 serviceMonitor:
   enabled: true
 

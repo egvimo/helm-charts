@@ -5,6 +5,8 @@ spec:
     spec:
       containers:
         - env:
+            - name: TZ
+              value: {{ .Values.timezone | quote }}
             - name: PUID
               value: "11319"
             - name: PGID
