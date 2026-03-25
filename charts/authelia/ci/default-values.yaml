@@ -1,7 +1,23 @@
 authelia:
   configMap:
+    identity_validation:
+      reset_password:
+        secret:
+          value: 'TestTestTestTestTestTest'
+    access_control:
+      rules:
+        - domain: "*.192-168-178-31.sslip.io"
+          policy: one_factor
+    session:
+      encryption_key:
+        value: 'TestTestTestTestTestTest'
+    storage:
+      encryption_key:
+        value: 'TestTestTestTestTestTest'
     identity_providers:
       oidc:
+        hmac_secret:
+          value: 'TestTestTestTestTestTest'
         jwks:
           - key:
               value: |

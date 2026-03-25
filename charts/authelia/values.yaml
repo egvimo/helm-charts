@@ -19,6 +19,10 @@ authelia:
 
   configMap:
     theme: dark
+    identity_validation:
+      reset_password:
+        secret:
+          value: ''
     authentication_backend:
       file:
         enabled: true
@@ -27,12 +31,16 @@ authelia:
     access_control:
       rules: []
     session:
-      inactivity: 1d
-      expiration: 1w
+      inactivity: 1h
+      expiration: 1d
+      encryption_key:
+        value: ''
       cookies:
         - domain: 192-168-178-31.sslip.io
           subdomain: auth
     storage:
+      encryption_key:
+        value: ''
       local:
         enabled: true
     notifier:
@@ -41,6 +49,8 @@ authelia:
     identity_providers:
       oidc:
         enabled: true
+        hmac_secret:
+          value: ''
         jwks: []
         clients: []
 
