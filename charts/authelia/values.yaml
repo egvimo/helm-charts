@@ -54,4 +54,7 @@ authelia:
         jwks: []
         clients: []
 
+  persistence:
+    enabled: true
+
 users: {}
