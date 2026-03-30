@@ -1,12 +1,12 @@
 dependencies:
 - name: common
   repository: oci://ghcr.io/egvimo/charts
-  version: 0.1.0
+  version: 0.1.1
 - name: bridge
   repository: ""
   version: 0.1.0
 - name: signal
   repository: ""
   version: 0.1.0
-digest: sha256:36fc89dbf7a221d21c8cbce65b7638fd8ba3c1957e21a0275438891f4c027af1
-generated: "2026-03-22T21:29:01.753051743+01:00"
+digest: sha256:b4c2d25e29d6c79c24314d3add0a50e3e5af9c434c276c9715eb26574f1ba279
+generated: "2026-03-30T12:02:33.098509205Z"
