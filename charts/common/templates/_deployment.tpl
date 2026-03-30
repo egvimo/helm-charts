@@ -6,7 +6,9 @@ metadata:
   labels:
     {{- include "common.labels" . | nindent 4 }}
 spec:
+  {{- if hasKey .Values "replicaCount" }}
   replicas: {{ .Values.replicaCount }}
+  {{- end }}
   selector:
     matchLabels:
       {{- include "common.selectorLabels" . | nindent 6 }}
