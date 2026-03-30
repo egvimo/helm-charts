@@ -1,43 +1,9 @@
 {{- define "common.deployment.tpl" -}}
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: {{ include "common.fullname" . }}
-  labels:
-    {{- include "common.labels" . | nindent 4 }}
-spec:
-  {{- if hasKey .Values "replicaCount" }}
-  replicas: {{ .Values.replicaCount }}
-  {{- end }}
-  selector:
-    matchLabels:
-      {{- include "common.selectorLabels" . | nindent 6 }}
-  template:
-    metadata:
-      {{- with .Values.podAnnotations }}
-      annotations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      labels:
-        {{- include "common.selectorLabels" . | nindent 8 }}
-    spec:
-      securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
-      containers: []
-      volumes: []
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.tolerations }}
-      tolerations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+{{- $workload := dict "kind" "Deployment" -}}
+{{- $ctx := merge (dict "Workload" $workload) . -}}
+{{- include "common.workload.tpl" $ctx }}
 {{- end -}}
+
 {{- define "common.deployment" -}}
 {{- include "common.util.merge" (append . "common.deployment.tpl") -}}
 {{- end -}}
