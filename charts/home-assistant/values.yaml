@@ -52,7 +52,7 @@ persistence:
   storageClass: ""
   accessModes:
     - ReadWriteOnce
-  size: 500Mi
+  size: 600Mi
 
 serviceMonitor:
   enabled: true
