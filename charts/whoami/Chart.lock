@@ -1,6 +1,6 @@
 dependencies:
 - name: common
   repository: oci://ghcr.io/egvimo/charts
-  version: 0.1.0
-digest: sha256:13b88cd2356b36e45ec574cdd2b72b2d1f65cfab4756e33d550bc51afcd76d28
-generated: "2026-03-12T21:20:28.76823688+01:00"
+  version: 0.1.1
+digest: sha256:971332425aa8c3b37d8d6ec0ce65ef2573716d3f285c8ae53dfc07e3c34e534c
+generated: "2026-03-30T13:55:57.087504182+02:00"
