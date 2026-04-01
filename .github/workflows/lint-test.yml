@@ -34,21 +34,16 @@ jobs:
       charts: ${{ steps.set-matrix.outputs.charts }}
     steps:
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up chart-testing
+        uses: helm/chart-testing-action@v2.8.0
 
       - name: Build matrix
         id: set-matrix
         run: |
-          set -euo pipefail
-          if [ -n "${{ github.event.inputs.charts }}" ]; then
-            # Use charts provided in the workflow_dispatch input
-            JSON=$(echo "${{ github.event.inputs.charts }}" | tr -d ' ' | tr ',' '\n' | jq -R -s 'split("\n")[:-1]' -c)
-          else
-            # Auto-discover charts
-            JSON=$(ls -d charts/* \
-                   | xargs -n1 basename \
-                   | grep -vxFf <(yq '.excluded-charts[]' ci/ct-install-config.yaml) \
-                   | jq -R -s 'split("\n")[:-1]' -c)
-          fi
+          JSON=$(python3 ci/build-chart-matrix.py)
           echo "Matrix: $JSON"
           echo "charts=$JSON" >> $GITHUB_OUTPUT
 
