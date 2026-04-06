@@ -1,4 +1,5 @@
 code-server:
+  replicaCount: null
   image:
     repository: ghcr.io/egvimo/code-server
     tag: "4.113.1"
