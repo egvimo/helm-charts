@@ -9,6 +9,7 @@ spec:
   {{- if hasKey .Values "replicaCount" }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
+  revisionHistoryLimit: 3
   selector:
     matchLabels:
       {{- include "common.selectorLabels" . | nindent 6 }}
