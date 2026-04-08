@@ -1,0 +1,46 @@
+{{- include "common.deployment" (list . "firefox.deployment") -}}
+{{- define "firefox.deployment" -}}
+spec:
+  template:
+    spec:
+      containers:
+        - env:
+            - name: TZ
+              value: {{ .Values.timezone | quote }}
+            - name: USER_ID
+              value: "11319"
+            - name: GROUP_ID
+              value: "11319"
+            - name: DARK_MODE
+              value: "1"
+          ports:
+            - name: http
+              containerPort: 5800
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: downloads
+              mountPath: /config/downloads
+          {{- include "common.container" . | nindent 10 }}
+      volumes:
+        - name: config
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ include "common.fullname" . }}
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+        - name: downloads
+          hostPath:
+            path: {{ .Values.downloadsVolume.hostPath }}
+            type: Directory
+{{- end -}}
