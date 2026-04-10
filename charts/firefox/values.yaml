@@ -42,11 +42,11 @@ ingress:
 
 resources:
   requests:
-    memory: "128Mi"
+    memory: "512Mi"
     cpu: "100m"
   limits:
-    memory: "512Mi"
-    cpu: "1000m"
+    memory: "2048Mi"
+    cpu: "3000m"
 
 nodeSelector: {}
 

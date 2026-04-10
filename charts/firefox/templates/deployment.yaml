@@ -1,6 +1,8 @@
 {{- include "common.deployment" (list . "firefox.deployment") -}}
 {{- define "firefox.deployment" -}}
 spec:
+  strategy:
+    type: Recreate
   template:
     spec:
       containers:
@@ -13,6 +15,8 @@ spec:
               value: "11319"
             - name: DARK_MODE
               value: "1"
+            - name: VNC_LISTENING_PORT
+              value: "-1"
           ports:
             - name: http
               containerPort: 5800
