@@ -1,0 +1,5 @@
+resources:
+  limits: null
+
+volumes:
+  syncPath: /tmp

@@ -1,0 +1,3 @@
+code-server:
+  resources:
+    limits: null

@@ -2,6 +2,16 @@ windmill:
   windmill:
     databaseUrl: postgres://test:$(DATABASE_PASSWORD)@cnpg-cluster-rw/test
 
+    app:
+      resources:
+        limits: null
+      extraEnv:
+      - name: DATABASE_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: test
+            key: password
+
     workerGroups:
       - name: "default"
         controller: "Deployment"
@@ -41,9 +51,6 @@ windmill:
             drop:
               - ALL
           privileged: true
-        resources:
-          limits:
-            memory: "2Gi"
         extraEnv:
           - name: ENABLE_UNSHARE_PID
             value: "false"
@@ -75,9 +82,6 @@ windmill:
             drop:
               - ALL
           privileged: false
-        resources:
-          limits:
-            memory: "2Gi"
         extraEnv:
           - name: "NATIVE_MODE"
             value: "true"
@@ -90,11 +94,3 @@ windmill:
                 key: password
         mode: "worker"
         exposeHostDocker: false
-
-    app:
-      extraEnv:
-      - name: DATABASE_PASSWORD
-        valueFrom:
-          secretKeyRef:
-            name: test
-            key: password

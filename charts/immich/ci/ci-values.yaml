@@ -1,7 +1,5 @@
 resources:
-  limits:
-    cpu: 4
-    memory: 7Gi
+  limits: null
 
 database:
   hostname: cnpg-cluster-rw
@@ -16,6 +14,4 @@ extraVolumes:
 
 machine-learning:
   resources:
-    limits:
-      cpu: 4
-      memory: 7Gi
+    limits: null

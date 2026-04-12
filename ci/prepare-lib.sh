@@ -8,7 +8,7 @@ install_chart() {
   local chart_name="${1:?chart name required}"
   local namespace="${CT_NAMESPACE}"
   local chart_path="charts/${chart_name}"
-  local values_file="${chart_path}/ci/default-values.yaml"
+  local values_file="${chart_path}/ci/ci-values.yaml"
 
   if [[ ! -d "$chart_path" ]]; then
     echo "❌ Chart not found: $chart_path"

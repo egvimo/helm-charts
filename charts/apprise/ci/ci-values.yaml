@@ -1,0 +1,10 @@
+resources:
+  limits: null
+
+bridge:
+  resources:
+    limits: null
+
+signal:
+  resources:
+    limits: null

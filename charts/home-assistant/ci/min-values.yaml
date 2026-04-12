@@ -1,5 +1,0 @@
-persistence:
-  enabled: false
-
-serviceMonitor:
-  enabled: false

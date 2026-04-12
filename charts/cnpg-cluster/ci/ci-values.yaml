@@ -14,6 +14,4 @@ roles:
       name: test
 
 resources:
-  limits:
-    cpu: 4
-    memory: 7Gi
+  limits: null
