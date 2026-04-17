@@ -26,11 +26,7 @@ service:
 
 ingress:
   enabled: true
-  hosts:
-    - host: home-assistant.192-168-178-31.sslip.io
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
+  host: home-assistant.192-168-178-31.sslip.io
 
 resources:
   requests:

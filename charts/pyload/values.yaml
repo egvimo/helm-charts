@@ -30,11 +30,7 @@ service:
 
 ingress:
   enabled: true
-  hosts:
-    - host: pyload.192-168-178-31.sslip.io
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
+  host: pyload.192-168-178-31.sslip.io
 
 resources:
   requests:

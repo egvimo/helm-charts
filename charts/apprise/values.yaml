@@ -32,11 +32,7 @@ service:
 
 ingress:
   enabled: true
-  hosts:
-    - host: apprise.192-168-178-31.sslip.io
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
+  host: apprise.192-168-178-31.sslip.io
 
 resources:
   requests:

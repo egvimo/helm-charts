@@ -18,11 +18,7 @@ service:
 
 ingress:
   enabled: true
-  hosts:
-    - host: filebrowser.192-168-178-31.sslip.io
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
+  host: filebrowser.192-168-178-31.sslip.io
 
 resources:
   requests:
