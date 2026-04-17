@@ -1,12 +1,12 @@
 dependencies:
 - name: common
   repository: oci://ghcr.io/egvimo/charts
-  version: 0.1.3
+  version: 0.1.4
 - name: machine-learning
   repository: ""
   version: 0.1.0
 - name: valkey
   repository: https://valkey.io/valkey-helm/
   version: 0.9.4
-digest: sha256:d358e8d123f748fe49b7e406c0590568df69102d589f9b5a8fff22cd7ba108c4
-generated: "2026-04-12T16:27:10.876274708Z"
+digest: sha256:07f2cf00dba6b926acb54da9183a5f8c50da1f15aec18b560e5ed1501a66a00a
+generated: "2026-04-17T12:11:22.360755167Z"
