@@ -2,6 +2,13 @@
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "common.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
+
+{{- $hosts := .Values.ingress.hosts }}
+
+{{- if .Values.ingress.host }}
+{{- $hosts = list (dict "host" .Values.ingress.host "paths" (list (dict "path" "/" "pathType" "Prefix"))) }}
+{{- end }}
+
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -17,7 +24,7 @@ spec:
   ingressClassName: {{ .Values.ingress.ingressClassName }}
   {{- end }}
   rules:
-    {{- range .Values.ingress.hosts }}
+    {{- range $hosts }}
     - host: {{ .host | quote }}
       http:
         paths:
