@@ -18,7 +18,7 @@ spec:
       restartPolicy: OnFailure
       containers:
         - name: database-readiness-check
-          image: ghcr.io/egvimo/postgresql-client:18.1.0
+          image: ghcr.io/egvimo/postgresql-client:18.3.0
           imagePullPolicy: IfNotPresent
           env:
             - name: PGHOST
