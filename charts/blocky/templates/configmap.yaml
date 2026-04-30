@@ -1,0 +1,6 @@
+{{- include "common.configmap" (list . "blocky.configmap") -}}
+{{- define "blocky.configmap" -}}
+data:
+  config.yml: |-
+    {{- .Values.config | toYaml | nindent 4 }}
+{{- end -}}

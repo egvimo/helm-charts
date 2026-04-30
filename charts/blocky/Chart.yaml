@@ -1,0 +1,10 @@
+apiVersion: v2
+name: blocky
+type: application
+version: 0.1.0
+# renovate: image=ghcr.io/0xerr0r/blocky
+appVersion: "v0.29.0"
+dependencies:
+  - name: common
+    version: 0.1.5
+    repository: oci://ghcr.io/egvimo/charts

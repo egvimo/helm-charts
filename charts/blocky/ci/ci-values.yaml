@@ -1,0 +1,11 @@
+resources:
+  limits: null
+
+service:
+  type: NodePort
+
+config:
+  upstreams:
+    groups:
+      default:
+        - 9.9.9.9

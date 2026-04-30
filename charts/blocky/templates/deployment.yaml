@@ -1,0 +1,40 @@
+{{- include "common.deployment" (list . "blocky.deployment") -}}
+{{- define "blocky.deployment" -}}
+spec:
+  strategy:
+    type: Recreate
+  template:
+    spec:
+      containers:
+        - env:
+            - name: TZ
+              value: {{ .Values.timezone | quote }}
+          ports:
+            - name: dns-tcp
+              containerPort: 53
+              protocol: TCP
+            - name: dns-udp
+              containerPort: 53
+              protocol: UDP
+          livenessProbe:
+            exec:
+              command:
+                - /app/blocky
+                - healthcheck
+          readinessProbe:
+            exec:
+              command:
+                - /app/blocky
+                - healthcheck
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          volumeMounts:
+            - name: config
+              mountPath: /app/config.yml
+              subPath: config.yml
+          {{- include "common.container" . | nindent 10 }}
+      volumes:
+        - name: config
+          configMap:
+            name: {{ include "common.fullname" . }}
+{{- end -}}
