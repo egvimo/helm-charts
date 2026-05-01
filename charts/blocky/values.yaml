@@ -47,6 +47,9 @@ affinity: {}
 
 timezone: "Europe/Berlin"
 
+serviceMonitor:
+  enabled: true
+
 config:
   upstreams:
     init:
@@ -59,5 +62,6 @@ config:
         - 176.9.1.117
   ports:
     dns: 53
+    http: 4000
   prometheus:
     enable: true
