@@ -15,5 +15,9 @@ spec:
       protocol: UDP
       port: 53
       targetPort: dns-udp
+    - name: http
+      protocol: TCP
+      port: 4000
+      targetPort: http
   selector:
     {{- include "common.selectorLabels" . | nindent 4 }}
