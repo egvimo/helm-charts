@@ -1,8 +1,6 @@
 {{- include "common.deployment" (list . "blocky.deployment") -}}
 {{- define "blocky.deployment" -}}
 spec:
-  strategy:
-    type: Recreate
   template:
     spec:
       containers:
@@ -29,8 +27,13 @@ spec:
               command:
                 - /app/blocky
                 - healthcheck
-            initialDelaySeconds: 5
-            periodSeconds: 5
+          startupProbe:
+            exec:
+              command:
+                - /app/blocky
+                - healthcheck
+            initialDelaySeconds: 10
+            failureThreshold: 15
           volumeMounts:
             - name: config
               mountPath: /app/config.yml

@@ -63,5 +63,10 @@ config:
   ports:
     dns: 53
     http: 4000
+  blocking:
+    denylists:
+      default:
+        - https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/light.txt
+        - https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/tif.txt
   prometheus:
     enable: true
