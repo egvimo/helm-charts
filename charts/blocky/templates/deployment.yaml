@@ -38,9 +38,19 @@ spec:
             - name: config
               mountPath: /app/config.yml
               subPath: config.yml
+            {{- if and .Values.config.ports.tls .Values.certManager.dnsName }}
+            - name: tls-certs
+              mountPath: {{ .Values.tls.mountPath }}
+              readOnly: true
+            {{- end }}
           {{- include "common.container" . | nindent 10 }}
       volumes:
         - name: config
           configMap:
             name: {{ include "common.fullname" . }}
+        {{- if and .Values.config.ports.tls .Values.certManager.dnsName }}
+        - name: tls-certs
+          secret:
+            secretName: {{ include "common.fullname" . }}-tls
+        {{- end }}
 {{- end -}}

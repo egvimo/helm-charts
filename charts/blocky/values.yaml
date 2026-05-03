@@ -62,6 +62,7 @@ config:
         - 176.9.1.117
   ports:
     dns: 53
+    tls: 853
     http: 4000
   blocking:
     denylists:
@@ -70,3 +71,6 @@ config:
         - https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/tif.txt
   prometheus:
     enable: true
+
+certManager:
+  dnsName: ""
