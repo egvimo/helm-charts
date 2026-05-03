@@ -58,13 +58,9 @@ database:
   passwordSecretName: immich
 
 configuration:
-  ffmpeg:
-    transcode: disabled
   machineLearning:
     ocr:
       enabled: false
-  reverseGeocoding:
-    enabled: false
   storageTemplate:
     enabled: true
     template: "{{y}}/{{y}}-{{MM}}/{{filename}}"
