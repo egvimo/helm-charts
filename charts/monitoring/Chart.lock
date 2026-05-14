@@ -4,12 +4,12 @@ dependencies:
   version: 85.0.3
 - name: prometheus-smartctl-exporter
   repository: oci://ghcr.io/prometheus-community/charts
-  version: 0.16.0
+  version: 0.16.1
 - name: file-exporter
   repository: ""
   version: 0.1.0
 - name: common
   repository: oci://ghcr.io/egvimo/charts
   version: 0.1.5
-digest: sha256:a439076d5324d9d3e4ba6312bf1b5e661f91c77b34fae2ada528ccc6d17e72e9
-generated: "2026-05-14T08:54:31.251426038Z"
+digest: sha256:4bb9bfef0a8630de92178a9ab3ba5ddba0f41b53c1cc8843f9039759d352e453
+generated: "2026-05-14T09:06:17.781460446Z"
