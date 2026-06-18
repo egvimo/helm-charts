@@ -11,5 +11,5 @@ dependencies:
   - name: machine-learning
     version: 0.1.0
   - name: valkey
-    version: 0.9.4
+    version: 0.10.0
     repository: https://valkey.io/valkey-helm/
