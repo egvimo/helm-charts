@@ -7,7 +7,7 @@ dependencies:
     version: "86.3.2"
     repository: oci://ghcr.io/prometheus-community/charts
   - name: prometheus-smartctl-exporter
-    version: "0.16.1"
+    version: "0.17.0"
     repository: oci://ghcr.io/prometheus-community/charts
   - name: file-exporter
     version: "0.1.0"
