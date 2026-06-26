@@ -7,7 +7,7 @@ groups:
     rules:
       - uid: node-temperature
         title: Node Temperature
-        condition: A
+        condition: C
         data:
           - refId: A
             relativeTimeRange:
@@ -15,10 +15,34 @@ groups:
               to: 0
             datasourceUid: prometheus
             model:
-              expr: max_over_time(node_thermal_zone_temp[5m]) > 60
-              format: table
-              range: true
+              expr: max by(instance) (node_thermal_zone_temp)
+              instant: true
+              range: false
               refId: A
+          - refId: B
+            datasourceUid: __expr__
+            model:
+              type: reduce
+              expression: A
+              reducer: last
+              refId: B
+          - refId: C
+            datasourceUid: __expr__
+            model:
+              type: threshold
+              expression: B
+              refId: C
+              conditions:
+                - type: query
+                  query:
+                    params:
+                      - C
+                  reducer:
+                    type: last
+                  evaluator:
+                    type: gt
+                    params:
+                      - 60
         noDataState: OK
         execErrState: Error
         for: 10m
