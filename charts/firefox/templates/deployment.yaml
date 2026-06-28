@@ -35,6 +35,18 @@ spec:
             - name: downloads
               mountPath: /config/downloads
           {{- include "common.container" . | nindent 10 }}
+        {{- if .Values.extractor.enabled }}
+        - name: extractor
+          image: ghcr.io/egvimo/extractor:26.4.0
+          imagePullPolicy: IfNotPresent
+          command:
+            - /bin/sh
+            - -c
+            - sleep infinity
+          volumeMounts:
+            - name: downloads
+              mountPath: /downloads
+        {{- end }}
       volumes:
         - name: config
           {{- if .Values.persistence.enabled }}

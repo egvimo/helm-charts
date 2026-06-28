@@ -62,3 +62,6 @@ timezone: "Europe/Berlin"
 
 downloadsVolume:
   hostPath: /tmp
+
+extractor:
+  enabled: true
