@@ -3,7 +3,7 @@ name: immich
 type: application
 version: 0.1.2
 # renovate: image=ghcr.io/immich-app/immich-server
-appVersion: "v3.0.1"
+appVersion: "v3.0.2"
 dependencies:
   - name: common
     version: 0.1.5
