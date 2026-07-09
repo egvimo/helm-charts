@@ -1,9 +1,9 @@
 dependencies:
 - name: cert-manager
   repository: https://charts.jetstack.io
-  version: v1.20.3
+  version: v1.21.0
 - name: cert-manager-webhook-ionos
   repository: https://fabmade.github.io/cert-manager-webhook-ionos
   version: 1.3.1
-digest: sha256:2e701de2ee573cca0f3d6967419c4869f16023525a0bb4cf6b6c1824b89ef151
-generated: "2026-06-25T17:34:35.160505549Z"
+digest: sha256:c94a6fd5a797f0fbcc7734d8f3e3a7c1bbb1f881412306dc8da2670443a9383c
+generated: "2026-07-09T01:06:38.162934089Z"
