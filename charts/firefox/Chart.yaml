@@ -3,7 +3,7 @@ name: firefox
 type: application
 version: 0.1.0
 # renovate: image=ghcr.io/jlesage/firefox
-appVersion: "v26.03.1"
+appVersion: "v26.07.2"
 dependencies:
   - name: common
     version: 0.1.5
