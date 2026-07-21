@@ -4,7 +4,7 @@ type: application
 version: 0.1.37
 dependencies:
   - name: kube-prometheus-stack
-    version: "87.16.1"
+    version: "87.19.0"
     repository: oci://ghcr.io/prometheus-community/charts
   - name: prometheus-smartctl-exporter
     version: "0.17.1"
