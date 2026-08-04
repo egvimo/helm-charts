@@ -29,10 +29,14 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /data
+            - name: tmp
+              mountPath: /tmp
           {{- include "common.container" . | nindent 10 }}
       volumes:
         - name: data
           hostPath:
             path: {{ .Values.dataVolume.hostPath }}
             type: Directory
+        - name: tmp
+          emptyDir: {}
 {{- end -}}
