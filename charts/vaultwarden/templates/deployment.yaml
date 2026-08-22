@@ -1,0 +1,61 @@
+{{- include "common.deployment" (list . "vaultwarden.deployment") -}}
+{{- define "vaultwarden.deployment" -}}
+spec:
+  strategy:
+    type: Recreate
+  template:
+    spec:
+      containers:
+        - env:
+            - name: ROCKET_ADDRESS
+              value: "0.0.0.0"
+            - name: ROCKET_PORT
+              value: "8080"
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.vaultwarden.databaseUrlSecretRef.name }}
+                  key: {{ .Values.vaultwarden.databaseUrlSecretRef.key }}
+            - name: WEBSOCKET_ENABLED
+              value: {{ .Values.vaultwarden.websocketEnabled | quote }}
+            - name: SIGNUPS_ALLOWED
+              value: {{ .Values.vaultwarden.signupsAllowed | quote }}
+            - name: DOMAIN
+              value: "https://{{ .Values.ingress.host }}"
+            {{- if .Values.vaultwarden.adminTokenSecretRef }}
+            - name: ADMIN_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.vaultwarden.adminTokenSecretRef.name }}
+                  key: {{ .Values.vaultwarden.adminTokenSecretRef.key }}
+            {{- end }}
+            {{- with .Values.extraEnv }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /alive
+              port: http
+            initialDelaySeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /alive
+              port: http
+            initialDelaySeconds: 10
+          volumeMounts:
+            - name: data
+              mountPath: /data
+          {{- include "common.container" . | nindent 10 }}
+      volumes:
+        - name: data
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ include "common.fullname" . }}
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+{{- end -}}
