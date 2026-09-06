@@ -1,5 +1,0 @@
-resources:
-  limits: null
-
-service:
-  type: NodePort
