@@ -3,7 +3,7 @@ name: vaultwarden
 type: application
 version: 0.1.0
 # renovate: image=ghcr.io/dani-garcia/vaultwarden
-appVersion: "1.37.2-alpine"
+appVersion: "1.37.3-alpine"
 dependencies:
   - name: common
     version: 0.1.5
