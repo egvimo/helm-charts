@@ -34,6 +34,27 @@ spec:
               mountPath: /config/configuration.yaml
               subPath: configuration.yaml
           {{- include "common.container" . | nindent 10 }}
+        {{- if .Values.matterServer.enabled }}
+        - name: matter-server
+          image: "{{ .Values.matterServer.image.repository }}:{{ .Values.matterServer.image.tag }}"
+          imagePullPolicy: {{ .Values.matterServer.image.pullPolicy }}
+          args:
+            - --storage-path
+            - /data
+          ports:
+            - name: matter
+              containerPort: 5580
+              protocol: TCP
+          readinessProbe:
+            tcpSocket:
+              port: matter
+          resources:
+            {{- toYaml .Values.matterServer.resources | nindent 12 }}
+          volumeMounts:
+            - name: config
+              mountPath: /data
+              subPath: matter-server
+        {{- end }}
       initContainers:
         - name: ensure-config
           image: busybox
