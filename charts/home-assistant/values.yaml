@@ -59,3 +59,12 @@ timezone: ""  # Defaults to 'Europe/Berlin'
 config:
   prometheus:
     namespace: home_assistant
+
+matterServer:
+  enabled: true
+  # renovate: image=ghcr.io/matter-js/matterjs-server
+  image:
+    repository: ghcr.io/matter-js/matterjs-server
+    pullPolicy: IfNotPresent
+    tag: 1.4.0
+  resources: {}
