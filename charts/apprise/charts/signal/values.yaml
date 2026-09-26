@@ -11,6 +11,9 @@ fullnameOverride: ""
 podAnnotations: {}
 
 podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 11319
+  runAsGroup: 11319
   fsGroup: 11319
   seccompProfile:
     type: RuntimeDefault
@@ -20,11 +23,8 @@ securityContext:
   capabilities:
     drop:
       - ALL
-    add:
-      - SETUID
-      - SETGID
-      - CHOWN
   privileged: false
+  readOnlyRootFilesystem: true
 
 service:
   type: ClusterIP
