@@ -3,6 +3,29 @@
 spec:
   template:
     spec:
+      initContainers:
+        - name: prepare
+          image: busybox
+          command:
+            - chown
+            - "11319:11319"
+            - /run
+            - /tmp/s6-runtime
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+              add:
+                - CHOWN
+            runAsNonRoot: false
+            runAsUser: 0
+            runAsGroup: 0
+          volumeMounts:
+            - name: run
+              mountPath: /run
+            - name: s6-runtime
+              mountPath: /tmp/s6-runtime
       containers:
         - env:
             - name: MODE
@@ -30,6 +53,8 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /home/.local/share/signal-cli
+            - name: run
+              mountPath: /run
           {{- include "common.container" . | nindent 10 }}
       volumes:
         - name: config
@@ -39,4 +64,8 @@ spec:
           {{- else }}
           emptyDir: {}
           {{- end }}
+        - name: run
+          emptyDir: {}
+        - name: s6-runtime
+          emptyDir: {}
 {{- end -}}
