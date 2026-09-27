@@ -7,10 +7,9 @@ spec:
         - name: prepare
           image: busybox
           command:
-            - chown
-            - "11319:11319"
-            - /run
-            - /tmp/s6-runtime
+            - sh
+            - -c
+            - chown 11319:11319 /run /tmp/s6-runtime && chown -R 11319:11319 /config
           securityContext:
             allowPrivilegeEscalation: false
             capabilities:
@@ -26,6 +25,8 @@ spec:
               mountPath: /run
             - name: s6-runtime
               mountPath: /tmp/s6-runtime
+            - name: config
+              mountPath: /config
       containers:
         - env:
             - name: MODE
