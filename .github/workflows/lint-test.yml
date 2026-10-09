@@ -23,7 +23,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set up chart-testing
-        uses: helm/chart-testing-action@v2.8.0
+        uses: helm/chart-testing-action@v2.9.0
 
       - name: Run chart-testing (lint)
         run: ct lint --config ci/ct-lint-config.yaml
@@ -38,7 +38,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set up chart-testing
-        uses: helm/chart-testing-action@v2.8.0
+        uses: helm/chart-testing-action@v2.9.0
 
       - name: Build matrix
         id: set-matrix
@@ -62,7 +62,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set up chart-testing
-        uses: helm/chart-testing-action@v2.8.0
+        uses: helm/chart-testing-action@v2.9.0
 
       - name: Create kind cluster
         uses: helm/kind-action@v1.15.1
