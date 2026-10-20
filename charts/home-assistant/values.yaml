@@ -56,6 +56,8 @@ serviceMonitor:
 
 timezone: ""  # Defaults to 'Europe/Berlin'
 
+disableLogFile: true
+
 config:
   prometheus:
     namespace: home_assistant

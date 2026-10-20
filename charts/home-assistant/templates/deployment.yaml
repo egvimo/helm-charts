@@ -9,6 +9,10 @@ spec:
         - env:
             - name: TZ
               value: {{ .Values.timezone | default "Europe/Berlin" | quote }}
+            {{- if .Values.disableLogFile }}
+            - name: HA_DISABLE_LOG_FILE
+              value: "1"
+            {{- end }}
           ports:
             - name: http
               containerPort: 8123
