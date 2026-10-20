@@ -92,6 +92,9 @@ kube-prometheus-stack:
       serviceMonitorNamespaceSelector:
         matchLabels:
           export-prometheus-metrics: "true"
+      podMetadata:
+        labels:
+          longhorn.io/metrics-scraper: "true"
       maximumStartupDurationSeconds: 900
 
 prometheus-smartctl-exporter:
