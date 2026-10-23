@@ -6,7 +6,7 @@ superuserSecret:
   name: ''
 
 storage:
-  size: 6Gi
+  size: 7Gi
 
 databases: []
 
