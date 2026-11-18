@@ -39,6 +39,7 @@ spec:
         - name: extractor
           image: ghcr.io/egvimo/extractor:26.4.0
           imagePullPolicy: IfNotPresent
+          workingDir: /downloads
           command:
             - /bin/sh
             - -c
