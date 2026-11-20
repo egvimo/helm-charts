@@ -1,4 +1,5 @@
 cert-manager:
+  enabled: false
   namespace: ""
   installCRDs: false
 

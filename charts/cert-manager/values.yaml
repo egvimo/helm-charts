@@ -1,4 +1,5 @@
 cert-manager:
+  enabled: true
   installCRDs: true
 
 cert-manager-webhook-ionos:
