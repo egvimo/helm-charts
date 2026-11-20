@@ -5,5 +5,5 @@ dependencies:
 - name: cert-manager-webhook-ionos
   repository: https://fabmade.github.io/cert-manager-webhook-ionos
   version: 1.3.1
-digest: sha256:932f6671595990de0927259b6fd346bea9deadef8a915245f6838e99208fa007
-generated: "2026-10-23T21:35:24.922452102Z"
+digest: sha256:cf705ef69021fe0263ef3e29426bacdc5d2bd5eaf4123d18c179986f2cbb3303
+generated: "2026-11-20T21:24:54.077914238+01:00"

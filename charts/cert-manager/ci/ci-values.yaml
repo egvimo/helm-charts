@@ -1,11 +1,10 @@
 cert-manager:
+  enabled: false
   namespace: ""
   installCRDs: false
 
 issuer:
-  type: staging
-  groupName: acme.example.net
-  email: changeme@example.net
+  enabled: false
 
 certificate:
-  dnsName: '*.example.net'
+  enabled: false

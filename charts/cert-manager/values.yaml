@@ -1,14 +1,17 @@
 cert-manager:
+  enabled: true
   installCRDs: true
 
 cert-manager-webhook-ionos:
   # groupName: acme.example.net
   fullnameOverride: "webhook-ionos"
 
-issuer: {}
+issuer:
+  enabled: true
   # type: staging or prod
   # groupName: acme.example.net
   # email: changeme@example.net
 
-certificate: {}
+certificate:
+  enabled: true
   # dnsName: '*.example.net'
