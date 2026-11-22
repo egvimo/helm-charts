@@ -1,6 +1,8 @@
 {{- include "common.deployment" (list . "signal.deployment") -}}
 {{- define "signal.deployment" -}}
 spec:
+  strategy:
+    type: Recreate
   template:
     spec:
       initContainers:
