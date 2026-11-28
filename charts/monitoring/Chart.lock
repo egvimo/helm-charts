@@ -1,7 +1,7 @@
 dependencies:
 - name: kube-prometheus-stack
   repository: oci://ghcr.io/prometheus-community/charts
-  version: 93.11.1
+  version: 94.2.0
 - name: prometheus-smartctl-exporter
   repository: oci://ghcr.io/prometheus-community/charts
   version: 0.19.2
@@ -11,5 +11,5 @@ dependencies:
 - name: common
   repository: oci://ghcr.io/egvimo/charts
   version: 0.1.5
-digest: sha256:d28bf3d4dd122fd4e524fdfe2a07c4425f0218922ccc2455a05855d05427f9e8
-generated: "2026-11-26T10:16:36.693762085Z"
+digest: sha256:93bf660f5718f9ca7486fc67dcbc19769f4d85af55eaeef2982b8d6ba9b069d4
+generated: "2026-11-28T01:16:46.324850989Z"
